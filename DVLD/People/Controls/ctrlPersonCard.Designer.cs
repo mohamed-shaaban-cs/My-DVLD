@@ -43,7 +43,7 @@
             this.lblDateOfBirth = new System.Windows.Forms.Label();
             this.lblAddress = new System.Windows.Forms.Label();
             this.lblEmail = new System.Windows.Forms.Label();
-            this.lblGendor = new System.Windows.Forms.Label();
+            this.lblGender = new System.Windows.Forms.Label();
             this.lblNationalNo = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
@@ -106,7 +106,7 @@
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(79, 20);
             this.label6.TabIndex = 45;
-            this.label6.Text = "Gendor :";
+            this.label6.Text = "Gender :";
             // 
             // label5
             // 
@@ -176,7 +176,7 @@
             this.groupBox1.Controls.Add(this.lblDateOfBirth);
             this.groupBox1.Controls.Add(this.lblAddress);
             this.groupBox1.Controls.Add(this.lblEmail);
-            this.groupBox1.Controls.Add(this.lblGendor);
+            this.groupBox1.Controls.Add(this.lblGender);
             this.groupBox1.Controls.Add(this.lblNationalNo);
             this.groupBox1.Controls.Add(this.pbPersonImage);
             this.groupBox1.Controls.Add(this.pictureBox8);
@@ -282,17 +282,17 @@
             this.lblEmail.TabIndex = 66;
             this.lblEmail.Text = "[????]";
             // 
-            // lblGendor
+            // lblGender
             // 
-            this.lblGendor.AutoSize = true;
-            this.lblGendor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblGendor.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGendor.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.lblGendor.Location = new System.Drawing.Point(181, 168);
-            this.lblGendor.Name = "lblGendor";
-            this.lblGendor.Size = new System.Drawing.Size(53, 20);
-            this.lblGendor.TabIndex = 65;
-            this.lblGendor.Text = "[????]";
+            this.lblGender.AutoSize = true;
+            this.lblGender.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblGender.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblGender.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.lblGender.Location = new System.Drawing.Point(181, 168);
+            this.lblGender.Name = "lblGender";
+            this.lblGender.Size = new System.Drawing.Size(53, 20);
+            this.lblGender.TabIndex = 65;
+            this.lblGender.Text = "[????]";
             // 
             // lblNationalNo
             // 
@@ -486,7 +486,7 @@
         private System.Windows.Forms.Label lblDateOfBirth;
         private System.Windows.Forms.Label lblAddress;
         private System.Windows.Forms.Label lblEmail;
-        private System.Windows.Forms.Label lblGendor;
+        private System.Windows.Forms.Label lblGender;
         private System.Windows.Forms.Label lblNationalNo;
         private System.Windows.Forms.PictureBox pbPersonImage;
         private System.Windows.Forms.LinkLabel lblEditPersonInfo;

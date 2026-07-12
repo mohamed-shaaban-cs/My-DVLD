@@ -79,9 +79,9 @@ namespace DVLD.People
                 tbThirdName.Text = Person.ThirdName.ToString();
                 tbLastName.Text = Person.LastName.ToString();
                 dtpDateOfBirth.Value = Person.DateOfBirth;
-                if (Person.Gendor == 0)
+                if (Person.Gender == 0)
                     rbtnMale.Checked = true;
-                else if (Person.Gendor == 1)
+                else if (Person.Gender == 1)
                     rbtnFemale.Checked = true;
 
                 rtbAddress.Text = Person.Address.ToString();
@@ -241,7 +241,7 @@ namespace DVLD.People
             Person.Email = tbEmail.Text;
             Person.Address = rtbAddress.Text;
             Person.Phone = tbPhone.Text;
-            Person.Gendor =  (byte) (rbtnMale.Checked ? 0 : 1 );
+            Person.Gender =  (byte) (rbtnMale.Checked ? 0 : 1 );
             Person.NationalityCountryID = clsCountry.Find(cbCountry.SelectedItem.ToString()).CountryID;
 
             if (MessageBox.Show("Are you sure you want to save the person data?", "Confirm Save", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)

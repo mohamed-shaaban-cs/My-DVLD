@@ -171,7 +171,7 @@
             "First Name",
             "Second Name",
             "Third Name",
-            "Gendor",
+            "Gender",
             "Nationality",
             "Phone",
             "Email"});

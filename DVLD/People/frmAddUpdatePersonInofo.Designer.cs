@@ -32,7 +32,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnSavePersonData = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
-            this.pnlGendor = new System.Windows.Forms.Panel();
+            this.pnlGender = new System.Windows.Forms.Panel();
             this.rbtnMale = new System.Windows.Forms.RadioButton();
             this.rbtnFemale = new System.Windows.Forms.RadioButton();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
@@ -76,7 +76,7 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
-            this.pnlGendor.SuspendLayout();
+            this.pnlGender.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbPersonImage)).BeginInit();
@@ -97,7 +97,7 @@
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.btnSavePersonData);
             this.panel1.Controls.Add(this.btnClose);
-            this.panel1.Controls.Add(this.pnlGendor);
+            this.panel1.Controls.Add(this.pnlGender);
             this.panel1.Controls.Add(this.dtpDateOfBirth);
             this.panel1.Controls.Add(this.lblRemove);
             this.panel1.Controls.Add(this.lblSetImage);
@@ -169,16 +169,16 @@
             this.btnClose.UseVisualStyleBackColor = false;
             this.btnClose.Click += new System.EventHandler(this.button1_Click);
             // 
-            // pnlGendor
+            // pnlGender
             // 
-            this.pnlGendor.Controls.Add(this.rbtnMale);
-            this.pnlGendor.Controls.Add(this.rbtnFemale);
-            this.pnlGendor.Controls.Add(this.pictureBox4);
-            this.pnlGendor.Controls.Add(this.pictureBox3);
-            this.pnlGendor.Location = new System.Drawing.Point(128, 126);
-            this.pnlGendor.Name = "pnlGendor";
-            this.pnlGendor.Size = new System.Drawing.Size(292, 50);
-            this.pnlGendor.TabIndex = 42;
+            this.pnlGender.Controls.Add(this.rbtnMale);
+            this.pnlGender.Controls.Add(this.rbtnFemale);
+            this.pnlGender.Controls.Add(this.pictureBox4);
+            this.pnlGender.Controls.Add(this.pictureBox3);
+            this.pnlGender.Location = new System.Drawing.Point(128, 126);
+            this.pnlGender.Name = "pnlGender";
+            this.pnlGender.Size = new System.Drawing.Size(292, 50);
+            this.pnlGender.TabIndex = 42;
             // 
             // rbtnMale
             // 
@@ -453,7 +453,6 @@
             this.tbThirdName.Name = "tbThirdName";
             this.tbThirdName.Size = new System.Drawing.Size(194, 28);
             this.tbThirdName.TabIndex = 18;
-            this.tbThirdName.Validating += new System.ComponentModel.CancelEventHandler(this.inputControl_Validating_IsNullOrEmpty);
             // 
             // tbSecondName
             // 
@@ -547,7 +546,7 @@
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(71, 20);
             this.label6.TabIndex = 7;
-            this.label6.Text = "Gendor :";
+            this.label6.Text = "Gender :";
             // 
             // label5
             // 
@@ -645,8 +644,8 @@
             this.Load += new System.EventHandler(this.frmAddUpdatePersonInofo_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.pnlGendor.ResumeLayout(false);
-            this.pnlGendor.PerformLayout();
+            this.pnlGender.ResumeLayout(false);
+            this.pnlGender.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbPersonImage)).EndInit();
@@ -703,7 +702,7 @@
         private System.Windows.Forms.PictureBox pbPersonImage;
         private System.Windows.Forms.DateTimePicker dtpDateOfBirth;
         private System.Windows.Forms.LinkLabel lblRemove;
-        private System.Windows.Forms.Panel pnlGendor;
+        private System.Windows.Forms.Panel pnlGender;
         private System.Windows.Forms.RadioButton rbtnMale;
         private System.Windows.Forms.RadioButton rbtnFemale;
         private System.Windows.Forms.PictureBox pictureBox4;

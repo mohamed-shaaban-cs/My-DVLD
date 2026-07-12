@@ -34,7 +34,7 @@ namespace DVLD.People
             dgvPeople.Columns["SecondName"].HeaderText = "Second Name";
             dgvPeople.Columns["ThirdName"].HeaderText = "Third Name";
             dgvPeople.Columns["LastName"].HeaderText = "Last Name";
-            dgvPeople.Columns["GendorCaption"].HeaderText = "Gendor";
+            dgvPeople.Columns["GenderCaption"].HeaderText = "Gender";
             dgvPeople.Columns["DateOfBirth"].HeaderText = "Date Of Birth";
             dgvPeople.Columns["Phone"].HeaderText = "Phone";
             dgvPeople.Columns["CountryName"].HeaderText = "Nationality";
@@ -45,7 +45,7 @@ namespace DVLD.People
         {
             dtAllPeople = clsPerson.GetAllPersons();
 
-            dtPeople = dtAllPeople.DefaultView.ToTable(false, "PersonID", "NationalNo", "FirstName", "SecondName", "ThirdName", "LastName", "GendorCaption", "DateOfBirth", "CountryName", "Phone", "Email");
+            dtPeople = dtAllPeople.DefaultView.ToTable(false, "PersonID", "NationalNo", "FirstName", "SecondName", "ThirdName", "LastName", "GenderCaption", "DateOfBirth", "CountryName", "Phone", "Email");
 
             dgvPeople.DataSource = dtPeople;
             lblRecordsCount.Text = dgvPeople.Rows.Count.ToString();
@@ -103,8 +103,8 @@ namespace DVLD.People
                 case "Last Name":
                     filterColumn = "LastName";
                     break;
-                case "Gendor":
-                    filterColumn = "GendorCaption";
+                case "Gender":
+                    filterColumn = "GenderCaption";
                     break;
                 case "Nationality":
                     filterColumn = "CountryName";

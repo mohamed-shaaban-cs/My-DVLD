@@ -32,7 +32,7 @@ namespace DVLD.People.Controls
                 lblPersonID.Text = $"ID: {Person.PersonID}" ?? "[????]";
                 lblName.Text = $"{Person.FirstName} {Person.SecondName} {Person.ThirdName} {Person.LastName}" ?? "[????]";
                 lblNationalNo.Text = Person.NationalNo ?? "[????]";
-                lblGendor.Text = (Person.Gendor == 0)? "Male" : (Person.Gendor == 1) ? "Female" : "[????]";
+                lblGender.Text = (Person.Gender == 0)? "Male" : (Person.Gender == 1) ? "Female" : "[????]";
                 lblDateOfBirth.Text = Person.DateOfBirth.ToString("dd/MM/yyyy") ?? "[????]";
                 lblCountry.Text = (clsCountry.Find(Person.NationalityCountryID)?.CountryName) ?? "[????]" ;
                 lblPhone.Text = Person.Phone ?? "[????]";
@@ -47,7 +47,7 @@ namespace DVLD.People.Controls
                     }
                 }
                 else
-                    pbPersonImage.BackgroundImage = (lblGendor.Text == "Female") ? Properties.Resources.Female_512 :Properties.Resources.Male_512 ;
+                    pbPersonImage.BackgroundImage = (lblGender.Text == "Female") ? Properties.Resources.Female_512 :Properties.Resources.Male_512 ;
             }
         }
 

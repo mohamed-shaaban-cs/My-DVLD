@@ -17,7 +17,7 @@ namespace DVLD_BusinessLogic
         public string ThirdName { get; set; }
         public string LastName { get; set; }
         public DateTime DateOfBirth { get; set; }
-        public byte Gendor { get; set; }
+        public byte Gender { get; set; }
         public string Address { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
@@ -37,7 +37,7 @@ namespace DVLD_BusinessLogic
             this.ThirdName = "";
             this.LastName = "";
             this.DateOfBirth = DateTime.Now;
-            this.Gendor = 0;
+            this.Gender = 0;
             this.Address = "";
             this.Phone = "";
             this.Email = "";
@@ -48,7 +48,7 @@ namespace DVLD_BusinessLogic
         }
 
         // Parameterized Constructor لتحميل بيانات موجودة
-        private clsPerson(int PersonID, string NationalNo, string FirstName, string SecondName, string ThirdName, string LastName, DateTime DateOfBirth, byte Gendor, string Address, string Phone, string Email, int NationalityCountryID, string ImagePath)
+        private clsPerson(int PersonID, string NationalNo, string FirstName, string SecondName, string ThirdName, string LastName, DateTime DateOfBirth, byte Gender, string Address, string Phone, string Email, int NationalityCountryID, string ImagePath)
         {
             this.PersonID = PersonID;
             this.NationalNo = NationalNo;
@@ -57,7 +57,7 @@ namespace DVLD_BusinessLogic
             this.ThirdName = ThirdName;
             this.LastName = LastName;
             this.DateOfBirth = DateOfBirth;
-            this.Gendor = Gendor;
+            this.Gender = Gender;
             this.Address = Address;
             this.Phone = Phone;
             this.Email = Email;
@@ -71,14 +71,14 @@ namespace DVLD_BusinessLogic
         private bool _AddNewPerson()
         {
             // التعديل هنا: استخدام cls{ClassName}Data
-            this.PersonID = clsPersonData.AddNewPerson(this.NationalNo, this.FirstName, this.SecondName, this.ThirdName, this.LastName, this.DateOfBirth, this.Gendor, this.Address, this.Phone, this.Email, this.NationalityCountryID, this.ImagePath);
+            this.PersonID = clsPersonData.AddNewPerson(this.NationalNo, this.FirstName, this.SecondName, this.ThirdName, this.LastName, this.DateOfBirth, this.Gender, this.Address, this.Phone, this.Email, this.NationalityCountryID, this.ImagePath);
             return (this.PersonID != -1);
         }
 
         private bool _UpdatePerson()
         {
             // التعديل هنا
-            return clsPersonData.UpdatePerson(this.PersonID, this.NationalNo, this.FirstName, this.SecondName, this.ThirdName, this.LastName, this.DateOfBirth, this.Gendor, this.Address, this.Phone, this.Email, this.NationalityCountryID, this.ImagePath);
+            return clsPersonData.UpdatePerson(this.PersonID, this.NationalNo, this.FirstName, this.SecondName, this.ThirdName, this.LastName, this.DateOfBirth, this.Gender, this.Address, this.Phone, this.Email, this.NationalityCountryID, this.ImagePath);
         }
 
         public static clsPerson Find(int PersonID)
@@ -89,7 +89,7 @@ namespace DVLD_BusinessLogic
             string ThirdName = "";
             string LastName = "";
             DateTime DateOfBirth = DateTime.Now;
-            byte Gendor = 0;
+            byte Gender = 0;
             string Address = "";
             string Phone = "";
             string Email = "";
@@ -97,10 +97,10 @@ namespace DVLD_BusinessLogic
             string ImagePath = "";
 
             
-            bool IsFound = clsPersonData.GetPersonInfoByID(PersonID, ref NationalNo, ref FirstName, ref SecondName, ref ThirdName, ref LastName, ref DateOfBirth, ref Gendor, ref Address, ref Phone, ref Email, ref NationalityCountryID, ref ImagePath);
+            bool IsFound = clsPersonData.GetPersonInfoByID(PersonID, ref NationalNo, ref FirstName, ref SecondName, ref ThirdName, ref LastName, ref DateOfBirth, ref Gender, ref Address, ref Phone, ref Email, ref NationalityCountryID, ref ImagePath);
 
             if (IsFound)
-                return new clsPerson(PersonID, NationalNo, FirstName, SecondName, ThirdName, LastName, DateOfBirth, Gendor, Address, Phone, Email, NationalityCountryID, ImagePath);
+                return new clsPerson(PersonID, NationalNo, FirstName, SecondName, ThirdName, LastName, DateOfBirth, Gender, Address, Phone, Email, NationalityCountryID, ImagePath);
             else
                 return null;
         }
@@ -113,7 +113,7 @@ namespace DVLD_BusinessLogic
             string ThirdName = "";
             string LastName = "";
             DateTime DateOfBirth = DateTime.Now;
-            byte Gendor = 0;
+            byte Gender = 0;
             string Address = "";
             string Phone = "";
             string Email = "";
@@ -121,10 +121,10 @@ namespace DVLD_BusinessLogic
             string ImagePath = "";
 
 
-            bool IsFound = clsPersonData.GetPersonInfoByNationalNo(NationalNo, ref PersonID, ref FirstName, ref SecondName, ref ThirdName, ref LastName, ref DateOfBirth, ref Gendor, ref Address, ref Phone, ref Email, ref NationalityCountryID, ref ImagePath);
+            bool IsFound = clsPersonData.GetPersonInfoByNationalNo(NationalNo, ref PersonID, ref FirstName, ref SecondName, ref ThirdName, ref LastName, ref DateOfBirth, ref Gender, ref Address, ref Phone, ref Email, ref NationalityCountryID, ref ImagePath);
 
             if (IsFound)
-                return new clsPerson(PersonID, NationalNo, FirstName, SecondName, ThirdName, LastName, DateOfBirth, Gendor, Address, Phone, Email, NationalityCountryID, ImagePath);
+                return new clsPerson(PersonID, NationalNo, FirstName, SecondName, ThirdName, LastName, DateOfBirth, Gender, Address, Phone, Email, NationalityCountryID, ImagePath);
             else
                 return null;
         }
@@ -155,7 +155,7 @@ namespace DVLD_BusinessLogic
         public static DataTable GetAllPersons()
         {
             
-            return clsPersonData.GetAllPersons();
+            return clsPersonData.GetAllPeople();
         }
 
         public static bool DeletePerson(int PersonID)
