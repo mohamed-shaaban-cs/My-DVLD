@@ -265,10 +265,10 @@ namespace DVLD_DataAccess
 
     CASE
         WHEN People.Gender = 0 THEN 'Male' 
-        WHEN People.Gender = 1 THEN 'Female'
+        ELSE 'Female'
     END AS GenderCaption,
     Countries.CountryName, People.Phone, People.Email, 
-                         People.Address
+                         People.Address,People.NationalityCountryID, People.ImagePath
 FROM            Countries INNER JOIN
                          People ON Countries.CountryID = People.NationalityCountryID"; ;
             SqlCommand command = new SqlCommand(query, connection);

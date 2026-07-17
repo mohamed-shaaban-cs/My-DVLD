@@ -185,6 +185,11 @@ namespace DVLD.People
                 frmPersonDetails.ShowDialog();
             }
         }
+
+        private void dgvPeople_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            showDetailsToolStripMenuItem_Click(sender, e);
+        }
     }
     }
 

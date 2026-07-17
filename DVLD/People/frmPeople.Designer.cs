@@ -79,6 +79,7 @@
             this.dgvPeople.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvPeople.Size = new System.Drawing.Size(1455, 330);
             this.dgvPeople.TabIndex = 2;
+            this.dgvPeople.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPeople_CellContentClick);
             // 
             // contextMenuStrip1
             // 
@@ -93,7 +94,7 @@
             this.sendEmailToolStripMenuItem,
             this.phoneCallToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(204, 266);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(204, 244);
             // 
             // showDetailsToolStripMenuItem
             // 
