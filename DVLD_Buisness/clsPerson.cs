@@ -17,7 +17,7 @@ namespace DVLD_BusinessLogic
         public string ThirdName { get; set; }
         public string LastName { get; set; }
         public DateTime DateOfBirth { get; set; }
-        public byte Gender { get; set; }
+        public short Gender { get; set; }
         public string Address { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }

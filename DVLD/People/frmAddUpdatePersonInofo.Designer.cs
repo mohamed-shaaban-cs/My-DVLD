@@ -38,7 +38,7 @@
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.dtpDateOfBirth = new System.Windows.Forms.DateTimePicker();
-            this.lblRemove = new System.Windows.Forms.LinkLabel();
+            this.llblRemoveImage = new System.Windows.Forms.LinkLabel();
             this.lblSetImage = new System.Windows.Forms.LinkLabel();
             this.pbPersonImage = new System.Windows.Forms.PictureBox();
             this.cbCountry = new System.Windows.Forms.ComboBox();
@@ -99,7 +99,7 @@
             this.panel1.Controls.Add(this.btnClose);
             this.panel1.Controls.Add(this.pnlGender);
             this.panel1.Controls.Add(this.dtpDateOfBirth);
-            this.panel1.Controls.Add(this.lblRemove);
+            this.panel1.Controls.Add(this.llblRemoveImage);
             this.panel1.Controls.Add(this.lblSetImage);
             this.panel1.Controls.Add(this.pbPersonImage);
             this.panel1.Controls.Add(this.cbCountry);
@@ -234,17 +234,17 @@
             this.dtpDateOfBirth.Size = new System.Drawing.Size(194, 28);
             this.dtpDateOfBirth.TabIndex = 41;
             // 
-            // lblRemove
+            // llblRemoveImage
             // 
-            this.lblRemove.AutoSize = true;
-            this.lblRemove.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.lblRemove.Location = new System.Drawing.Point(888, 321);
-            this.lblRemove.Name = "lblRemove";
-            this.lblRemove.Size = new System.Drawing.Size(68, 20);
-            this.lblRemove.TabIndex = 40;
-            this.lblRemove.TabStop = true;
-            this.lblRemove.Text = "Remove";
-            this.lblRemove.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblRemove_LinkClicked);
+            this.llblRemoveImage.AutoSize = true;
+            this.llblRemoveImage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.llblRemoveImage.Location = new System.Drawing.Point(888, 321);
+            this.llblRemoveImage.Name = "llblRemoveImage";
+            this.llblRemoveImage.Size = new System.Drawing.Size(68, 20);
+            this.llblRemoveImage.TabIndex = 40;
+            this.llblRemoveImage.TabStop = true;
+            this.llblRemoveImage.Text = "Remove";
+            this.llblRemoveImage.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblRemove_LinkClicked);
             // 
             // lblSetImage
             // 
@@ -260,11 +260,12 @@
             // 
             // pbPersonImage
             // 
-            this.pbPersonImage.BackgroundImage = global::DVLD.Properties.Resources.Female_512;
-            this.pbPersonImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pbPersonImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pbPersonImage.Image = global::DVLD.Properties.Resources.Male_512;
             this.pbPersonImage.Location = new System.Drawing.Point(835, 96);
             this.pbPersonImage.Name = "pbPersonImage";
             this.pbPersonImage.Size = new System.Drawing.Size(194, 179);
+            this.pbPersonImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbPersonImage.TabIndex = 38;
             this.pbPersonImage.TabStop = false;
             // 
@@ -288,7 +289,7 @@
             this.tbPhone.Name = "tbPhone";
             this.tbPhone.Size = new System.Drawing.Size(194, 28);
             this.tbPhone.TabIndex = 36;
-            this.tbPhone.Validating += new System.ComponentModel.CancelEventHandler(this.inputControl_Validating_IsNullOrEmpty);
+            this.tbPhone.Validating += new System.ComponentModel.CancelEventHandler(this.ValidateEmptyTextBox);
             // 
             // pictureBox8
             // 
@@ -361,7 +362,7 @@
             this.rtbAddress.Size = new System.Drawing.Size(625, 96);
             this.rtbAddress.TabIndex = 28;
             this.rtbAddress.Text = "";
-            this.rtbAddress.Validating += new System.ComponentModel.CancelEventHandler(this.inputControl_Validating_IsNullOrEmpty);
+            this.rtbAddress.Validating += new System.ComponentModel.CancelEventHandler(this.ValidateEmptyTextBox);
             // 
             // tbEmail
             // 
@@ -442,7 +443,7 @@
             this.tbLastName.Name = "tbLastName";
             this.tbLastName.Size = new System.Drawing.Size(194, 28);
             this.tbLastName.TabIndex = 19;
-            this.tbLastName.Validating += new System.ComponentModel.CancelEventHandler(this.inputControl_Validating_IsNullOrEmpty);
+            this.tbLastName.Validating += new System.ComponentModel.CancelEventHandler(this.ValidateEmptyTextBox);
             // 
             // tbThirdName
             // 
@@ -463,7 +464,7 @@
             this.tbSecondName.Name = "tbSecondName";
             this.tbSecondName.Size = new System.Drawing.Size(194, 28);
             this.tbSecondName.TabIndex = 17;
-            this.tbSecondName.Validating += new System.ComponentModel.CancelEventHandler(this.inputControl_Validating_IsNullOrEmpty);
+            this.tbSecondName.Validating += new System.ComponentModel.CancelEventHandler(this.ValidateEmptyTextBox);
             // 
             // tbFristName
             // 
@@ -474,7 +475,7 @@
             this.tbFristName.Name = "tbFristName";
             this.tbFristName.Size = new System.Drawing.Size(194, 28);
             this.tbFristName.TabIndex = 16;
-            this.tbFristName.Validating += new System.ComponentModel.CancelEventHandler(this.inputControl_Validating_IsNullOrEmpty);
+            this.tbFristName.Validating += new System.ComponentModel.CancelEventHandler(this.ValidateEmptyTextBox);
             // 
             // pictureBox7
             // 
@@ -629,6 +630,7 @@
             this.AcceptButton = this.btnSavePersonData;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.BackColor = System.Drawing.Color.LightSlateGray;
             this.CancelButton = this.btnClose;
             this.ClientSize = new System.Drawing.Size(1125, 535);
@@ -701,7 +703,7 @@
         private System.Windows.Forms.LinkLabel lblSetImage;
         private System.Windows.Forms.PictureBox pbPersonImage;
         private System.Windows.Forms.DateTimePicker dtpDateOfBirth;
-        private System.Windows.Forms.LinkLabel lblRemove;
+        private System.Windows.Forms.LinkLabel llblRemoveImage;
         private System.Windows.Forms.Panel pnlGender;
         private System.Windows.Forms.RadioButton rbtnMale;
         private System.Windows.Forms.RadioButton rbtnFemale;

@@ -125,7 +125,7 @@ namespace DVLD.People
 
         private void crtlAddNewPerson_Click(object sender, EventArgs e)
         {
-            frmAddUpdatePersonInofo frmAddPerson = new frmAddUpdatePersonInofo(-1);
+            frmAddUpdatePersonInofo frmAddPerson = new frmAddUpdatePersonInofo();
             frmAddPerson.ShowDialog();
             _RefreshPeopleList();
         }
