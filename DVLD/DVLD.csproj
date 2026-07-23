@@ -54,6 +54,7 @@
     <Compile Include="frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="Global Classes\clsUtil.cs" />
     <Compile Include="ModrenUI_Interface\Animations.cs" />
     <Compile Include="ModrenUI_Interface\DataGridViewInterfacescs.cs" />
     <Compile Include="People\frmPersonDetails.cs">

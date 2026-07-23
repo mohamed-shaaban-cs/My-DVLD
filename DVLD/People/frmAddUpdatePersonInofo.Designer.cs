@@ -193,7 +193,7 @@
             this.rbtnMale.TabStop = true;
             this.rbtnMale.Text = "Male";
             this.rbtnMale.UseVisualStyleBackColor = true;
-            this.rbtnMale.CheckedChanged += new System.EventHandler(this.rbtnMale_CheckedChanged);
+            this.rbtnMale.CheckedChanged += new System.EventHandler(this.setDefultImage);
             // 
             // rbtnFemale
             // 
@@ -206,7 +206,7 @@
             this.rbtnFemale.TabIndex = 34;
             this.rbtnFemale.Text = "Female";
             this.rbtnFemale.UseVisualStyleBackColor = true;
-            this.rbtnFemale.CheckedChanged += new System.EventHandler(this.rbtnFemale_CheckedChanged);
+            this.rbtnFemale.CheckedChanged += new System.EventHandler(this.setDefultImage);
             // 
             // pictureBox4
             // 

@@ -147,7 +147,7 @@ namespace DVLD.People
 
         void setDefultImage()
         {
-            if (!string.IsNullOrEmpty(_Person.ImagePath))
+            if (!string.IsNullOrEmpty(pbPersonImage.ImageLocation))
                 return;
 
             if (rbtnMale.Checked)
@@ -160,17 +160,6 @@ namespace DVLD.People
             }
 
             llblRemoveImage.Visible = false;
-        }
-
-
-        private void rbtnMale_CheckedChanged(object sender, EventArgs e)
-        {
-            setDefultImage();
-        }
-
-        private void rbtnFemale_CheckedChanged(object sender, EventArgs e)
-        {
-            setDefultImage();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -243,41 +232,11 @@ namespace DVLD.People
             openFileDialog1.DefaultExt = "Image Files | *.jpg;*.jpeg;*.png;*.bmp;*.gif";
             openFileDialog1.Filter = "Image Files | *.jpg;*.jpeg;*.png;*.bmp;*.gif";
 
-            string sourceFileName = "";
-            string destFileName = "";
-
             // Get the selected file path
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                sourceFileName = openFileDialog1.FileName;
-
-                string FolderImages = "C:\\DVLD-People-Images";
-                // Create directory if not exists
-                if (!Directory.Exists(FolderImages))
-                    Directory.CreateDirectory(FolderImages);
-
-                // Generate a unique file name to avoid conflicts
-                destFileName = Path.Combine(FolderImages, Guid.NewGuid().ToString() + Path.GetExtension(sourceFileName)); 
-                //Copy Image To FolderImages
-                File.Copy(sourceFileName, destFileName);
-
-                // Set Default Image if the current image is not the default one to avoid keeping unused images in the folder
-                
-                   
-
-                // Delete Old Image if exists and update Person.ImagePath
-                if (_Person.ImagePath != null && File.Exists(_Person.ImagePath))
-                    File.Delete(_Person.ImagePath);
-
-                // Update Person.ImagePath with the new image path
-                _Person.ImagePath = destFileName;
-
-
-                // Display the selected image in the PictureBox
-                using (Image tempImg = Image.FromFile(destFileName))
-                {
-                    pbPersonImage.Image = new Bitmap(tempImg);
-                }
+                string SelectedFilePath = openFileDialog1.FileName;
+                pbPersonImage.Load(SelectedFilePath);
                 llblRemoveImage.Visible = true;
 
             }
@@ -286,20 +245,55 @@ namespace DVLD.People
 
         private void lblRemove_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-
-            
-
-            if (_Person.ImagePath != null && File.Exists(_Person.ImagePath))
-                File.Delete(_Person.ImagePath);
-            
-            _Person.ImagePath = "";
-
+            pbPersonImage.ImageLocation = null;
             setDefultImage();
         }
 
         private bool _HandlePersonImage()
         {
             // Implementation for handling person image
+            //this procedure will handle the person image,
+            //it will take care of deleting the old image from the folder
+            //in case the image changed. and it will rename the new image with guid and 
+            // place it in the images folder.
+
+
+            //_Person.ImagePath contains the old Image, we check if it changed then we copy the new image
+            if (_Person.ImagePath != pbPersonImage.ImageLocation)
+            {
+                if (_Person.ImagePath != "")
+                {
+                    //first we delete the old image from the folder in case there is any.
+
+                    try
+                    {
+                        File.Delete(_Person.ImagePath);
+                    }
+                    catch (IOException)
+                    {
+                        // We could not delete the file.
+                        //log it later   
+                    }
+                }
+
+                if (pbPersonImage.ImageLocation != null)
+                {
+                    //then we copy the new image to the image folder after we rename it
+                    string SourceImageFile = pbPersonImage.ImageLocation.ToString();
+
+                    if (clsUtil.CopyImageToProjectImagesFolder(ref SourceImageFile))
+                    {
+                        pbPersonImage.ImageLocation = SourceImageFile;
+                        return true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error Copying Image File", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
+                    }
+                }
+
+            }
             return true;
         }
 
@@ -360,6 +354,11 @@ namespace DVLD.People
                 }
             }
             
+        }
+
+        private void setDefultImage(object sender, EventArgs e)
+        {
+            setDefultImage();
         }
     }
 }
