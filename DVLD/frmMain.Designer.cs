@@ -65,6 +65,7 @@
             this.signOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.ctrlPersonCardWithFilter1 = new DVLD.People.Controls.ctrlPersonCardWithFilter();
             this.panel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -424,6 +425,15 @@
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
+            // ctrlPersonCardWithFilter1
+            // 
+            this.ctrlPersonCardWithFilter1.BackColor = System.Drawing.Color.LightSlateGray;
+            this.ctrlPersonCardWithFilter1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ctrlPersonCardWithFilter1.Location = new System.Drawing.Point(266, 120);
+            this.ctrlPersonCardWithFilter1.Name = "ctrlPersonCardWithFilter1";
+            this.ctrlPersonCardWithFilter1.Size = new System.Drawing.Size(1000, 474);
+            this.ctrlPersonCardWithFilter1.TabIndex = 6;
+            // 
             // frmDVLDMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -431,6 +441,7 @@
             this.BackColor = System.Drawing.Color.MidnightBlue;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1776, 784);
+            this.Controls.Add(this.ctrlPersonCardWithFilter1);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.panel1);
@@ -489,6 +500,7 @@
         private System.Windows.Forms.ToolStripMenuItem changePassWordToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripMenuItem signOutToolStripMenuItem;
+        private People.Controls.ctrlPersonCardWithFilter ctrlPersonCardWithFilter1;
     }
 }
 

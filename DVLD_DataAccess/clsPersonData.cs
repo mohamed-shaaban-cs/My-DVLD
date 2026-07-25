@@ -72,7 +72,7 @@ namespace DVLD_DataAccess
                     ThirdName = Reader["ThirdName"] != DBNull.Value ? (string)Reader["ThirdName"] : "";
                     LastName = (string)Reader["LastName"];
                     DateOfBirth = (DateTime)Reader["DateOfBirth"];
-                    Gender = (byte)Reader["Gendor"];
+                    Gender = (byte)Reader["Gender"];
                     Address = (string)Reader["Address"];
                     Phone = (string)Reader["Phone"];
                     Email = Reader["Email"] != DBNull.Value ? (string)Reader["Email"] : "";

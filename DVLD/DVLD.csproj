@@ -57,6 +57,12 @@
     <Compile Include="Global Classes\clsUtil.cs" />
     <Compile Include="ModrenUI_Interface\Animations.cs" />
     <Compile Include="ModrenUI_Interface\DataGridViewInterfacescs.cs" />
+    <Compile Include="People\Controls\ctrlPersonCardWithFilter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="People\Controls\ctrlPersonCardWithFilter.Designer.cs">
+      <DependentUpon>ctrlPersonCardWithFilter.cs</DependentUpon>
+    </Compile>
     <Compile Include="People\frmPersonDetails.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,6 +93,9 @@
     <Compile Include="Global Classes\clsValidation.cs" />
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="People\Controls\ctrlPersonCardWithFilter.resx">
+      <DependentUpon>ctrlPersonCardWithFilter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="People\frmPersonDetails.resx">
       <DependentUpon>frmPersonDetails.cs</DependentUpon>
@@ -283,6 +292,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\sign_out 32 -2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SearchPerson.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
