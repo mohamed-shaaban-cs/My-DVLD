@@ -28,15 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.ctrlPersonCard1 = new DVLD.People.Controls.ctrlPersonCard();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnSearch = new System.Windows.Forms.Button();
+            this.gbFilter = new System.Windows.Forms.GroupBox();
+            this.txtFilterValue = new System.Windows.Forms.TextBox();
+            this.btnFind = new System.Windows.Forms.Button();
             this.btnAddNewPerson = new System.Windows.Forms.Button();
             this.cbFindBy = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.mtbSearchBox = new System.Windows.Forms.MaskedTextBox();
-            this.groupBox1.SuspendLayout();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.gbFilter.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // ctrlPersonCard1
@@ -47,35 +49,43 @@
             this.ctrlPersonCard1.Size = new System.Drawing.Size(979, 326);
             this.ctrlPersonCard1.TabIndex = 0;
             // 
-            // groupBox1
+            // gbFilter
             // 
-            this.groupBox1.Controls.Add(this.mtbSearchBox);
-            this.groupBox1.Controls.Add(this.btnSearch);
-            this.groupBox1.Controls.Add(this.btnAddNewPerson);
-            this.groupBox1.Controls.Add(this.cbFindBy);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F);
-            this.groupBox1.ForeColor = System.Drawing.Color.White;
-            this.groupBox1.Location = new System.Drawing.Point(10, 32);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(979, 86);
-            this.groupBox1.TabIndex = 1;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Filter";
+            this.gbFilter.Controls.Add(this.txtFilterValue);
+            this.gbFilter.Controls.Add(this.btnFind);
+            this.gbFilter.Controls.Add(this.btnAddNewPerson);
+            this.gbFilter.Controls.Add(this.cbFindBy);
+            this.gbFilter.Controls.Add(this.label1);
+            this.gbFilter.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F);
+            this.gbFilter.ForeColor = System.Drawing.Color.White;
+            this.gbFilter.Location = new System.Drawing.Point(10, 32);
+            this.gbFilter.Name = "gbFilter";
+            this.gbFilter.Size = new System.Drawing.Size(979, 86);
+            this.gbFilter.TabIndex = 1;
+            this.gbFilter.TabStop = false;
+            this.gbFilter.Text = "Filter";
             // 
-            // btnSearch
+            // txtFilterValue
             // 
-            this.btnSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.btnSearch.BackgroundImage = global::DVLD.Properties.Resources.SearchPerson;
-            this.btnSearch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSearch.Location = new System.Drawing.Point(624, 26);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(60, 50);
-            this.btnSearch.TabIndex = 11;
-            this.btnSearch.UseVisualStyleBackColor = false;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            this.txtFilterValue.Location = new System.Drawing.Point(346, 37);
+            this.txtFilterValue.Name = "txtFilterValue";
+            this.txtFilterValue.Size = new System.Drawing.Size(246, 28);
+            this.txtFilterValue.TabIndex = 13;
+            this.txtFilterValue.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtFilterValue_KeyPress);
+            // 
+            // btnFind
+            // 
+            this.btnFind.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnFind.BackgroundImage = global::DVLD.Properties.Resources.SearchPerson;
+            this.btnFind.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnFind.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFind.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFind.Location = new System.Drawing.Point(624, 26);
+            this.btnFind.Name = "btnFind";
+            this.btnFind.Size = new System.Drawing.Size(60, 50);
+            this.btnFind.TabIndex = 11;
+            this.btnFind.UseVisualStyleBackColor = false;
+            this.btnFind.Click += new System.EventHandler(this.btnFind_Click);
             // 
             // btnAddNewPerson
             // 
@@ -97,8 +107,7 @@
             this.cbFindBy.FormattingEnabled = true;
             this.cbFindBy.Items.AddRange(new object[] {
             "National No.",
-            "Person ID",
-            ""});
+            "Person ID"});
             this.cbFindBy.Location = new System.Drawing.Point(105, 37);
             this.cbFindBy.Name = "cbFindBy";
             this.cbFindBy.Size = new System.Drawing.Size(227, 29);
@@ -115,12 +124,9 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Find By:";
             // 
-            // mtbSearchBox
+            // errorProvider1
             // 
-            this.mtbSearchBox.Location = new System.Drawing.Point(348, 38);
-            this.mtbSearchBox.Name = "mtbSearchBox";
-            this.mtbSearchBox.Size = new System.Drawing.Size(246, 28);
-            this.mtbSearchBox.TabIndex = 12;
+            this.errorProvider1.ContainerControl = this;
             // 
             // ctrlPersonCardWithFilter
             // 
@@ -128,13 +134,14 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSlateGray;
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.gbFilter);
             this.Controls.Add(this.ctrlPersonCard1);
             this.Name = "ctrlPersonCardWithFilter";
             this.Size = new System.Drawing.Size(1000, 474);
             this.Load += new System.EventHandler(this.crtlPersonCardWithFilter_Load);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.gbFilter.ResumeLayout(false);
+            this.gbFilter.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -142,12 +149,12 @@
         #endregion
 
         private ctrlPersonCard ctrlPersonCard1;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.GroupBox gbFilter;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cbFindBy;
-        private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.Button btnFind;
         private System.Windows.Forms.Button btnAddNewPerson;
-        private System.Windows.Forms.MaskedTextBox mtbSearchBox;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.TextBox txtFilterValue;
     }
 }
