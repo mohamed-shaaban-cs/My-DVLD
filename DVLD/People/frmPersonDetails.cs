@@ -19,11 +19,23 @@ namespace DVLD.People
             
             ctrlPersonCard1.LoadPersonInfo(PersonID);
         }
-        
+
+        public frmPersonDetails(string NationalNo)
+        {
+            InitializeComponent();
+
+            ctrlPersonCard1.LoadPersonInfo(NationalNo);
+        }
+
 
         private void button1_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void frmPersonDetails_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

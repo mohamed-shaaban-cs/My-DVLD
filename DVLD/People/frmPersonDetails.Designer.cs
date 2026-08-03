@@ -39,9 +39,9 @@
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("Sans Serif Collection", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblTitle.Location = new System.Drawing.Point(395, 36);
+            this.lblTitle.Location = new System.Drawing.Point(395, 76);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(290, 59);
+            this.lblTitle.Size = new System.Drawing.Size(195, 81);
             this.lblTitle.TabIndex = 3;
             this.lblTitle.Text = "Person Details";
             // 
@@ -80,6 +80,7 @@
             this.Controls.Add(this.ctrlPersonCard1);
             this.Name = "frmPersonDetails";
             this.Text = "clsPersonDetails";
+            this.Load += new System.EventHandler(this.frmPersonDetails_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
