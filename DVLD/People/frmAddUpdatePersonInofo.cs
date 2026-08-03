@@ -19,7 +19,7 @@ namespace DVLD.People
         // Declare a delegate
         public delegate void DataBackEventHandler(object sender, int personID);
 
-        //Declare an event uding the delegate
+        //Declare an event using the delegate
         public event DataBackEventHandler DataBack;
 
         enum enMode { Add=0, Update=1}
