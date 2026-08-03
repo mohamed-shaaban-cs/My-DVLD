@@ -79,7 +79,7 @@
             this.dgvPeople.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvPeople.Size = new System.Drawing.Size(1455, 330);
             this.dgvPeople.TabIndex = 2;
-            this.dgvPeople.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPeople_CellContentClick);
+            this.dgvPeople.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.showDetailsToolStripMenuItem_Click);
             // 
             // contextMenuStrip1
             // 
@@ -118,7 +118,7 @@
             this.addNewPersonToolStripMenuItem.Name = "addNewPersonToolStripMenuItem";
             this.addNewPersonToolStripMenuItem.Size = new System.Drawing.Size(203, 38);
             this.addNewPersonToolStripMenuItem.Text = "Add New Person";
-            this.addNewPersonToolStripMenuItem.Click += new System.EventHandler(this.addNewPersonToolStripMenuItem_Click);
+            this.addNewPersonToolStripMenuItem.Click += new System.EventHandler(this.crtlAddNewPerson_Click);
             // 
             // editToolStripMenuItem
             // 

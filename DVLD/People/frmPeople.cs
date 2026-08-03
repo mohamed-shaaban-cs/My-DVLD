@@ -54,29 +54,25 @@ namespace DVLD.People
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cbFilters.SelectedIndex == 0)
-                tbSeach.Visible = false;
-            else
+             
+            tbSeach.Visible = (cbFilters.SelectedIndex != 0);
+
+            if(tbSeach.Visible )
             {
-                tbSeach.Visible = true;
                 tbSeach.Text = "";
+                tbSeach.Focus();
             }
         }
 
         private void tbSeach_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if(cbFilters.SelectedItem.ToString() == "Person ID"|| cbFilters.SelectedItem.ToString() == "Phone")
-            {
-                if(!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-                {
-                    e.Handled = true;
-                }
-            }
+            if (cbFilters.SelectedItem.ToString() == "Person ID" || cbFilters.SelectedItem.ToString() == "Phone")
+                e.Handled = (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar));
         }
 
         private void tbSeach_TextChanged(object sender, EventArgs e)
         {
-            if (tbSeach.Text == "" || tbSeach.Text == null)
+            if (tbSeach.Text.Trim() == "" || tbSeach.Text == null)
             {
                 dtPeople.DefaultView.RowFilter = "";
                 lblRecordsCount.Text = dgvPeople.Rows.Count.ToString();
@@ -114,9 +110,9 @@ namespace DVLD.People
                     break;
             }
             if (filterColumn == "PersonID")
-                dtPeople.DefaultView.RowFilter = string.Format("{0} = {1}", filterColumn, tbSeach.Text);
-            else if (filterColumn != "PersonID")
-                dtPeople.DefaultView.RowFilter = string.Format("[{0}] like '%{1}%'", filterColumn, tbSeach.Text);
+                dtPeople.DefaultView.RowFilter = string.Format("[{0}] = {1}", filterColumn, tbSeach.Text.Trim());
+            else 
+                dtPeople.DefaultView.RowFilter = string.Format("[{0}] like '%{1}%'", filterColumn, tbSeach.Text.Trim());
 
             lblRecordsCount.Text = dgvPeople.Rows.Count.ToString();
         }
@@ -135,60 +131,36 @@ namespace DVLD.People
             this.Close();
         }
 
-        private void addNewPersonToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            crtlAddNewPerson_Click(sender, e);
-        }
-
         private void editToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (dgvPeople.SelectedRows.Count > 0)
-            {
-                int personID = Convert.ToInt32(dgvPeople.SelectedRows[0].Cells["PersonID"].Value);
-                frmAddUpdatePersonInofo frmEditPerson = new frmAddUpdatePersonInofo(personID);
+        {  
+                
+                frmAddUpdatePersonInofo frmEditPerson = new frmAddUpdatePersonInofo((int)dgvPeople.SelectedRows[0].Cells["PersonID"].Value);
                 frmEditPerson.ShowDialog();
                 _RefreshPeopleList();
-            }
-            else
-            {
-                MessageBox.Show("Please select a person to edit.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
         }
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (dgvPeople.SelectedRows.Count > 0)
+            if (MessageBox.Show("Are you sure you want to delete this person?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                int personID = Convert.ToInt32(dgvPeople.SelectedRows[0].Cells["PersonID"].Value);
-               
-                if (MessageBox.Show("Are you sure you want to delete this person?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (clsPerson.DeletePerson((int)dgvPeople.SelectedRows[0].Cells["PersonID"].Value))
                 {
-                    if(clsPerson.DeletePerson(personID))
-                    {
-                        MessageBox.Show("Person deleted successfully.", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        _RefreshPeopleList();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Failed to delete the person. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    MessageBox.Show("Person deleted successfully.", "successfully", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    _RefreshPeopleList();
+                }
+                else
+                {
+                    MessageBox.Show("Failed to delete the person. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+
         }
 
         private void showDetailsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (dgvPeople.SelectedRows.Count > 0)
-            {
-                int personID = Convert.ToInt32(dgvPeople.SelectedRows[0].Cells["PersonID"].Value);
-                frmPersonDetails frmPersonDetails = new frmPersonDetails(personID);
-                frmPersonDetails.ShowDialog();
-            }
-        }
-
-        private void dgvPeople_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            showDetailsToolStripMenuItem_Click(sender, e);
+            frmPersonDetails frmPersonDetails = new frmPersonDetails((int)dgvPeople.SelectedRows[0].Cells["PersonID"].Value);
+            frmPersonDetails.ShowDialog();
+            _RefreshPeopleList();
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
