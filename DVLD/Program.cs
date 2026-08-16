@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DVLD.Login;
 using DVLD_BusinessLogic; 
 
 namespace DVLD
@@ -17,7 +18,22 @@ namespace DVLD
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmDVLDMain());
+
+            DialogResult DVLDMainResult = DialogResult.None;
+            do
+            {
+                using (frmLogin loginForm = new frmLogin())
+                {
+                    if (loginForm.ShowDialog() == DialogResult.Cancel)
+                        break;
+                    using (frmDVLDMain mainForm = new frmDVLDMain())
+                    {
+                        DVLDMainResult = mainForm.ShowDialog();
+                    }
+                }
+
+            } while (DVLDMainResult == DialogResult.Retry);
+
         }
     }
 }

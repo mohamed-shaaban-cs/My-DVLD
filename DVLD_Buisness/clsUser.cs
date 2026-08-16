@@ -110,5 +110,22 @@ namespace DVLD_BusinessLogic
             
             return clsUserData.IsUserExist(UserID);
         }
+
+        public static bool IsUserExist(string UserName)
+        {
+
+            return clsUserData.IsUserExist(UserName);
+        }
+
+        public static bool IsUserAndPasswordExist(string UserName, string Password)
+        {
+
+            return clsUserData.IsUserAndPasswordExist(UserName, Password);
+        }
+
+        public static bool IsUserActive(string UserName)
+        {
+            return clsUserData.IsUserActive(UserName);
+        }
     }
 }

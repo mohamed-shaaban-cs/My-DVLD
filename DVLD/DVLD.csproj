@@ -55,6 +55,13 @@
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
     <Compile Include="Global Classes\clsUtil.cs" />
+    <Compile Include="Global Classes\CryptoHelper.cs" />
+    <Compile Include="Login\frmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login\frmLogin.Designer.cs">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </Compile>
     <Compile Include="ModrenUI_Interface\Animations.cs" />
     <Compile Include="ModrenUI_Interface\DataGridViewInterfacescs.cs" />
     <Compile Include="People\Controls\ctrlPersonCardWithFilter.cs">
@@ -99,6 +106,9 @@
     <Compile Include="Global Classes\clsValidation.cs" />
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login\frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="People\Controls\ctrlPersonCardWithFilter.resx">
       <DependentUpon>ctrlPersonCardWithFilter.cs</DependentUpon>
@@ -304,6 +314,39 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\SearchPerson.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\IconLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CloseBlack1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CloseBlack.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\closeBlack32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Logic_K_O_non_Backgrond.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Logic_K_o.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Logic_K_o1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Logic_K_o-removebg-preview.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\User 32 -2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Person 321.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sign_in 32.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
