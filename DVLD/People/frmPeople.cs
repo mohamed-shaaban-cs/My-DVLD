@@ -57,7 +57,8 @@ namespace DVLD.People
              
             tbSeach.Visible = (cbFilters.SelectedIndex != 0);
 
-            if(tbSeach.Visible )
+            //if the search textbox is visible, clear its text and set focus to it
+            if (tbSeach.Visible )
             {
                 tbSeach.Text = "";
                 tbSeach.Focus();

@@ -56,11 +56,12 @@ namespace DVLD.People
             if (_Mode == enMode.Add)
             {
                 lblTitle.Text = "Add New Person";
-                _Person = new clsPerson();
+                this.Text = "Add New Person";
             }
             else
             {
                 lblTitle.Text = "Update Person";
+                this.Text = "Update Person";
             }
 
             //set default image for the person.

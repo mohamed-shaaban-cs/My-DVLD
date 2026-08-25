@@ -9,15 +9,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ModrenUI_Interface;
+using DVLD.Users;
+using DVLD.Global_Classes;
 
 namespace DVLD
 {
     public partial class frmDVLDMain : Form
     {
         private bool IsSidebarExpand = true;
+
         public frmDVLDMain()
         {
             InitializeComponent();
+            
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -72,6 +76,24 @@ namespace DVLD
         {
             this.DialogResult = DialogResult.Retry;
             this.Close();
+        }
+
+        private void usersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmManageUsers frm = new frmManageUsers();
+            frm.ShowDialog();
+        }
+
+        private void currentUserInfoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmUserDetails frm = new frmUserDetails(clsGlobal.CurrentUser.UserID);
+            frm.ShowDialog();
+        }
+
+        private void changePassWordToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmChangePassword frm = new frmChangePassword (clsGlobal.CurrentUser.UserID);
+            frm.ShowDialog();
         }
     }
 }

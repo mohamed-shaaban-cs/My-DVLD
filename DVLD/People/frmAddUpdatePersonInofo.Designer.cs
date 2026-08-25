@@ -144,7 +144,7 @@
             this.btnSavePersonData.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnSavePersonData.Image = global::DVLD.Properties.Resources.Save_32;
             this.btnSavePersonData.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSavePersonData.Location = new System.Drawing.Point(672, 328);
+            this.btnSavePersonData.Location = new System.Drawing.Point(672, 342);
             this.btnSavePersonData.Name = "btnSavePersonData";
             this.btnSavePersonData.Size = new System.Drawing.Size(142, 40);
             this.btnSavePersonData.TabIndex = 43;
@@ -154,14 +154,14 @@
             // 
             // btnClose
             // 
-            this.btnClose.BackColor = System.Drawing.Color.Azure;
+            this.btnClose.BackColor = System.Drawing.Color.LightCoral;
             this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnClose.Image = global::DVLD.Properties.Resources.Close_32;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(512, 328);
+            this.btnClose.Location = new System.Drawing.Point(512, 342);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(142, 40);
             this.btnClose.TabIndex = 8;

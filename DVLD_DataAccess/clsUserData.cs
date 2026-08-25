@@ -7,7 +7,7 @@ namespace DVLD_DataAccess
 {
     public static class clsUserData
     {
-        public static bool GetUserInfoByID(int UserID, ref int PersonID,ref string UserName,ref string Password,ref bool IsActive)
+        public static bool GetUserInfoByID(int UserID, ref int PersonID, ref string UserName, ref string Password, ref bool IsActive)
         {
             bool isFound = false;
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
@@ -22,10 +22,44 @@ namespace DVLD_DataAccess
                 if (Reader.Read())
                 {
                     isFound = true;
-   PersonID = Reader["PersonID"] != DBNull.Value ? (int)Reader["PersonID"] : -1;
-   UserName = Reader["UserName"] != DBNull.Value ? (string)Reader["UserName"] : "";
-   Password = Reader["Password"] != DBNull.Value ? (string)Reader["Password"] : "";
-   IsActive = Reader["IsActive"] != DBNull.Value ? (bool)Reader["IsActive"] : false;
+                    PersonID = Reader["PersonID"] != DBNull.Value ? (int)Reader["PersonID"] : -1;
+                    UserName = Reader["UserName"] != DBNull.Value ? (string)Reader["UserName"] : "";
+                    Password = Reader["Password"] != DBNull.Value ? (string)Reader["Password"] : "";
+                    IsActive = Reader["IsActive"] != DBNull.Value ? (bool)Reader["IsActive"] : false;
+
+                }
+                Reader.Close();
+            }
+            catch (Exception ex)
+            {
+                // Log Exception
+                isFound = false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return isFound;
+        }
+        public static bool GetUserInfoByUsername(string Username, ref int UserID, ref int PersonID, ref string Password, ref bool IsActive)
+        {
+            bool isFound = false;
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = "SELECT * FROM Users WHERE UserName = @UserName";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@UserName", Username);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader Reader = command.ExecuteReader();
+                if (Reader.Read())
+                {
+                    isFound = true;
+                    PersonID = Reader["PersonID"] != DBNull.Value ? (int)Reader["PersonID"] : -1;
+                    UserID = Reader["UserID"] != DBNull.Value ? (int)Reader["UserID"] : -1  ;
+                    Password = Reader["Password"] != DBNull.Value ? (string)Reader["Password"] : "";
+                    IsActive = Reader["IsActive"] != DBNull.Value ? (bool)Reader["IsActive"] : false;
 
                 }
                 Reader.Close();
@@ -42,7 +76,7 @@ namespace DVLD_DataAccess
             return isFound;
         }
 
-        public static int AddNewUser( int PersonID, string UserName, string Password, bool IsActive)
+        public static int AddNewUser(int PersonID, string UserName, string Password, bool IsActive)
         {
             int InsertedID = -1;
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
@@ -51,10 +85,10 @@ namespace DVLD_DataAccess
                              SELECT SCOPE_IDENTITY();";
             SqlCommand command = new SqlCommand(query, connection);
 
-   command.Parameters.AddWithValue("@PersonID",PersonID);
-   command.Parameters.AddWithValue("@UserName",UserName);
-   command.Parameters.AddWithValue("@Password",Password);
-   command.Parameters.AddWithValue("@IsActive",IsActive);
+            command.Parameters.AddWithValue("@PersonID", PersonID);
+            command.Parameters.AddWithValue("@UserName", UserName);
+            command.Parameters.AddWithValue("@Password", Password);
+            command.Parameters.AddWithValue("@IsActive", IsActive);
 
 
             try
@@ -77,7 +111,7 @@ namespace DVLD_DataAccess
             return InsertedID;
         }
 
-        public static bool UpdateUser(int UserID,  int PersonID, string UserName, string Password, bool IsActive)
+        public static bool UpdateUser(int UserID, int PersonID, string UserName, string Password, bool IsActive)
         {
             int rowsAffected = 0;
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
@@ -86,10 +120,10 @@ namespace DVLD_DataAccess
                              WHERE UserID = @UserID";
             SqlCommand command = new SqlCommand(query, connection);
 
-   command.Parameters.AddWithValue("@PersonID",PersonID);
-   command.Parameters.AddWithValue("@UserName",UserName);
-   command.Parameters.AddWithValue("@Password",Password);
-   command.Parameters.AddWithValue("@IsActive",IsActive);
+            command.Parameters.AddWithValue("@PersonID", PersonID);
+            command.Parameters.AddWithValue("@UserName", UserName);
+            command.Parameters.AddWithValue("@Password", Password);
+            command.Parameters.AddWithValue("@IsActive", IsActive);
 
             command.Parameters.AddWithValue("@UserID", UserID);
 
@@ -188,6 +222,34 @@ namespace DVLD_DataAccess
             }
             return isFound;
         }
+
+        public static bool IsPersonHasAccount(int PersonID)
+        {
+            bool isFound = false;
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = "SELECT Found=1 FROM Users WHERE PersonID = @PersonID";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@PersonID", PersonID);
+
+            try
+            {
+                connection.Open();
+                object result = command.ExecuteScalar();
+                if (result != null)
+                {
+                    isFound = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log Exception
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return isFound;
+        }
         public static bool IsUserAndPasswordExist(string UserName, string Password)
         {
             bool isFound = false;
@@ -249,7 +311,7 @@ namespace DVLD_DataAccess
         {
             DataTable dt = new DataTable();
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-            string query = "SELECT * FROM Users";
+            string query = "SELECT       Users.UserID, Users.PersonID,(People.FirstName +' '+ People.SecondName +' '+ People.ThirdName +' '+ People.LastName) as FullName, Users.UserName , Users.IsActive\r\nFROM            People INNER JOIN\r\n                         Users ON People.PersonID = Users.PersonID";
             SqlCommand command = new SqlCommand(query, connection);
 
             try

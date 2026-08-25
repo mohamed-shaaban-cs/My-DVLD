@@ -43,14 +43,14 @@ namespace DVLD_BusinessLogic
 
         private bool _AddNewUser()
         {
-            // التعديل هنا: استخدام cls{ClassName}Data
+
             this.UserID = clsUserData.AddNewUser(this.PersonID, this.UserName, this.Password, this.IsActive);
             return (this.UserID != -1);
         }
 
         private bool _UpdateUser()
         {
-            // التعديل هنا
+
             return clsUserData.UpdateUser(this.UserID, this.PersonID, this.UserName, this.Password, this.IsActive);
         }
 
@@ -61,7 +61,7 @@ namespace DVLD_BusinessLogic
             string Password = "";
             bool IsActive = false;
 
-            
+
             bool IsFound = clsUserData.GetUserInfoByID(UserID, ref PersonID, ref UserName, ref Password, ref IsActive);
 
             if (IsFound)
@@ -69,52 +69,50 @@ namespace DVLD_BusinessLogic
             else
                 return null;
         }
-
-        public bool Save()
+        public static clsUser Find(string Username)
         {
-            switch (Mode)
-            {
-                case enMode.AddNew:
-                    if (_AddNewUser())
-                    {
-                        Mode = enMode.Update;
-                        return true;
-                    }
-                    else
-                    {
-                        return false;
-                    }
+            int PersonID = -1;
+            int UserID = -1;
+            string Password = "";
+            bool IsActive = false;
 
-                case enMode.Update:
-                    return _UpdateUser();
 
-                default:
-                    return false;
-            }
+            bool IsFound = clsUserData.GetUserInfoByUsername(Username, ref UserID, ref PersonID, ref Password, ref IsActive);
+
+            if (IsFound)
+                return new clsUser(UserID, PersonID, Username, Password, IsActive);
+            else
+                return null;
         }
+
+        
 
         public static DataTable GetAllUsers()
         {
-            
+
             return clsUserData.GetAllUsers();
         }
 
         public static bool DeleteUser(int UserID)
         {
-            
+
             return clsUserData.DeleteUser(UserID);
         }
 
         public static bool IsUserExist(int UserID)
         {
-            
+
             return clsUserData.IsUserExist(UserID);
         }
-
         public static bool IsUserExist(string UserName)
+        { 
+            return clsUserData.IsUserExist(UserName);
+        }
+
+        public static bool IsPersonHasAccount(int PersonID)
         {
 
-            return clsUserData.IsUserExist(UserName);
+            return clsUserData.IsPersonHasAccount(PersonID);
         }
 
         public static bool IsUserAndPasswordExist(string UserName, string Password)
@@ -126,6 +124,27 @@ namespace DVLD_BusinessLogic
         public static bool IsUserActive(string UserName)
         {
             return clsUserData.IsUserActive(UserName);
+        }
+
+        public bool Save()
+        {
+            switch (Mode)
+            {
+                case enMode.AddNew:
+                    if (_AddNewUser())
+                    {
+                        Mode = enMode.Update; // Change mode to Update after successful addition
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                case enMode.Update:
+                    return _UpdateUser();
+                default:
+                    return false;
+            }
         }
     }
 }

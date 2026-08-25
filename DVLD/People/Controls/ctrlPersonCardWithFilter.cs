@@ -54,7 +54,6 @@ namespace DVLD.People.Controls
             }
         }
 
-        private int _PersonID = -1;
         public int PersonID { get { return ctrlPersonCard1.PersonID; } }
 
         public clsPerson SelectedPersonInfo { get { return ctrlPersonCard1.SelectedPersonInfo; } }

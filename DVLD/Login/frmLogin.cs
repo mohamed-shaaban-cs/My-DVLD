@@ -1,4 +1,5 @@
-﻿using DVLD_BusinessLogic;
+﻿using DVLD.Global_Classes;
+using DVLD_BusinessLogic;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,6 +17,7 @@ namespace DVLD.Login
     public partial class frmLogin : Form
     {
          string UserSttingsFilePath = "user_settings.txt";
+ 
         public frmLogin()
         {
             InitializeComponent();
@@ -44,6 +46,7 @@ namespace DVLD.Login
 
         private bool LogIn()
         {
+            
             if (string.IsNullOrEmpty(txtUserName.Text) || string.IsNullOrEmpty(txtPassword.Text))
             {
                 MessageBox.Show("Please enter both username and password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -61,7 +64,7 @@ namespace DVLD.Login
                 MessageBox.Show("Your Account is Deactivated.Please Contact Your Administrator.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-            
+            clsGlobal.CurrentUser = clsUser.Find(txtUserName.Text);
             return true;
         }
 

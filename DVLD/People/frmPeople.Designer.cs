@@ -83,6 +83,7 @@
             // 
             // contextMenuStrip1
             // 
+            this.contextMenuStrip1.BackColor = System.Drawing.Color.LightSlateGray;
             this.contextMenuStrip1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.showDetailsToolStripMenuItem,
@@ -98,6 +99,7 @@
             // 
             // showDetailsToolStripMenuItem
             // 
+            this.showDetailsToolStripMenuItem.BackColor = System.Drawing.Color.LightSlateGray;
             this.showDetailsToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.showDetailsToolStripMenuItem.Image = global::DVLD.Properties.Resources.PersonDetails_32;
             this.showDetailsToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
@@ -108,12 +110,15 @@
             // 
             // toolStripSeparator2
             // 
+            this.toolStripSeparator2.BackColor = System.Drawing.Color.SteelBlue;
+            this.toolStripSeparator2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(200, 6);
             // 
             // addNewPersonToolStripMenuItem
             // 
-            this.addNewPersonToolStripMenuItem.Image = global::DVLD.Properties.Resources.AddPerson_32;
+            this.addNewPersonToolStripMenuItem.BackColor = System.Drawing.Color.LightSlateGray;
+            this.addNewPersonToolStripMenuItem.Image = global::DVLD.Properties.Resources.Add_New_User_32;
             this.addNewPersonToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.addNewPersonToolStripMenuItem.Name = "addNewPersonToolStripMenuItem";
             this.addNewPersonToolStripMenuItem.Size = new System.Drawing.Size(203, 38);
@@ -122,6 +127,7 @@
             // 
             // editToolStripMenuItem
             // 
+            this.editToolStripMenuItem.BackColor = System.Drawing.Color.LightSlateGray;
             this.editToolStripMenuItem.Image = global::DVLD.Properties.Resources.edit_32;
             this.editToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
@@ -131,6 +137,8 @@
             // 
             // deleteToolStripMenuItem
             // 
+            this.deleteToolStripMenuItem.BackColor = System.Drawing.Color.LightCoral;
+            this.deleteToolStripMenuItem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.deleteToolStripMenuItem.Image = global::DVLD.Properties.Resources.Delete_32;
             this.deleteToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
@@ -140,6 +148,7 @@
             // 
             // toolStripSeparator1
             // 
+            this.toolStripSeparator1.BackColor = System.Drawing.Color.LightSteelBlue;
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(200, 6);
             // 
@@ -242,7 +251,7 @@
             this.crtlAddNewPerson.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.crtlAddNewPerson.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.crtlAddNewPerson.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.crtlAddNewPerson.Location = new System.Drawing.Point(1369, 214);
+            this.crtlAddNewPerson.Location = new System.Drawing.Point(1378, 214);
             this.crtlAddNewPerson.Name = "crtlAddNewPerson";
             this.crtlAddNewPerson.Size = new System.Drawing.Size(89, 55);
             this.crtlAddNewPerson.TabIndex = 9;
@@ -251,7 +260,7 @@
             // 
             // crtlClose
             // 
-            this.crtlClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.crtlClose.BackColor = System.Drawing.Color.LightCoral;
             this.crtlClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.crtlClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.crtlClose.Image = global::DVLD.Properties.Resources.Close_32;

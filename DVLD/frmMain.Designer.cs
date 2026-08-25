@@ -360,6 +360,7 @@
             this.usersToolStripMenuItem.Name = "usersToolStripMenuItem";
             this.usersToolStripMenuItem.Size = new System.Drawing.Size(156, 68);
             this.usersToolStripMenuItem.Text = "    Users";
+            this.usersToolStripMenuItem.Click += new System.EventHandler(this.usersToolStripMenuItem_Click);
             // 
             // accountSettingsToolStripMenuItem
             // 
@@ -383,6 +384,7 @@
             this.currentUserInfoToolStripMenuItem.Name = "currentUserInfoToolStripMenuItem";
             this.currentUserInfoToolStripMenuItem.Size = new System.Drawing.Size(231, 38);
             this.currentUserInfoToolStripMenuItem.Text = "Current User Info";
+            this.currentUserInfoToolStripMenuItem.Click += new System.EventHandler(this.currentUserInfoToolStripMenuItem_Click);
             // 
             // changePassWordToolStripMenuItem
             // 
@@ -392,6 +394,7 @@
             this.changePassWordToolStripMenuItem.Name = "changePassWordToolStripMenuItem";
             this.changePassWordToolStripMenuItem.Size = new System.Drawing.Size(231, 38);
             this.changePassWordToolStripMenuItem.Text = "Change Password";
+            this.changePassWordToolStripMenuItem.Click += new System.EventHandler(this.changePassWordToolStripMenuItem_Click);
             // 
             // toolStripSeparator4
             // 
