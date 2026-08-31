@@ -77,8 +77,8 @@
             this.label8.AutoSize = true;
             this.label8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label8.Location = new System.Drawing.Point(6, 250);
+            this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(248)))), ((int)(((byte)(253)))));
+            this.label8.Location = new System.Drawing.Point(18, 255);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(85, 20);
             this.label8.TabIndex = 47;
@@ -89,8 +89,8 @@
             this.label7.AutoSize = true;
             this.label7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label7.Location = new System.Drawing.Point(6, 210);
+            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(248)))), ((int)(((byte)(253)))));
+            this.label7.Location = new System.Drawing.Point(18, 215);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(63, 20);
             this.label7.TabIndex = 46;
@@ -101,8 +101,8 @@
             this.label6.AutoSize = true;
             this.label6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label6.Location = new System.Drawing.Point(6, 168);
+            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(248)))), ((int)(((byte)(253)))));
+            this.label6.Location = new System.Drawing.Point(18, 173);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(79, 20);
             this.label6.TabIndex = 45;
@@ -113,8 +113,8 @@
             this.label5.AutoSize = true;
             this.label5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label5.Location = new System.Drawing.Point(6, 123);
+            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(248)))), ((int)(((byte)(253)))));
+            this.label5.Location = new System.Drawing.Point(18, 128);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(112, 20);
             this.label5.TabIndex = 44;
@@ -125,8 +125,8 @@
             this.label4.AutoSize = true;
             this.label4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label4.Location = new System.Drawing.Point(6, 81);
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(248)))), ((int)(((byte)(253)))));
+            this.label4.Location = new System.Drawing.Point(18, 86);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(65, 20);
             this.label4.TabIndex = 43;
@@ -137,8 +137,8 @@
             this.lblPersonID.AutoSize = true;
             this.lblPersonID.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblPersonID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPersonID.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.lblPersonID.Location = new System.Drawing.Point(181, 39);
+            this.lblPersonID.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(248)))), ((int)(((byte)(253)))));
+            this.lblPersonID.Location = new System.Drawing.Point(193, 44);
             this.lblPersonID.Name = "lblPersonID";
             this.lblPersonID.Size = new System.Drawing.Size(53, 20);
             this.lblPersonID.TabIndex = 55;
@@ -149,8 +149,8 @@
             this.label2.AutoSize = true;
             this.label2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label2.Location = new System.Drawing.Point(6, 39);
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(248)))), ((int)(((byte)(253)))));
+            this.label2.Location = new System.Drawing.Point(18, 44);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(104, 20);
             this.label2.TabIndex = 53;
@@ -162,7 +162,7 @@
             this.lblName.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblName.Location = new System.Drawing.Point(181, 81);
+            this.lblName.Location = new System.Drawing.Point(193, 86);
             this.lblName.Name = "lblName";
             this.lblName.Size = new System.Drawing.Size(53, 20);
             this.lblName.TabIndex = 56;
@@ -170,6 +170,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(24)))), ((int)(((byte)(40)))));
             this.groupBox1.Controls.Add(this.lblEditPersonInfo);
             this.groupBox1.Controls.Add(this.lblCountry);
             this.groupBox1.Controls.Add(this.lblPhone);
@@ -201,8 +202,8 @@
             this.groupBox1.Controls.Add(this.pictureBox6);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.groupBox1.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.groupBox1.Font = new System.Drawing.Font("Segoe UI Emoji", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(248)))), ((int)(((byte)(253)))));
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(982, 359);
@@ -228,8 +229,8 @@
             this.lblCountry.AutoSize = true;
             this.lblCountry.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblCountry.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCountry.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.lblCountry.Location = new System.Drawing.Point(585, 213);
+            this.lblCountry.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(248)))), ((int)(((byte)(253)))));
+            this.lblCountry.Location = new System.Drawing.Point(597, 218);
             this.lblCountry.Name = "lblCountry";
             this.lblCountry.Size = new System.Drawing.Size(53, 20);
             this.lblCountry.TabIndex = 70;
@@ -240,8 +241,8 @@
             this.lblPhone.AutoSize = true;
             this.lblPhone.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblPhone.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPhone.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.lblPhone.Location = new System.Drawing.Point(585, 170);
+            this.lblPhone.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(248)))), ((int)(((byte)(253)))));
+            this.lblPhone.Location = new System.Drawing.Point(597, 175);
             this.lblPhone.Name = "lblPhone";
             this.lblPhone.Size = new System.Drawing.Size(53, 20);
             this.lblPhone.TabIndex = 69;
@@ -252,8 +253,8 @@
             this.lblDateOfBirth.AutoSize = true;
             this.lblDateOfBirth.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblDateOfBirth.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDateOfBirth.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.lblDateOfBirth.Location = new System.Drawing.Point(585, 130);
+            this.lblDateOfBirth.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(248)))), ((int)(((byte)(253)))));
+            this.lblDateOfBirth.Location = new System.Drawing.Point(597, 135);
             this.lblDateOfBirth.Name = "lblDateOfBirth";
             this.lblDateOfBirth.Size = new System.Drawing.Size(53, 20);
             this.lblDateOfBirth.TabIndex = 68;
@@ -264,8 +265,8 @@
             this.lblAddress.AutoSize = true;
             this.lblAddress.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAddress.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.lblAddress.Location = new System.Drawing.Point(181, 250);
+            this.lblAddress.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(248)))), ((int)(((byte)(253)))));
+            this.lblAddress.Location = new System.Drawing.Point(193, 255);
             this.lblAddress.Name = "lblAddress";
             this.lblAddress.Size = new System.Drawing.Size(53, 20);
             this.lblAddress.TabIndex = 67;
@@ -276,8 +277,8 @@
             this.lblEmail.AutoSize = true;
             this.lblEmail.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEmail.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.lblEmail.Location = new System.Drawing.Point(181, 210);
+            this.lblEmail.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(248)))), ((int)(((byte)(253)))));
+            this.lblEmail.Location = new System.Drawing.Point(193, 215);
             this.lblEmail.Name = "lblEmail";
             this.lblEmail.Size = new System.Drawing.Size(53, 20);
             this.lblEmail.TabIndex = 66;
@@ -288,8 +289,8 @@
             this.lblGender.AutoSize = true;
             this.lblGender.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblGender.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGender.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.lblGender.Location = new System.Drawing.Point(181, 168);
+            this.lblGender.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(248)))), ((int)(((byte)(253)))));
+            this.lblGender.Location = new System.Drawing.Point(193, 173);
             this.lblGender.Name = "lblGender";
             this.lblGender.Size = new System.Drawing.Size(53, 20);
             this.lblGender.TabIndex = 65;
@@ -300,8 +301,8 @@
             this.lblNationalNo.AutoSize = true;
             this.lblNationalNo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblNationalNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNationalNo.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.lblNationalNo.Location = new System.Drawing.Point(181, 123);
+            this.lblNationalNo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(248)))), ((int)(((byte)(253)))));
+            this.lblNationalNo.Location = new System.Drawing.Point(193, 128);
             this.lblNationalNo.Name = "lblNationalNo";
             this.lblNationalNo.Size = new System.Drawing.Size(53, 20);
             this.lblNationalNo.TabIndex = 64;
@@ -321,7 +322,7 @@
             // pictureBox8
             // 
             this.pictureBox8.Image = global::DVLD.Properties.Resources.Country_32;
-            this.pictureBox8.Location = new System.Drawing.Point(530, 208);
+            this.pictureBox8.Location = new System.Drawing.Point(542, 213);
             this.pictureBox8.Name = "pictureBox8";
             this.pictureBox8.Size = new System.Drawing.Size(34, 33);
             this.pictureBox8.TabIndex = 62;
@@ -330,7 +331,7 @@
             // pictureBox9
             // 
             this.pictureBox9.Image = global::DVLD.Properties.Resources.Phone_32;
-            this.pictureBox9.Location = new System.Drawing.Point(530, 162);
+            this.pictureBox9.Location = new System.Drawing.Point(542, 167);
             this.pictureBox9.Name = "pictureBox9";
             this.pictureBox9.Size = new System.Drawing.Size(34, 33);
             this.pictureBox9.TabIndex = 61;
@@ -339,7 +340,7 @@
             // pictureBox10
             // 
             this.pictureBox10.Image = global::DVLD.Properties.Resources.Calendar_32;
-            this.pictureBox10.Location = new System.Drawing.Point(530, 123);
+            this.pictureBox10.Location = new System.Drawing.Point(542, 128);
             this.pictureBox10.Name = "pictureBox10";
             this.pictureBox10.Size = new System.Drawing.Size(34, 33);
             this.pictureBox10.TabIndex = 60;
@@ -350,8 +351,8 @@
             this.label17.AutoSize = true;
             this.label17.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label17.Location = new System.Drawing.Point(446, 210);
+            this.label17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(248)))), ((int)(((byte)(253)))));
+            this.label17.Location = new System.Drawing.Point(458, 215);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(72, 20);
             this.label17.TabIndex = 59;
@@ -362,8 +363,8 @@
             this.label16.AutoSize = true;
             this.label16.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label16.Location = new System.Drawing.Point(455, 167);
+            this.label16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(248)))), ((int)(((byte)(253)))));
+            this.label16.Location = new System.Drawing.Point(467, 172);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(63, 20);
             this.label16.TabIndex = 58;
@@ -374,8 +375,8 @@
             this.label15.AutoSize = true;
             this.label15.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label15.Location = new System.Drawing.Point(408, 131);
+            this.label15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(248)))), ((int)(((byte)(253)))));
+            this.label15.Location = new System.Drawing.Point(420, 136);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(110, 20);
             this.label15.TabIndex = 57;
@@ -384,7 +385,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::DVLD.Properties.Resources.Number_32;
-            this.pictureBox1.Location = new System.Drawing.Point(125, 39);
+            this.pictureBox1.Location = new System.Drawing.Point(137, 44);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(34, 33);
             this.pictureBox1.TabIndex = 54;
@@ -393,7 +394,7 @@
             // pictureBox3
             // 
             this.pictureBox3.Image = global::DVLD.Properties.Resources.Man_32;
-            this.pictureBox3.Location = new System.Drawing.Point(125, 164);
+            this.pictureBox3.Location = new System.Drawing.Point(137, 169);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(34, 33);
             this.pictureBox3.TabIndex = 30;
@@ -402,7 +403,7 @@
             // pictureBox2
             // 
             this.pictureBox2.Image = global::DVLD.Properties.Resources.Number_32;
-            this.pictureBox2.Location = new System.Drawing.Point(125, 119);
+            this.pictureBox2.Location = new System.Drawing.Point(137, 124);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(34, 33);
             this.pictureBox2.TabIndex = 48;
@@ -411,7 +412,7 @@
             // pictureBox7
             // 
             this.pictureBox7.Image = global::DVLD.Properties.Resources.Person_32;
-            this.pictureBox7.Location = new System.Drawing.Point(125, 78);
+            this.pictureBox7.Location = new System.Drawing.Point(137, 83);
             this.pictureBox7.Name = "pictureBox7";
             this.pictureBox7.Size = new System.Drawing.Size(34, 33);
             this.pictureBox7.TabIndex = 51;
@@ -420,7 +421,7 @@
             // pictureBox5
             // 
             this.pictureBox5.Image = global::DVLD.Properties.Resources.Email_32;
-            this.pictureBox5.Location = new System.Drawing.Point(125, 205);
+            this.pictureBox5.Location = new System.Drawing.Point(137, 210);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(34, 33);
             this.pictureBox5.TabIndex = 49;
@@ -429,7 +430,7 @@
             // pictureBox6
             // 
             this.pictureBox6.Image = global::DVLD.Properties.Resources.Address_32;
-            this.pictureBox6.Location = new System.Drawing.Point(125, 247);
+            this.pictureBox6.Location = new System.Drawing.Point(137, 252);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(34, 33);
             this.pictureBox6.TabIndex = 50;

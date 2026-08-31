@@ -12,6 +12,7 @@ namespace DVLD_BusinessLogic
 
         public int UserID { get; set; }
         public int PersonID { get; set; }
+        public clsPerson PersonInfo { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
         public bool IsActive { get; set; }
@@ -34,6 +35,7 @@ namespace DVLD_BusinessLogic
         {
             this.UserID = UserID;
             this.PersonID = PersonID;
+            PersonInfo = clsPerson.Find(PersonID);
             this.UserName = UserName;
             this.Password = Password;
             this.IsActive = IsActive;
@@ -54,7 +56,7 @@ namespace DVLD_BusinessLogic
             return clsUserData.UpdateUser(this.UserID, this.PersonID, this.UserName, this.Password, this.IsActive);
         }
 
-        public static clsUser Find(int UserID)
+        public static clsUser FindByUserID(int UserID)
         {
             int PersonID = -1;
             string UserName = "";
@@ -69,15 +71,29 @@ namespace DVLD_BusinessLogic
             else
                 return null;
         }
-        public static clsUser Find(string Username)
+        public static clsUser FindByPersonID(int PersonID)
         {
-            int PersonID = -1;
+            string Username = "";
             int UserID = -1;
             string Password = "";
             bool IsActive = false;
 
 
-            bool IsFound = clsUserData.GetUserInfoByUsername(Username, ref UserID, ref PersonID, ref Password, ref IsActive);
+            bool IsFound = clsUserData.GetUserInfoByPersonID(PersonID , ref UserID, ref Username, ref Password, ref IsActive);
+
+            if (IsFound)
+                return new clsUser(UserID, PersonID, Username, Password, IsActive);
+            else
+                return null;
+        }
+        public static clsUser FindByUsernameAndPassword(string Username,string Password)
+        {
+            int PersonID = -1;
+            int UserID = -1;
+            bool IsActive = false;
+
+
+            bool IsFound = clsUserData.GetUserInfoByUsernameAndPassword(Username, Password, ref UserID, ref PersonID, ref IsActive);
 
             if (IsFound)
                 return new clsUser(UserID, PersonID, Username, Password, IsActive);
@@ -85,7 +101,6 @@ namespace DVLD_BusinessLogic
                 return null;
         }
 
-        
 
         public static DataTable GetAllUsers()
         {

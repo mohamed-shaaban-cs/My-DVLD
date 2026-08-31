@@ -52,7 +52,7 @@
             // ctrlUserCard1
             // 
             this.ctrlUserCard1.AutoSize = true;
-            this.ctrlUserCard1.BackColor = System.Drawing.Color.LightSlateGray;
+            this.ctrlUserCard1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(248)))), ((int)(((byte)(253)))));
             this.ctrlUserCard1.Location = new System.Drawing.Point(12, 40);
             this.ctrlUserCard1.Name = "ctrlUserCard1";
             this.ctrlUserCard1.Size = new System.Drawing.Size(999, 483);
@@ -62,11 +62,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.LightSlateGray;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(24)))), ((int)(((byte)(40)))));
             this.ClientSize = new System.Drawing.Size(1028, 600);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.ctrlUserCard1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmUserDetails";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "frmUserDetails";
             this.Load += new System.EventHandler(this.frmUserDetails_Load);
             this.ResumeLayout(false);

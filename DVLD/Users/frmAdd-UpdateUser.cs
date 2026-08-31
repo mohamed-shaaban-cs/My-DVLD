@@ -59,7 +59,14 @@ namespace DVLD.Users
 
         void _LoadData()
         {
-            _User = clsUser.Find(_UserID);
+            _User = clsUser.FindByUserID(_UserID);
+
+            if (_User == null)
+            {
+                MessageBox.Show($"No User with ID = {_UserID}","User Not Found", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             ctrlPersonCardWithFilter1.LoadPersonInfo(_User.PersonID);
             lblUserID.Text = _User.UserID.ToString();
             tbUserName.Text = _User.UserName;
@@ -84,18 +91,30 @@ namespace DVLD.Users
 
         private void btnNext_Click(object sender, EventArgs e)
         {
-            if(ctrlPersonCardWithFilter1.PersonID == -1 || ctrlPersonCardWithFilter1.PersonID == null)
+
+            if (_Mode == enMode.Update)
+            {
+                btnSaveUserData.Enabled = true;
+                tabLoginInfo.Enabled = true;
+                tcAdd_UpdateUser.SelectTab(tabLoginInfo);
+                return;
+            }
+
+            
+            if(ctrlPersonCardWithFilter1.PersonID == -1)
             {
                 MessageBox.Show("Please select a person.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (clsUser.IsPersonHasAccount(ctrlPersonCardWithFilter1.PersonID) && _Mode == enMode.AddNew)
+
+            if (clsUser.IsPersonHasAccount(ctrlPersonCardWithFilter1.PersonID))
             {
                 MessageBox.Show("This person is already a user. Please select another person.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             else
             {
+                btnSaveUserData.Enabled = true;
                 tabLoginInfo.Enabled = true;
                 tcAdd_UpdateUser.SelectTab(tabLoginInfo);
             }

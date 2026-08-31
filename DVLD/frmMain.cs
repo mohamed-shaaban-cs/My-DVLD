@@ -11,18 +11,27 @@ using System.Windows.Forms;
 using ModrenUI_Interface;
 using DVLD.Users;
 using DVLD.Global_Classes;
+using DVLD.Login;
 
 namespace DVLD
 {
     public partial class frmDVLDMain : Form
     {
         private bool IsSidebarExpand = true;
+        frmLogin frmLogin;
 
-        public frmDVLDMain()
+        public frmDVLDMain(frmLogin frmlogin)
         {
             InitializeComponent();
-            
+            this.frmLogin = frmlogin;
         }
+        private void signOutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            clsGlobal.CurrentUser = null;
+            frmLogin.Show();
+            this.Close();
+        }
+
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -70,12 +79,6 @@ namespace DVLD
         private void menuStrip1_ItemClicked_1(object sender, ToolStripItemClickedEventArgs e)
         {
 
-        }
-
-        private void signOutToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.DialogResult = DialogResult.Retry;
-            this.Close();
         }
 
         private void usersToolStripMenuItem_Click(object sender, EventArgs e)

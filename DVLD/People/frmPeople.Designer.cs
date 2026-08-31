@@ -60,7 +60,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft YaHei UI", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(607, 173);
+            this.label1.Location = new System.Drawing.Point(614, 153);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(257, 41);
             this.label1.TabIndex = 1;
@@ -260,12 +260,12 @@
             // 
             // crtlClose
             // 
-            this.crtlClose.BackColor = System.Drawing.Color.LightCoral;
+            this.crtlClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.crtlClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.crtlClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.crtlClose.Image = global::DVLD.Properties.Resources.Close_32;
             this.crtlClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.crtlClose.Location = new System.Drawing.Point(1334, 619);
+            this.crtlClose.Location = new System.Drawing.Point(1343, 619);
             this.crtlClose.Name = "crtlClose";
             this.crtlClose.Size = new System.Drawing.Size(124, 35);
             this.crtlClose.TabIndex = 8;
@@ -275,13 +275,13 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.BackColor = System.Drawing.Color.SteelBlue;
+            this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(133)))), ((int)(((byte)(198)))));
             this.pictureBox1.BackgroundImage = global::DVLD.Properties.Resources.People_400;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1514, 170);
+            this.pictureBox1.Size = new System.Drawing.Size(1478, 132);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
@@ -291,8 +291,8 @@
             this.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.SteelBlue;
-            this.ClientSize = new System.Drawing.Size(1514, 666);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(24)))), ((int)(((byte)(40)))));
+            this.ClientSize = new System.Drawing.Size(1478, 666);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.lblRecordsCount);
             this.Controls.Add(this.crtlAddNewPerson);

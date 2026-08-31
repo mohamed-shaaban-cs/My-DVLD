@@ -13,7 +13,7 @@ namespace DVLD.Users
 {
     public partial class frmManageUsers : Form
     {
-        DataTable dtUsers = new DataTable();
+        DataTable _dtUsers = new DataTable();
         public frmManageUsers()
         {
             InitializeComponent();
@@ -25,13 +25,25 @@ namespace DVLD.Users
         {
             _RefreshUsersList();
             ModrenUI_Interface.DataGridViewInterfacescs.DataGridViewModrenStayle(dgvUsers);
-            lblRecordsCount.Text = dgvUsers.Rows.Count.ToString();
+            if(dgvUsers.Rows.Count > 0)
+            {
+                dgvUsers.Columns[0].HeaderText = "User ID";
+                dgvUsers.Columns[0].Width = 110;
+                dgvUsers.Columns[1].HeaderText = "Person ID";
+                dgvUsers.Columns[1].Width = 110;
+                dgvUsers.Columns[2].HeaderText = "Full Name";
+                dgvUsers.Columns[2].Width = 110;
+                dgvUsers.Columns[3].HeaderText = "Username";
+                dgvUsers.Columns[3].Width = 110;
+                dgvUsers.Columns[4].HeaderText = "Is Active";
+                dgvUsers.Columns[4].Width = 110;
+            }
         }
 
         void _RefreshUsersList()
         {
-            dtUsers = clsUser.GetAllUsers();
-            dgvUsers.DataSource = dtUsers;
+            _dtUsers = clsUser.GetAllUsers();
+            dgvUsers.DataSource = _dtUsers;
             lblRecordsCount.Text = dgvUsers.Rows.Count.ToString();
         }
 
@@ -47,12 +59,6 @@ namespace DVLD.Users
 
         private void tbSeach_TextChanged(object sender, EventArgs e)
         {
-            if(tbSeach.Text.Trim() == "" || tbSeach.Text == null)
-            {
-                dtUsers.DefaultView.RowFilter = "";
-                lblRecordsCount.Text = dgvUsers.Rows.Count.ToString();
-                return;
-            }
             string filterField = "";
 
             switch (cbFilters.SelectedItem.ToString())
@@ -70,14 +76,21 @@ namespace DVLD.Users
                     filterField = "UserName";
                     break;              
                 default:
-                    filterField = "";
+                    filterField = "None";
                     break;
             }
 
+            if(tbSeach.Text.Trim() == "" || filterField == "None")
+            {
+                _dtUsers.DefaultView.RowFilter = "";
+                lblRecordsCount.Text = dgvUsers.Rows.Count.ToString();
+                return;
+            }
+
             if (filterField== "UserID" || filterField == "PersonID")
-            dtUsers.DefaultView.RowFilter = string.Format("[{0}] = {1}", filterField, tbSeach.Text.Trim());
+            _dtUsers.DefaultView.RowFilter = string.Format("[{0}] = {1}", filterField, tbSeach.Text.Trim());
             else
-                dtUsers.DefaultView.RowFilter = string.Format("[{0}] like '%{1}%'", filterField, tbSeach.Text.Trim());
+                _dtUsers.DefaultView.RowFilter = string.Format("[{0}] like '%{1}%'", filterField, tbSeach.Text.Trim());
 
             lblRecordsCount.Text = dgvUsers.Rows.Count.ToString();
         }
@@ -89,9 +102,10 @@ namespace DVLD.Users
 
             cbIsActive.SelectedIndex = 0;
             tbSeach.Text = "";
+
             if (tbSeach.Visible)
                 tbSeach.Focus();
-            else if (cbIsActive.Visible)
+            else 
                 cbIsActive.Focus();
 
 
@@ -101,7 +115,7 @@ namespace DVLD.Users
         {
             bool IsActive = false;
 
-            switch (cbIsActive.SelectedItem.ToString())
+            switch (cbIsActive.Text)
             {
                 case "Yes":
                     IsActive = true;
@@ -111,9 +125,9 @@ namespace DVLD.Users
                     break;
             }
             if (cbIsActive.SelectedItem.ToString() == "All")
-                dtUsers.DefaultView.RowFilter = "";
+                _dtUsers.DefaultView.RowFilter = "";
             else
-                dtUsers.DefaultView.RowFilter = string.Format("[{0}] = {1}", "IsActive", IsActive);
+                _dtUsers.DefaultView.RowFilter = string.Format("[{0}] = {1}", "IsActive", IsActive);
 
             lblRecordsCount.Text = dgvUsers.Rows.Count.ToString();
         }
@@ -145,7 +159,7 @@ namespace DVLD.Users
 
         void FrmAdd_UpdateUser_DataBackEvent(object sender,int PersonID)
         {
-            _RefreshUsersList();
+            frmManageUsers_Load(null, null);
         }
 
         private void tbSeach_KeyPress(object sender, KeyPressEventArgs e)

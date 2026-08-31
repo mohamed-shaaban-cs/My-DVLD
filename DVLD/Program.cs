@@ -19,20 +19,7 @@ namespace DVLD
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            DialogResult DVLDMainResult = DialogResult.None;
-            do
-            {
-                using (frmLogin loginForm = new frmLogin())
-                {
-                    if (loginForm.ShowDialog() == DialogResult.Cancel)
-                        break;
-                    using (frmDVLDMain mainForm = new frmDVLDMain())
-                    {
-                        DVLDMainResult = mainForm.ShowDialog();
-                    }
-                }
-
-            } while (DVLDMainResult == DialogResult.Retry);
+            Application.Run(new frmLogin());
 
         }
     }

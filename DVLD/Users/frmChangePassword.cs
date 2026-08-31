@@ -22,14 +22,33 @@ namespace DVLD.Users
         }
         private void frmChangePassword_Load(object sender, EventArgs e)
         {
-            if (!ctrlUserCard1.LoadInfo(_UserID))
+            _User = clsUser.FindByUserID(_UserID);
+
+            if (_User == null)
+            {
+                //Here We dont continue Becuase the Form is not Valid
+                MessageBox.Show("Could not Find User with ID = "+ _UserID,"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.Close();
-            _User = clsUser.Find(_UserID);
+                return;
+            }
+            ctrlUserCard1.LoadInfo(_UserID);
         }  
         
         private void tbCurrentPassword_Validating(object sender, CancelEventArgs e)
         {
-            if (_User.Password != tbCurrentPassword.Text.Trim())
+            string Password = tbCurrentPassword.Text.Trim();
+            if (string.IsNullOrEmpty(Password))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(tbNewPassword, "Password Cannot be blank");
+                return;
+            }
+            else
+            {
+                errorProvider1.SetError(tbCurrentPassword, "");
+            }
+
+            if (_User.Password != Password)
             {
                 errorProvider1.SetError(tbCurrentPassword, "Current Password is incorrect");
                 e.Cancel = true;
@@ -44,8 +63,8 @@ namespace DVLD.Users
 
         private void tbPassword_Validating(object sender, CancelEventArgs e)
         {
-            string Password = tbNewPassword.Text.Trim();
-            if (string.IsNullOrEmpty(Password))
+            string NewPassword = tbNewPassword.Text.Trim();
+            if (string.IsNullOrEmpty(NewPassword))
             {
                 e.Cancel = true;
                 errorProvider1.SetError(tbNewPassword, "Password Cannot be blank");
@@ -59,8 +78,9 @@ namespace DVLD.Users
 
         private void tbConfirmPassword_Validating(object sender, CancelEventArgs e)
         {
+            string NewPassword = tbNewPassword.Text.Trim();
             string ConfirmPassword = tbConfirmPassword.Text.Trim();
-            if (ConfirmPassword != tbNewPassword.Text.Trim())
+            if (ConfirmPassword != NewPassword)
             {
                 e.Cancel = true;
                 errorProvider1.SetError(tbConfirmPassword, "Passwords do not match");

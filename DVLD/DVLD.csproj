@@ -56,7 +56,7 @@
     </Compile>
     <Compile Include="Global Classes\clsGlobal.cs" />
     <Compile Include="Global Classes\clsUtil.cs" />
-    <Compile Include="Global Classes\CryptoHelper.cs" />
+    <Compile Include="Global Classes\clsCryptoHelper.cs" />
     <Compile Include="Login\frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -25,18 +25,18 @@ namespace DVLD.Login
         }
         private void frmLogin_Load(object sender, EventArgs e)
         {
-            string rawData = CryptoHelper.DecryptFromFile(UserSttingsFilePath);
-            if (!string.IsNullOrEmpty(rawData))
+
+            string username = "";
+            string password = "";
+            if(clsGlobal.GetStoredCredential(ref username, ref password))
             {
-                string[] parts = rawData.Split(new string[] { "#//#" }, StringSplitOptions.None);
-                if (parts.Length == 3)
-                {
-                    txtUserName.Text = parts[0];
-                    txtPassword.Text = parts[1];
-                    cbRememberMe.Checked = bool.Parse(parts[2]);
-                }
+                txtUserName.Text = username;
+                txtPassword.Text = password;
+                cbRememberMe.Checked = true;
             }
-            
+            else
+                cbRememberMe.Checked = false;
+
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -64,29 +64,44 @@ namespace DVLD.Login
                 MessageBox.Show("Your Account is Deactivated.Please Contact Your Administrator.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-            clsGlobal.CurrentUser = clsUser.Find(txtUserName.Text);
+            //clsGlobal.CurrentUser = clsUser.FindByPersonID(txtUserName.Text);
             return true;
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
+            clsUser user = clsUser.FindByUsernameAndPassword(txtUserName.Text.Trim(), txtPassword.Text.Trim());
+
             
-            if(LogIn())
+            if(user != null)
             {
+                
+                if (!user.IsActive)
+                {
+                    txtUserName.Focus();
+                    MessageBox.Show("Your Account is Deactivated.Please Contact Your Administrator.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
                 if (cbRememberMe.Checked)
                 {
-                    string rawData = $"{txtUserName.Text}#//#{txtPassword.Text}#//#{cbRememberMe.Checked}";
-                    CryptoHelper.EncryptAndSaveToFile(rawData, UserSttingsFilePath);
+                    clsGlobal.RememberUsernameAndPassword(txtUserName.Text, txtPassword.Text);
                 }
                 else
                 {
-                    if (File.Exists(UserSttingsFilePath))
-                    {
-                        File.WriteAllText(UserSttingsFilePath, string.Empty);
-                    }
+                    clsGlobal.RememberUsernameAndPassword("","");
                 }
-                this.DialogResult = DialogResult.OK;
-                this.Close();
+
+                clsGlobal.CurrentUser = user;
+                frmDVLDMain frm = new frmDVLDMain(this);
+                this.Hide();
+                frm.ShowDialog();
+
+            }
+            else
+            {
+                txtUserName.Focus();
+                MessageBox.Show("Invalid username or password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
 

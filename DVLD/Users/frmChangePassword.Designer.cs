@@ -50,7 +50,7 @@
             // 
             // ctrlUserCard1
             // 
-            this.ctrlUserCard1.BackColor = System.Drawing.Color.LightSlateGray;
+            this.ctrlUserCard1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(24)))), ((int)(((byte)(40)))));
             this.ctrlUserCard1.Location = new System.Drawing.Point(29, 29);
             this.ctrlUserCard1.Name = "ctrlUserCard1";
             this.ctrlUserCard1.Size = new System.Drawing.Size(981, 483);
@@ -58,7 +58,7 @@
             // 
             // btnSavePersonData
             // 
-            this.btnSavePersonData.BackColor = System.Drawing.Color.Ivory;
+            this.btnSavePersonData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(133)))), ((int)(((byte)(198)))));
             this.btnSavePersonData.CausesValidation = false;
             this.btnSavePersonData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSavePersonData.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -198,7 +198,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.BackColor = System.Drawing.Color.LightSlateGray;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(24)))), ((int)(((byte)(40)))));
             this.ClientSize = new System.Drawing.Size(1036, 742);
             this.Controls.Add(this.tbCurrentPassword);
             this.Controls.Add(this.pictureBox1);
@@ -214,6 +214,7 @@
             this.Controls.Add(this.ctrlUserCard1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmChangePassword";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmChangePassword";
             this.Load += new System.EventHandler(this.frmChangePassword_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();

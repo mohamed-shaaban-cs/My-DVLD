@@ -33,14 +33,9 @@ namespace DVLD.Users.Controls
 
         void _FillUserInfo()
         {
-            if (_User == null)
-            {
-                _ResetUserInfo();
-                MessageBox.Show("User not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+
             ctrlPersonCard1.LoadPersonInfo(_User.PersonID);
-            lblUserID.Text = $"{_User.UserID}";
+            lblUserID.Text =_User.UserID.ToString();
             lblUsername.Text = _User.UserName;
             lblIsActive.Text = _User.IsActive ? "Yes" : "No";
         }
@@ -50,19 +45,16 @@ namespace DVLD.Users.Controls
         public bool LoadInfo(int UserID)
         {
             _UserID = UserID;
-            _User = clsUser.Find(_UserID);
+            _User = clsUser.FindByUserID(_UserID);
+            if (_User == null)
+            {
+                _ResetUserInfo();
+                MessageBox.Show("User not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
             _FillUserInfo();
-            return _User != null;
+            return true;
         }
-        
-        public void LoadInfo(string Username)
-        {
-            
-            _User = clsUser.Find(Username);
-            _UserID = _User.UserID;
-            _FillUserInfo();
-        }
-
 
         private void groupBox1_Enter(object sender, EventArgs e)
         {

@@ -47,9 +47,11 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.btnSavePersonData = new System.Windows.Forms.Button();
+            this.btnSaveUserData = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.ctrlPersonCardWithFilter1 = new DVLD.People.Controls.ctrlPersonCardWithFilter();
             this.tcAdd_UpdateUser.SuspendLayout();
             this.tabPersonalInfo.SuspendLayout();
@@ -59,16 +61,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblTitle
             // 
             this.lblTitle.AutoSize = true;
-            this.lblTitle.Font = new System.Drawing.Font("Microsoft YaHei UI", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.ForeColor = System.Drawing.Color.White;
-            this.lblTitle.Location = new System.Drawing.Point(404, 46);
+            this.lblTitle.Font = new System.Drawing.Font("Microsoft YaHei UI", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(24)))), ((int)(((byte)(40)))));
+            this.lblTitle.Location = new System.Drawing.Point(391, 23);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(237, 41);
+            this.lblTitle.Size = new System.Drawing.Size(251, 42);
             this.lblTitle.TabIndex = 14;
             this.lblTitle.Text = "Add New User";
             // 
@@ -88,7 +92,7 @@
             // 
             // tabPersonalInfo
             // 
-            this.tabPersonalInfo.BackColor = System.Drawing.Color.LightSlateGray;
+            this.tabPersonalInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(24)))), ((int)(((byte)(40)))));
             this.tabPersonalInfo.Controls.Add(this.btnNext);
             this.tabPersonalInfo.Controls.Add(this.ctrlPersonCardWithFilter1);
             this.tabPersonalInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -101,7 +105,7 @@
             // 
             // btnNext
             // 
-            this.btnNext.BackColor = System.Drawing.Color.SkyBlue;
+            this.btnNext.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(133)))), ((int)(((byte)(198)))));
             this.btnNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNext.Image = global::DVLD.Properties.Resources.Next_32;
@@ -116,7 +120,7 @@
             // 
             // tabLoginInfo
             // 
-            this.tabLoginInfo.BackColor = System.Drawing.Color.LightSlateGray;
+            this.tabLoginInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(24)))), ((int)(((byte)(40)))));
             this.tabLoginInfo.Controls.Add(this.chbIsActive);
             this.tabLoginInfo.Controls.Add(this.lblUserID);
             this.tabLoginInfo.Controls.Add(this.tbConfirmPassword);
@@ -281,26 +285,27 @@
             this.label4.TabIndex = 27;
             this.label4.Text = "User Name :";
             // 
-            // btnSavePersonData
+            // btnSaveUserData
             // 
-            this.btnSavePersonData.BackColor = System.Drawing.Color.Ivory;
-            this.btnSavePersonData.CausesValidation = false;
-            this.btnSavePersonData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSavePersonData.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSavePersonData.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnSavePersonData.Image = global::DVLD.Properties.Resources.Save_32;
-            this.btnSavePersonData.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSavePersonData.Location = new System.Drawing.Point(867, 686);
-            this.btnSavePersonData.Name = "btnSavePersonData";
-            this.btnSavePersonData.Size = new System.Drawing.Size(142, 40);
-            this.btnSavePersonData.TabIndex = 45;
-            this.btnSavePersonData.Text = "Save";
-            this.btnSavePersonData.UseVisualStyleBackColor = false;
-            this.btnSavePersonData.Click += new System.EventHandler(this.btnSavePersonData_Click);
+            this.btnSaveUserData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(133)))), ((int)(((byte)(198)))));
+            this.btnSaveUserData.CausesValidation = false;
+            this.btnSaveUserData.Enabled = false;
+            this.btnSaveUserData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSaveUserData.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSaveUserData.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnSaveUserData.Image = global::DVLD.Properties.Resources.Save_32;
+            this.btnSaveUserData.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSaveUserData.Location = new System.Drawing.Point(867, 686);
+            this.btnSaveUserData.Name = "btnSaveUserData";
+            this.btnSaveUserData.Size = new System.Drawing.Size(142, 40);
+            this.btnSaveUserData.TabIndex = 45;
+            this.btnSaveUserData.Text = "Save";
+            this.btnSaveUserData.UseVisualStyleBackColor = false;
+            this.btnSaveUserData.Click += new System.EventHandler(this.btnSavePersonData_Click);
             // 
             // btnClose
             // 
-            this.btnClose.BackColor = System.Drawing.Color.Brown;
+            this.btnClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -318,9 +323,29 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(24)))), ((int)(((byte)(40)))));
+            this.panel1.Controls.Add(this.panel2);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1053, 96);
+            this.panel1.TabIndex = 46;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(133)))), ((int)(((byte)(198)))));
+            this.panel2.Controls.Add(this.lblTitle);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1053, 84);
+            this.panel2.TabIndex = 15;
+            // 
             // ctrlPersonCardWithFilter1
             // 
-            this.ctrlPersonCardWithFilter1.BackColor = System.Drawing.Color.LightSlateGray;
+            this.ctrlPersonCardWithFilter1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(24)))), ((int)(((byte)(40)))));
             this.ctrlPersonCardWithFilter1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.ctrlPersonCardWithFilter1.Dock = System.Windows.Forms.DockStyle.Top;
             this.ctrlPersonCardWithFilter1.FilterEnabled = true;
@@ -337,13 +362,15 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.BackColor = System.Drawing.Color.LightSlateGray;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(24)))), ((int)(((byte)(40)))));
             this.ClientSize = new System.Drawing.Size(1053, 750);
-            this.Controls.Add(this.btnSavePersonData);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.btnSaveUserData);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.tcAdd_UpdateUser);
-            this.Controls.Add(this.lblTitle);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmAdd_UpdateUser";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "frmAdd_UpdateUser";
             this.Load += new System.EventHandler(this.frmAdd_UpdateUser_Load);
             this.tcAdd_UpdateUser.ResumeLayout(false);
@@ -355,8 +382,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -368,7 +397,7 @@
         private System.Windows.Forms.TabPage tabLoginInfo;
         private People.Controls.ctrlPersonCardWithFilter ctrlPersonCardWithFilter1;
         private System.Windows.Forms.Button btnNext;
-        private System.Windows.Forms.Button btnSavePersonData;
+        private System.Windows.Forms.Button btnSaveUserData;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.TextBox tbPassword;
         private System.Windows.Forms.TextBox tbUserName;
@@ -384,5 +413,7 @@
         private System.Windows.Forms.Label label;
         private System.Windows.Forms.CheckBox chbIsActive;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
     }
 }
