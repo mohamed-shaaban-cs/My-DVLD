@@ -13,16 +13,20 @@ namespace DVLD.Applications.Applicatino_Types
 {
     public partial class frmManageApplicationTypes : Form
     {
+        DataTable _dtApplicationTypes;
         public frmManageApplicationTypes()
         {
             InitializeComponent();
         }
-        DataTable _dtApplicationTypes;
+
         private void frmManageApplicationTypes_Load(object sender, EventArgs e)
         {
+            _dtApplicationTypes = clsApplicationType.GetAllApplicationTypes();
+            _dgvApplicationTypes.DataSource = _dtApplicationTypes;
+            lblRecordsCount.Text = _dgvApplicationTypes.Rows.Count.ToString();
 
-            _RefreshList();
             ModrenUI_Interface.DataGridViewInterfacescs.DataGridViewModrenStayle(_dgvApplicationTypes);
+
             if (_dgvApplicationTypes.Rows.Count > 0)
             {
                 _dgvApplicationTypes.Columns[0].HeaderText = "ID";
@@ -34,18 +38,16 @@ namespace DVLD.Applications.Applicatino_Types
             }
         }
 
-        void _RefreshList()
-        {
-            _dtApplicationTypes = clsApplicationType.GetAllApplicationTypes();
-            _dgvApplicationTypes.DataSource = _dtApplicationTypes;
-            lblRecordsCount.Text = _dgvApplicationTypes.Rows.Count.ToString();
-        }
-
         private void editToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmUpdateApplicationType frmUpdate = new frmUpdateApplicationType(int.Parse(_dgvApplicationTypes.CurrentRow.Cells[0].Value.ToString()));
             frmUpdate.ShowDialog();
             frmManageApplicationTypes_Load(null, null);
+        }
+
+        private void crtlClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

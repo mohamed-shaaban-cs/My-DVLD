@@ -120,6 +120,7 @@
             this.crtlClose.TabIndex = 21;
             this.crtlClose.Text = "Close";
             this.crtlClose.UseVisualStyleBackColor = false;
+            this.crtlClose.Click += new System.EventHandler(this.crtlClose_Click);
             // 
             // pictureBox1
             // 

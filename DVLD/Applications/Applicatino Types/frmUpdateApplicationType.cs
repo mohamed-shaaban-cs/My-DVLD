@@ -13,27 +13,39 @@ namespace DVLD.Applications.Applicatino_Types
 {
     public partial class frmUpdateApplicationType : Form
     {
+        int _ID;
         clsApplicationType _applicationType;
         public frmUpdateApplicationType(int ID)
         {
             InitializeComponent();
-            _applicationType = clsApplicationType.Find(ID);
-            if( _applicationType == null )
+            _ID = ID;
+        }
+        
+        private void frmUpdateApplicationType_Load(object sender, EventArgs e)
+        {
+            lblID.Text = _ID.ToString();
+            _applicationType = clsApplicationType.Find(_ID);
+
+            if (_applicationType == null)
             {
                 MessageBox.Show("Application Type not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.Close();
                 return;
             }
-        }
-        private void frmUpdateApplicationType_Load(object sender, EventArgs e)
-        {
-            lblID.Text = _applicationType.ApplicationTypeID.ToString();
-            tbTitle.Text = _applicationType.ApplicationTypeTitle;
-            tbFees.Text = _applicationType.ApplicationFees.ToString("F2");
+            else
+            {
+                tbTitle.Text = _applicationType.ApplicationTypeTitle;
+                tbFees.Text = _applicationType.ApplicationFees.ToString("F2");
+            }
         }
 
         private void btnSavePersonData_Click(object sender, EventArgs e)
         {
+            if(!this.ValidateChildren())
+            {
+                MessageBox.Show("Some Fields are Invalid!", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             _applicationType.ApplicationTypeTitle = tbTitle.Text;
             _applicationType.ApplicationFees = decimal.Parse(tbFees.Text);
 
@@ -50,11 +62,47 @@ namespace DVLD.Applications.Applicatino_Types
             }
         }
 
-        private void tbFees_KeyPress(object sender, KeyPressEventArgs e)
+        private void btnClose_Click(object sender, EventArgs e)
         {
-            e.Handled = (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && (e.KeyChar != '.')); // Allow only digits and control characters
+            this.Close();
         }
 
-        
+        private void tbTitle_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(tbTitle.Text))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(tbTitle, "Title cannot be empty.");
+            }
+            else
+            {
+
+                errorProvider1.SetError(tbTitle, "");
+            }
+        }
+
+        private void tbFees_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(tbFees.Text))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(tbFees, "Fees cannot be empty.");
+            }
+            else
+            {
+                errorProvider1.SetError(tbFees, "");
+            }
+
+            if (clsValidation.IsNumber(tbFees.Text))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(tbFees, "Invalid fees format.");
+            }
+            else
+            {
+                
+                errorProvider1.SetError(tbFees, "");
+            }
+        }
     }
 }
