@@ -91,16 +91,5 @@ namespace DVLD_BusinessLogic
             return clsApplicationTypeData.GetAllApplicationTypes();
         }
 
-        public static bool DeleteApplicationType(int ApplicationTypeID)
-        {
-            
-            return clsApplicationTypeData.DeleteApplicationType(ApplicationTypeID);
-        }
-
-        public static bool IsApplicationTypeExist(int ApplicationTypeID)
-        {
-            
-            return clsApplicationTypeData.IsApplicationTypeExist(ApplicationTypeID);
-        }
     }
 }

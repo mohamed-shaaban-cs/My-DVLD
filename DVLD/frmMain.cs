@@ -1,4 +1,9 @@
-﻿using DVLD_BusinessLogic;
+﻿using DVLD.Applications.Applicatino_Types;
+using DVLD.Global_Classes;
+using DVLD.Login;
+using DVLD.Users;
+using DVLD_BusinessLogic;
+using ModrenUI_Interface;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,10 +13,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ModrenUI_Interface;
-using DVLD.Users;
-using DVLD.Global_Classes;
-using DVLD.Login;
 
 namespace DVLD
 {
@@ -96,6 +97,12 @@ namespace DVLD
         private void changePassWordToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmChangePassword frm = new frmChangePassword (clsGlobal.CurrentUser.UserID);
+            frm.ShowDialog();
+        }
+
+        private void manageApplicationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmManageApplicationTypes frm = new frmManageApplicationTypes();
             frm.ShowDialog();
         }
     }

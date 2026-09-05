@@ -103,58 +103,6 @@ namespace DVLD_DataAccess
             return (rowsAffected > 0);
         }
 
-        public static bool DeleteApplicationType(int ApplicationTypeID)
-        {
-            int rowsAffected = 0;
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-            string query = "DELETE FROM ApplicationTypes WHERE ApplicationTypeID = @ApplicationTypeID";
-            SqlCommand command = new SqlCommand(query, connection);
-            command.Parameters.AddWithValue("@ApplicationTypeID", ApplicationTypeID);
-
-            try
-            {
-                connection.Open();
-                rowsAffected = command.ExecuteNonQuery();
-            }
-            catch (Exception ex)
-            {
-                // Log Exception
-            }
-            finally
-            {
-                connection.Close();
-            }
-            return (rowsAffected > 0);
-        }
-
-        public static bool IsApplicationTypeExist(int ApplicationTypeID)
-        {
-            bool isFound = false;
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-            string query = "SELECT Found=1 FROM ApplicationTypes WHERE ApplicationTypeID = @ApplicationTypeID";
-            SqlCommand command = new SqlCommand(query, connection);
-            command.Parameters.AddWithValue("@ApplicationTypeID", ApplicationTypeID);
-
-            try
-            {
-                connection.Open();
-                object result = command.ExecuteScalar();
-                if (result != null)
-                {
-                    isFound = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                // Log Exception
-            }
-            finally
-            {
-                connection.Close();
-            }
-            return isFound;
-        }
-
         public static DataTable GetAllApplicationTypes()
         {
             DataTable dt = new DataTable();

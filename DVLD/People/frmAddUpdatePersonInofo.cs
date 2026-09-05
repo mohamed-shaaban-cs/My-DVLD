@@ -361,5 +361,10 @@ namespace DVLD.People
         {
             setDefultImage();
         }
+
+        private void tbPhone_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar)); // Allow only digits and control characters
+        }
     }
 }

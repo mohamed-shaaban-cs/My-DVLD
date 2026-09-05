@@ -54,6 +54,7 @@ namespace DVLD.Users
                 ctrlPersonCardWithFilter1.FilterEnabled = false;
                 tbPassword.Enabled = false;
                 tbConfirmPassword.Enabled = false;
+                btnSaveUserData.Enabled = true;
             }
         }
 
@@ -94,7 +95,7 @@ namespace DVLD.Users
 
             if (_Mode == enMode.Update)
             {
-                btnSaveUserData.Enabled = true;
+                
                 tabLoginInfo.Enabled = true;
                 tcAdd_UpdateUser.SelectTab(tabLoginInfo);
                 return;

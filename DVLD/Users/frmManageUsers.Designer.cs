@@ -249,7 +249,7 @@
             this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(24)))), ((int)(((byte)(40)))));
             this.label1.Font = new System.Drawing.Font("Microsoft YaHei UI", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(436, 161);
+            this.label1.Location = new System.Drawing.Point(428, 154);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(236, 41);
             this.label1.TabIndex = 13;
