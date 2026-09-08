@@ -10,7 +10,10 @@ namespace DVLD_BusinessLogic
         public enum enMode { AddNew = 0, Update = 1 };
         public enMode Mode = enMode.AddNew;
 
-        public int TestTypeID { get; set; }
+        public enum enTestType { VisionTest = 1 , WrittenTest = 2, StreetTest = 3 }
+
+
+        public clsTestType.enTestType TestTypeID { get; set; }
         public string TestTypeTitle { get; set; }
         public string TestTypeDescription { get; set; }
         public decimal TestTypeFees { get; set; }
@@ -19,7 +22,7 @@ namespace DVLD_BusinessLogic
         // Default Constructor للمستخدم الجديد
         public clsTestType()
         {
-            this.TestTypeID = -1;
+            this.TestTypeID = clsTestType.enTestType.VisionTest;
             this.TestTypeTitle = "";
             this.TestTypeDescription = "";
             this.TestTypeFees = 0.0m;
@@ -28,7 +31,7 @@ namespace DVLD_BusinessLogic
         }
 
         // Parameterized Constructor لتحميل بيانات موجودة
-        private clsTestType(int TestTypeID, string TestTypeTitle, string TestTypeDescription, decimal TestTypeFees)
+        private clsTestType(clsTestType.enTestType TestTypeID, string TestTypeTitle, string TestTypeDescription, decimal TestTypeFees)
         {
             this.TestTypeID = TestTypeID;
             this.TestTypeTitle = TestTypeTitle;
@@ -41,24 +44,24 @@ namespace DVLD_BusinessLogic
         private bool _AddNewTestType()
         {
             // التعديل هنا: استخدام cls{ClassName}Data
-            this.TestTypeID = clsTestTypeData.AddNewTestType(this.TestTypeTitle, this.TestTypeDescription, this.TestTypeFees);
-            return (this.TestTypeID != -1);
+            this.TestTypeID = (clsTestType.enTestType)clsTestTypeData.AddNewTestType(this.TestTypeTitle, this.TestTypeDescription, this.TestTypeFees);
+            return (this.TestTypeTitle != "");
         }
 
         private bool _UpdateTestType()
         {
             // التعديل هنا
-            return clsTestTypeData.UpdateTestType(this.TestTypeID, this.TestTypeTitle, this.TestTypeDescription, this.TestTypeFees);
+            return clsTestTypeData.UpdateTestType((int)this.TestTypeID, this.TestTypeTitle, this.TestTypeDescription, this.TestTypeFees);
         }
 
-        public static clsTestType Find(int TestTypeID)
+        public static clsTestType Find(clsTestType.enTestType TestTypeID)
         {
             string TestTypeTitle = "";
             string TestTypeDescription = "";
             decimal TestTypeFees = 0.0m;
 
             
-            bool IsFound = clsTestTypeData.GetTestTypeInfoByID(TestTypeID, ref TestTypeTitle, ref TestTypeDescription, ref TestTypeFees);
+            bool IsFound = clsTestTypeData.GetTestTypeInfoByID((int)TestTypeID, ref TestTypeTitle, ref TestTypeDescription, ref TestTypeFees);
 
             if (IsFound)
                 return new clsTestType(TestTypeID, TestTypeTitle, TestTypeDescription, TestTypeFees);

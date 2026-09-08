@@ -24,7 +24,7 @@ namespace DVLD.Applications.Test_Types
         private void frmUpdateTestType_Load(object sender, EventArgs e)
         {
             lblID.Text = _ID.ToString();
-            _clsTestType = clsTestType.Find(_ID);
+            _clsTestType = clsTestType.Find((clsTestType.enTestType)_ID);
 
             if (_clsTestType == null)
             {
