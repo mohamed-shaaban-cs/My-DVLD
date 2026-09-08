@@ -19,7 +19,7 @@ namespace DVLD_BusinessLogic
         public decimal TestTypeFees { get; set; }
 
 
-        // Default Constructor للمستخدم الجديد
+
         public clsTestType()
         {
             this.TestTypeID = clsTestType.enTestType.VisionTest;
