@@ -71,6 +71,7 @@ namespace DVLD.Applications.Test_Types
             {
                 e.Cancel = true;
                 errorProvider1.SetError(tbFees, "Fees must be a valid non-negative number.");
+                return;
             }
             else
             {
@@ -113,6 +114,11 @@ namespace DVLD.Applications.Test_Types
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void tbFees_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

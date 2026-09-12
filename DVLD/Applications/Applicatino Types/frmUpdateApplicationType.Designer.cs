@@ -57,7 +57,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(455, 72);
+            this.panel1.Size = new System.Drawing.Size(476, 72);
             this.panel1.TabIndex = 0;
             // 
             // label1
@@ -105,6 +105,7 @@
             this.tbFees.Name = "tbFees";
             this.tbFees.Size = new System.Drawing.Size(312, 28);
             this.tbFees.TabIndex = 45;
+            this.tbFees.Validating += new System.ComponentModel.CancelEventHandler(this.tbFees_Validating);
             // 
             // tbTitle
             // 
@@ -154,13 +155,13 @@
             this.btnSavePersonData.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnSavePersonData.Image = global::DVLD.Properties.Resources.Save_32;
             this.btnSavePersonData.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSavePersonData.Location = new System.Drawing.Point(301, 234);
+            this.btnSavePersonData.Location = new System.Drawing.Point(313, 234);
             this.btnSavePersonData.Name = "btnSavePersonData";
             this.btnSavePersonData.Size = new System.Drawing.Size(142, 44);
             this.btnSavePersonData.TabIndex = 50;
             this.btnSavePersonData.Text = "Save";
             this.btnSavePersonData.UseVisualStyleBackColor = false;
-            this.btnSavePersonData.Click += new System.EventHandler(this.btnSavePersonData_Click);
+            this.btnSavePersonData.Click += new System.EventHandler(this.btnSaveApplocationType_Click);
             // 
             // btnClose
             // 
@@ -212,7 +213,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(24)))), ((int)(((byte)(40)))));
-            this.ClientSize = new System.Drawing.Size(455, 290);
+            this.ClientSize = new System.Drawing.Size(476, 290);
             this.Controls.Add(this.btnSavePersonData);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.lblID);

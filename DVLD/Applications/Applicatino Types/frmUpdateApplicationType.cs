@@ -39,7 +39,7 @@ namespace DVLD.Applications.Applicatino_Types
             }
         }
 
-        private void btnSavePersonData_Click(object sender, EventArgs e)
+        private void btnSaveApplocationType_Click(object sender, EventArgs e)
         {
             if(!this.ValidateChildren())
             {
@@ -87,6 +87,7 @@ namespace DVLD.Applications.Applicatino_Types
             {
                 e.Cancel = true;
                 errorProvider1.SetError(tbFees, "Fees cannot be empty.");
+                return;
             }
             else
             {

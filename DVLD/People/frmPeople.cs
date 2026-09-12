@@ -112,6 +112,8 @@ namespace DVLD.People
             }
             if (filterColumn == "PersonID")
                 dtPeople.DefaultView.RowFilter = string.Format("[{0}] = {1}", filterColumn, tbSeach.Text.Trim());
+            else if(filterColumn == "GenderCaption")
+                dtPeople.DefaultView.RowFilter = string.Format("[{0}] like '  {1}%'", filterColumn, tbSeach.Text.Trim());
             else 
                 dtPeople.DefaultView.RowFilter = string.Format("[{0}] like '%{1}%'", filterColumn, tbSeach.Text.Trim());
 

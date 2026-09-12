@@ -99,7 +99,7 @@
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 95);
             this.flowLayoutPanel1.MaximumSize = new System.Drawing.Size(260, 0);
-            this.flowLayoutPanel1.MinimumSize = new System.Drawing.Size(95, 0);
+            this.flowLayoutPanel1.MinimumSize = new System.Drawing.Size(100, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(260, 689);
             this.flowLayoutPanel1.TabIndex = 1;
@@ -422,6 +422,7 @@
             // 
             // timer1
             // 
+            this.timer1.Interval = 5;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // pictureBox1

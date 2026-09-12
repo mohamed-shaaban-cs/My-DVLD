@@ -61,7 +61,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(511, 72);
+            this.panel1.Size = new System.Drawing.Size(524, 72);
             this.panel1.TabIndex = 51;
             // 
             // label1
@@ -109,6 +109,7 @@
             this.tbFees.Name = "tbFees";
             this.tbFees.Size = new System.Drawing.Size(312, 28);
             this.tbFees.TabIndex = 57;
+            this.tbFees.TextChanged += new System.EventHandler(this.tbFees_TextChanged);
             this.tbFees.Validating += new System.ComponentModel.CancelEventHandler(this.tbFees_Validating);
             // 
             // tbTitle
@@ -159,7 +160,7 @@
             this.btnSavePersonData.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnSavePersonData.Image = global::DVLD.Properties.Resources.Save_32;
             this.btnSavePersonData.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSavePersonData.Location = new System.Drawing.Point(348, 392);
+            this.btnSavePersonData.Location = new System.Drawing.Point(360, 392);
             this.btnSavePersonData.Name = "btnSavePersonData";
             this.btnSavePersonData.Size = new System.Drawing.Size(142, 44);
             this.btnSavePersonData.TabIndex = 62;
@@ -176,7 +177,7 @@
             this.btnClose.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnClose.Image = global::DVLD.Properties.Resources.Close_32;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(198, 391);
+            this.btnClose.Location = new System.Drawing.Point(203, 392);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(142, 44);
             this.btnClose.TabIndex = 61;
@@ -250,7 +251,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(24)))), ((int)(((byte)(40)))));
-            this.ClientSize = new System.Drawing.Size(511, 448);
+            this.ClientSize = new System.Drawing.Size(524, 448);
             this.Controls.Add(this.tbDescription);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.label2);
