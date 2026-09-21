@@ -44,7 +44,7 @@ namespace DVLD_BusinessLogic
         {
             get
             {
-                return clsPerson.Find(this.ApplicantPersonID)?.FullName;
+                return PersonInfo?.FullName;
             }
         }
         public DateTime ApplicationDate { get; set; }
@@ -235,7 +235,10 @@ namespace DVLD_BusinessLogic
         {
             return clsApplicationData.GetActiveApplicationIDForLicenseClass(PersonID, (byte)ApplicationType, LicenseClassID);
         }
-
+        public static bool DoesPersonHaveActiveApplicationForLicenseClass(int PersonID, clsApplication.enApplicationType ApplicationType, int LicenseClassID)
+        {
+            return clsApplicationData.DoesPersonHaveActiveApplicatinoForLicenseClass(PersonID, (byte)ApplicationType, LicenseClassID);
+        }
         public int GetActiveApplicationID(clsApplication.enApplicationType ApplicationType)
         {
             return clsApplicationData.GetActiveApplicationID(this.ApplicantPersonID, (byte)ApplicationType);

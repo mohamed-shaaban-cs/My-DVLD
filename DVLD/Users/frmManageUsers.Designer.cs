@@ -205,7 +205,7 @@
             // 
             this.tbSeach.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbSeach.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbSeach.Location = new System.Drawing.Point(249, 236);
+            this.tbSeach.Location = new System.Drawing.Point(249, 235);
             this.tbSeach.Name = "tbSeach";
             this.tbSeach.Size = new System.Drawing.Size(261, 26);
             this.tbSeach.TabIndex = 16;
@@ -269,7 +269,7 @@
             this.cbIsActive.Name = "cbIsActive";
             this.cbIsActive.Size = new System.Drawing.Size(119, 28);
             this.cbIsActive.TabIndex = 22;
-            this.cbIsActive.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.cbIsActive.SelectedIndexChanged += new System.EventHandler(this.cbIsActive_SelectedIndexChanged);
             // 
             // btnlAddNewUser
             // 

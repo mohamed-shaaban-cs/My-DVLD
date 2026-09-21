@@ -50,7 +50,7 @@ namespace DVLD_DataAccess
         {
             int InsertedID = -1;
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-            string query = @"INSERT INTO Applications ([ApplicantPersonID], [ApplicationDate], [ApplicationTypeID], [ApplicationStatus], [LastStatusDate], [PaidFees], [CreatedByUserID])
+            string query = @"INSERT INTO Applications ([ApplicationPersonID], [ApplicationDate], [ApplicationTypeID], [ApplicationStatus], [LastStatusDate], [PaidFees], [CreatedByUserID])
                              VALUES (@ApplicantPersonID, @ApplicationDate, @ApplicationTypeID, @ApplicationStatus, @LastStatusDate, @PaidFees, @CreatedByUserID);
                              SELECT SCOPE_IDENTITY();";
             SqlCommand command = new SqlCommand(query, connection);
@@ -89,7 +89,7 @@ namespace DVLD_DataAccess
             int rowsAffected = 0;
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
             string query = @"UPDATE Applications
-                             SET [ApplicantPersonID] = @ApplicantPersonID, [ApplicationDate] = @ApplicationDate, [ApplicationTypeID] = @ApplicationTypeID, [ApplicationStatus] = @ApplicationStatus, [LastStatusDate] = @LastStatusDate, [PaidFees] = @PaidFees, [CreatedByUserID] = @CreatedByUserID
+                             SET [ApplicationPersonID] = @ApplicantPersonID, [ApplicationDate] = @ApplicationDate, [ApplicationTypeID] = @ApplicationTypeID, [ApplicationStatus] = @ApplicationStatus, [LastStatusDate] = @LastStatusDate, [PaidFees] = @PaidFees, [CreatedByUserID] = @CreatedByUserID
                              WHERE ApplicationID = @ApplicationID";
             SqlCommand command = new SqlCommand(query, connection);
 
@@ -203,7 +203,7 @@ namespace DVLD_DataAccess
         {
             int ApplicationID = -1;
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-            string query = "SELECT ApplicationID FROM Applications WHERE ApplicantPersonID = @PersonID AND ApplicationTypeID = @ApplicationTypeID AND ApplicationStatus = 1";
+            string query = "SELECT ApplicationID FROM Applications WHERE ApplicationPersonID = @PersonID AND ApplicationTypeID = @ApplicationTypeID AND ApplicationStatus = 1";
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@PersonID", PersonID);
             command.Parameters.AddWithValue("@ApplicationTypeID", ApplicationTypeID);
@@ -267,6 +267,10 @@ namespace DVLD_DataAccess
                 connection.Close();
             }
             return ApplicationID;
+        }
+        public static bool DoesPersonHaveActiveApplicatinoForLicenseClass(int PersonID , int ApplicationTypeID, int LicenseClassID)
+        {
+            return (GetActiveApplicationIDForLicenseClass(PersonID, ApplicationTypeID, LicenseClassID) != -1);
         }
 
         public static bool UpdateStatus(int ApplicationID, byte NewStatus)

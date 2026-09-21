@@ -5,7 +5,7 @@ using DVLD_DataAccess; // تأكد إن ده نفس اسم الـ Namespace بت
 
 namespace DVLD_BusinessLogic
 {
-    public class clsLicenseClasse
+    public class clsLicenseClass
     {
         public enum enMode { AddNew = 0, Update = 1 };
         public enMode Mode = enMode.AddNew;
@@ -19,7 +19,7 @@ namespace DVLD_BusinessLogic
 
 
         // Default Constructor للمستخدم الجديد
-        public clsLicenseClasse()
+        public clsLicenseClass()
         {
             this.LicenseClassID = -1;
             this.ClassName = "";
@@ -32,7 +32,7 @@ namespace DVLD_BusinessLogic
         }
 
         // Parameterized Constructor لتحميل بيانات موجودة
-        private clsLicenseClasse(int LicenseClassID, string ClassName, string ClassDescription, byte MinimumAllowedAge, byte DefaultValidityLength, decimal ClassFees)
+        private clsLicenseClass(int LicenseClassID, string ClassName, string ClassDescription, byte MinimumAllowedAge, byte DefaultValidityLength, decimal ClassFees)
         {
             this.LicenseClassID = LicenseClassID;
             this.ClassName = ClassName;
@@ -57,7 +57,7 @@ namespace DVLD_BusinessLogic
             return clsLicenseClasseData.UpdateLicenseClasse(this.LicenseClassID, this.ClassName, this.ClassDescription, this.MinimumAllowedAge, this.DefaultValidityLength, this.ClassFees);
         }
 
-        public static clsLicenseClasse Find(int LicenseClasseID)
+        public static clsLicenseClass Find(int LicenseClasseID)
         {
             int LicenseClassID = -1;
             string ClassName = "";
@@ -70,7 +70,7 @@ namespace DVLD_BusinessLogic
             bool IsFound = clsLicenseClasseData.GetLicenseClasseInfoByID(LicenseClasseID, ref LicenseClassID, ref ClassName, ref ClassDescription, ref MinimumAllowedAge, ref DefaultValidityLength, ref ClassFees);
 
             if (IsFound)
-                return new clsLicenseClasse(LicenseClassID, ClassName, ClassDescription, MinimumAllowedAge, DefaultValidityLength, ClassFees);
+                return new clsLicenseClass(LicenseClassID, ClassName, ClassDescription, MinimumAllowedAge, DefaultValidityLength, ClassFees);
             else
                 return null;
         }

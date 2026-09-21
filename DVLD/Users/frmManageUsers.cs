@@ -18,7 +18,6 @@ namespace DVLD.Users
         {
             InitializeComponent();
             cbFilters.SelectedIndex = 0;
-            cbIsActive.SelectedIndex = 0;
 
         }
         private void frmManageUsers_Load(object sender, EventArgs e)
@@ -111,7 +110,7 @@ namespace DVLD.Users
 
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbIsActive_SelectedIndexChanged(object sender, EventArgs e)
         {
             bool IsActive = false;
 
