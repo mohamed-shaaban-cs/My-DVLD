@@ -181,5 +181,10 @@ namespace DVLD.Applications.LocalDrivingLicenseApplication
         {
             ctrlPersonCardWithFilter1.FilterFocus();
         }
+
+        private void cbLicenseClass_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
     }
 }
