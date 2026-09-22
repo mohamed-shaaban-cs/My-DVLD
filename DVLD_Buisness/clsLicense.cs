@@ -94,6 +94,33 @@ namespace DVLD_BusinessLogic
                 return null;
         }
 
+        public static clsLicense GetActiveLicenseInfoBYPersonID(int PersonID,int LicenseClass)
+        {
+            int LicenseID = -1;
+            int ApplicationID = -1;
+            int DriverID = -1;
+            DateTime IssueDate = DateTime.Now;
+            DateTime ExpirationDate = DateTime.Now;
+            string Notes = "";
+            decimal PaidFees = 0.0m;
+            bool IsActive = false;
+            byte IssueReason = 0;
+            int CreatedByUserID = 0;
+
+
+            bool IsFound = clsLicenseData.GetActiveLicenseInfoByPersonID(PersonID, LicenseClass, ref LicenseID, ref ApplicationID, ref DriverID, ref LicenseClass, ref IssueDate, ref ExpirationDate, ref Notes, ref PaidFees, ref IsActive, ref IssueReason, ref CreatedByUserID);
+
+            if (IsFound)
+                return new clsLicense(LicenseID, ApplicationID, DriverID, LicenseClass, IssueDate, ExpirationDate, Notes, PaidFees, IsActive, IssueReason, CreatedByUserID);
+            else
+                return null;
+        }
+
+        public static bool IsActiveLicenseExistByPersonID(int PersonID, int LicenseClass)
+        {
+            return GetActiveLicenseInfoBYPersonID(PersonID, LicenseClass) != null;
+        }
+
         public bool Save()
         {
             switch (Mode)

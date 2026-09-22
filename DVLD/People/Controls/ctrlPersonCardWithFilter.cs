@@ -22,12 +22,12 @@ namespace DVLD.People.Controls
         //Define a custom event handler delegate with parameters
         public event Action<int> OnPersonSelected;
         //Create a protected method to raise the event with a parameter
-        protected virtual void PersonSelected(int personID)
+        protected virtual void PersonSelected(int PersonID)
         {
             Action<int> Handler = OnPersonSelected;
             if(Handler != null)
             {
-                Handler(personID); // Raise the event with the personID parameter
+                Handler(PersonID); // Raise the event with the personID parameter
             }
         }
 

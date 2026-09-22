@@ -7,7 +7,7 @@ namespace DVLD_DataAccess
 {
     public static class clsLicenseClasseData
     {
-        public static bool GetLicenseClasseInfoByID(int LicenseClasseID, ref int LicenseClassID,ref string ClassName,ref string ClassDescription,ref byte MinimumAllowedAge,ref byte DefaultValidityLength,ref decimal ClassFees)
+        public static bool GetLicenseClasseInfoByID(int LicenseClasseID,ref string ClassName,ref string ClassDescription,ref byte MinimumAllowedAge,ref byte DefaultValidityLength,ref decimal ClassFees)
         {
             bool isFound = false;
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
@@ -22,12 +22,46 @@ namespace DVLD_DataAccess
                 if (Reader.Read())
                 {
                     isFound = true;
-   LicenseClassID = Reader["LicenseClassID"] != DBNull.Value ? (int)Reader["LicenseClassID"] : -1;
-   ClassName = Reader["ClassName"] != DBNull.Value ? (string)Reader["ClassName"] : "";
-   ClassDescription = Reader["ClassDescription"] != DBNull.Value ? (string)Reader["ClassDescription"] : "";
-   MinimumAllowedAge = Reader["MinimumAllowedAge"] != DBNull.Value ? (byte)Reader["MinimumAllowedAge"] : (byte)0;
-   DefaultValidityLength = Reader["DefaultValidityLength"] != DBNull.Value ? (byte)Reader["DefaultValidityLength"] : (byte)0;
-   ClassFees = Reader["ClassFees"] != DBNull.Value ? (decimal)Reader["ClassFees"] : 0.0m;
+                    ClassName = Reader["ClassName"] != DBNull.Value ? (string)Reader["ClassName"] : "";
+                    ClassDescription = Reader["ClassDescription"] != DBNull.Value ? (string)Reader["ClassDescription"] : "";
+                    MinimumAllowedAge = Reader["MinimumAllowedAge"] != DBNull.Value ? (byte)Reader["MinimumAllowedAge"] : (byte)0;
+                    DefaultValidityLength = Reader["DefaultValidityLength"] != DBNull.Value ? (byte)Reader["DefaultValidityLength"] : (byte)0;
+                    ClassFees = Reader["ClassFees"] != DBNull.Value ? (decimal)Reader["ClassFees"] : 0.0m;
+
+                }
+                Reader.Close();
+            }
+            catch (Exception ex)
+            {
+                // Log Exception
+                isFound = false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return isFound;
+        }
+        public static bool GetLicenseClasseInfoByClassName(string ClassName, ref int LicenseClassID,ref string ClassDescription,ref byte MinimumAllowedAge,ref byte DefaultValidityLength,ref decimal ClassFees)
+        {
+            bool isFound = false;
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = "SELECT * FROM LicenseClasses WHERE ClassName = @ClassName";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@ClassName", ClassName);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader Reader = command.ExecuteReader();
+                if (Reader.Read())
+                {
+                    isFound = true;
+                    LicenseClassID = Reader["LicenseClassID"] != DBNull.Value ? (int)Reader["LicenseClassID"] : -1;
+                    ClassDescription = Reader["ClassDescription"] != DBNull.Value ? (string)Reader["ClassDescription"] : "";
+                    MinimumAllowedAge = Reader["MinimumAllowedAge"] != DBNull.Value ? (byte)Reader["MinimumAllowedAge"] : (byte)0;
+                    DefaultValidityLength = Reader["DefaultValidityLength"] != DBNull.Value ? (byte)Reader["DefaultValidityLength"] : (byte)0;
+                    ClassFees = Reader["ClassFees"] != DBNull.Value ? (decimal)Reader["ClassFees"] : 0.0m;
 
                 }
                 Reader.Close();

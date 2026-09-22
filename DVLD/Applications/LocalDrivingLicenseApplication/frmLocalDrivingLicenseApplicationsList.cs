@@ -146,5 +146,10 @@ namespace DVLD.Applications.LocalDrivingLicenseApplication
             frmNewLocalDrivingLicenseApplication frmNewLocalDrivingLicenseApplication = new frmNewLocalDrivingLicenseApplication();
             frmNewLocalDrivingLicenseApplication.ShowDialog();
         }
+
+        private void crtlClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

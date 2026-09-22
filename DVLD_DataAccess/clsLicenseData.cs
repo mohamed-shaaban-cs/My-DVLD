@@ -47,6 +47,50 @@ namespace DVLD_DataAccess
             }
             return isFound;
         }
+        public static bool GetActiveLicenseInfoByPersonID(int PersonID, int LicenseClassID, ref int LicenseID, ref int ApplicationID, ref int DriverID, ref int LicenseClass, ref DateTime IssueDate, ref DateTime ExpirationDate, ref string Notes, ref decimal PaidFees, ref bool IsActive, ref byte IssueReason, ref int CreatedByUserID)
+        {
+            bool isFound = false;
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = @"SELECT       Licenses.LicenseID, Applications.ApplicantPersonID, Licenses.LicenseClass , IsActive
+                         FROM            Applications INNER JOIN
+                         Licenses ON Applications.ApplicationID = Licenses.ApplicationID
+                         Where ApplicantPersonID = @PersonID And LicenseClass = @LicenseClassID And IsActive = 1; ";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@PersonID", PersonID);
+            command.Parameters.AddWithValue("@LicenseClassID", LicenseClassID);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader Reader = command.ExecuteReader();
+                if (Reader.Read())
+                {
+                    isFound = true;
+   LicenseID = Reader["LicenseID"] != DBNull.Value ? (int)Reader["LicenseID"] : -1;
+   ApplicationID = Reader["ApplicationID"] != DBNull.Value ? (int)Reader["ApplicationID"] : -1;
+   DriverID = Reader["DriverID"] != DBNull.Value ? (int)Reader["DriverID"] : -1;
+   IssueDate = Reader["IssueDate"] != DBNull.Value ? (DateTime)Reader["IssueDate"] : DateTime.Now;
+   ExpirationDate = Reader["ExpirationDate"] != DBNull.Value ? (DateTime)Reader["ExpirationDate"] : DateTime.Now;
+   Notes = Reader["Notes"] != DBNull.Value ? (string)Reader["Notes"] : "";
+   PaidFees = Reader["PaidFees"] != DBNull.Value ? (decimal)Reader["PaidFees"] : 0.0m;
+   IsActive = Reader["IsActive"] != DBNull.Value ? (bool)Reader["IsActive"] : false;
+   IssueReason = Reader["IssueReason"] != DBNull.Value ? (byte)Reader["IssueReason"] : (byte)0;
+   CreatedByUserID = Reader["CreatedByUserID"] != DBNull.Value ? (int)Reader["CreatedByUserID"] : -1;
+
+                }
+                Reader.Close();
+            }
+            catch (Exception ex)
+            {
+                // Log Exception
+                isFound = false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return isFound;
+        }
 
         public static int AddNewLicense( int ApplicationID, int DriverID, int LicenseClass, DateTime IssueDate, DateTime ExpirationDate, string Notes, decimal PaidFees, bool IsActive, byte IssueReason, int CreatedByUserID)
         {
@@ -158,6 +202,34 @@ namespace DVLD_DataAccess
             string query = "SELECT Found=1 FROM Licenses WHERE LicenseID = @LicenseID";
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@LicenseID", LicenseID);
+
+            try
+            {
+                connection.Open();
+                object result = command.ExecuteScalar();
+                if (result != null)
+                {
+                    isFound = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log Exception
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return isFound;
+        }
+        public static bool IsLicenseExistByPersonID(int PersonID,int LicenseClassID)
+        {
+            bool isFound = false;
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = "SELECT Found=1 FROM Licenses WHERE PersonID = @PersonID AND LicenseClassID = @LicenseClassID";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@PersonID", PersonID);
+            command.Parameters.AddWithValue("@LicenseClassID", LicenseClassID);
 
             try
             {
