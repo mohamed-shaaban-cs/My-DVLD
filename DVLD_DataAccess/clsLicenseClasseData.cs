@@ -11,7 +11,7 @@ namespace DVLD_DataAccess
         {
             bool isFound = false;
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-            string query = "SELECT * FROM LicenseClasses WHERE LicenseClasseID = @LicenseClasseID";
+            string query = "SELECT * FROM LicenseClasses WHERE LicenseClassID = @LicenseClasseID";
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@LicenseClasseID", LicenseClasseID);
 

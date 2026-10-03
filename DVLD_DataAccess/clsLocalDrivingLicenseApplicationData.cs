@@ -284,8 +284,36 @@ namespace DVLD_DataAccess
             }
             return totalTrials;
         }
-
-        //public static 
+        public static byte CountPassedTests(int LocalDrivingLicenseApplicationID)
+        {
+            byte totalTrials = 0;
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = @"SELECT   COUNT(1) as PassedTests
+                         FROM            TestAppointments INNER JOIN
+                         Tests ON TestAppointments.TestAppointmentID = Tests.TestAppointmentID
+                         WHERE TestAppointments.LocalDrivingLicenseApplicationID =@LocalDrivingLicenseApplicationID and  Tests.TestResult = 1
+                         ";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@LocalDrivingLicenseApplicationID", LocalDrivingLicenseApplicationID);
+            try
+            {
+                connection.Open();
+                object result = command.ExecuteScalar();
+                if (result != null)
+                {
+                    totalTrials = Convert.ToByte(result);
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log Exception
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return totalTrials;
+        }
 
 
         public static DataTable GetAllLocalDrivingLicenseApplications()

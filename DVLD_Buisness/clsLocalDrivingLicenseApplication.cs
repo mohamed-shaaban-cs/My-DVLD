@@ -157,5 +157,15 @@ namespace DVLD_BusinessLogic
             
             return clsLocalDrivingLicenseApplicationData.IsLocalDrivingLicenseApplicationExist(LocalDrivingLicenseApplicationID);
         }
+
+        public static byte TotalTrialsPerTestType(int LocalDrivingLicenseApplicationID, int TestTypeID)
+        {
+            return clsLocalDrivingLicenseApplicationData.TotalTrialsPerTestType(LocalDrivingLicenseApplicationID, TestTypeID);
+        }
+
+        public static byte countPassedTests(int LocalDrivingLicenseApplicationID)
+        {
+            return clsLocalDrivingLicenseApplicationData.CountPassedTests(LocalDrivingLicenseApplicationID);
+        }
     }
 }

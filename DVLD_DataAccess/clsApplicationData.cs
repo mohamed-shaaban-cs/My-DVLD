@@ -23,7 +23,7 @@ namespace DVLD_DataAccess
                 if (Reader.Read())
                 {
                     isFound = true;
-                    ApplicantPersonID = Reader["ApplicantPersonID"] != DBNull.Value ? (int)Reader["ApplicantPersonID"] : -1;
+                    ApplicantPersonID = Reader["ApplicationPersonID"] != DBNull.Value ? (int)Reader["ApplicationPersonID"] : -1;
                     ApplicationDate = Reader["ApplicationDate"] != DBNull.Value ? (DateTime)Reader["ApplicationDate"] : DateTime.Now;
                     ApplicationTypeID = Reader["ApplicationTypeID"] != DBNull.Value ? (int)Reader["ApplicationTypeID"] : -1;
                     ApplicationStatus = Reader["ApplicationStatus"] != DBNull.Value ? (byte)Reader["ApplicationStatus"] : (byte)1;

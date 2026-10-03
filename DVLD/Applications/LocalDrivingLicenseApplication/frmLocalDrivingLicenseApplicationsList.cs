@@ -138,7 +138,9 @@ namespace DVLD.Applications.LocalDrivingLicenseApplication
 
         private void showDetailsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            int localDrivingLicenseApplicationID = (int)dgvList.SelectedRows[0].Cells["LocalDrivingLicenseApplicationID"].Value;
+            frmLocalDrivingLicenseApplicationInfo frmInfo = new frmLocalDrivingLicenseApplicationInfo(localDrivingLicenseApplicationID);
+            frmInfo.ShowDialog();   
         }
 
         private void editToolStripMenuItem_Click(object sender, EventArgs e)
