@@ -145,13 +145,87 @@ namespace DVLD.Applications.LocalDrivingLicenseApplication
 
         private void editToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmNewLocalDrivingLicenseApplication frmNewLocalDrivingLicenseApplication = new frmNewLocalDrivingLicenseApplication();
+            int localDrivingLicenseApplicationID = (int)dgvList.SelectedRows[0].Cells["LocalDrivingLicenseApplicationID"].Value;
+            frmNewLocalDrivingLicenseApplication frmNewLocalDrivingLicenseApplication = new frmNewLocalDrivingLicenseApplication(localDrivingLicenseApplicationID);
             frmNewLocalDrivingLicenseApplication.ShowDialog();
+            _RefreshLocalDrivingLicenseApplicationsList();
         }
 
         private void crtlClose_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int L_D_L_App_ID = (int)dgvList.SelectedRows[0].Cells["LocalDrivingLicenseApplicationID"].Value;
+            if (MessageBox.Show("Are you sure you want to delete this Local Driving License Application?", "Delete Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                return;
+
+            if (clsLocalDrivingLicenseApplication.DeleteLocalDrivingLicenseApplication(L_D_L_App_ID))
+            {
+                MessageBox.Show("Local Driving License Application deleted successfully.");
+                _RefreshLocalDrivingLicenseApplicationsList();
+            }
+                
+            else
+                MessageBox.Show("Local Driving License Application deletion failed. Please try again.");
+        }
+
+        private void contextMenuStrip1_Opened(object sender, EventArgs e)
+        {
+            switch (dgvList.SelectedRows[0].Cells["Status"].Value.ToString())
+            {
+                case "New":
+                    showDetailsToolStripMenuItem.Enabled = true;
+                    deleteToolStripMenuItem.Enabled = true;
+                    editToolStripMenuItem.Enabled = true;
+                    CancelApplicationToolStripMenuItem.Enabled = true;
+                    SchduleTestsToolStripMenuItem.Enabled = true;
+                    IssueDrivingLicenseFirstTime.Enabled = false;
+                    ShowLicense.Enabled = false;
+                    ShowPersonLicenseHistory.Enabled = true;
+                    break;
+                case "Cancelled":
+                    showDetailsToolStripMenuItem.Enabled = true;
+                    deleteToolStripMenuItem.Enabled = false;
+                    editToolStripMenuItem.Enabled = false;
+                    CancelApplicationToolStripMenuItem.Enabled = false;
+                    SchduleTestsToolStripMenuItem.Enabled = false;
+                    IssueDrivingLicenseFirstTime.Enabled = false;
+                    ShowLicense.Enabled = false;
+                    ShowPersonLicenseHistory.Enabled = true;
+                    break;
+                case "Completed":
+                    showDetailsToolStripMenuItem.Enabled = true;
+                    deleteToolStripMenuItem.Enabled = false;
+                    editToolStripMenuItem.Enabled = false;
+                    CancelApplicationToolStripMenuItem.Enabled = false;
+                    SchduleTestsToolStripMenuItem.Enabled = false;
+                    IssueDrivingLicenseFirstTime.Enabled = true;
+                    ShowLicense.Enabled = true;
+                    ShowPersonLicenseHistory.Enabled = true;
+                    break;
+            }
+            
+            
+        }
+
+        private void CancelApplicationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int LocalDrivingLicenseApplicationID = (int)dgvList.SelectedRows[0].Cells["LocalDrivingLicenseApplicationID"].Value;
+            clsLocalDrivingLicenseApplication localDrivingLicenseApplication = clsLocalDrivingLicenseApplication.FindByLocalDrivingLicenseApplicationID(LocalDrivingLicenseApplicationID);
+            
+            if(MessageBox.Show("Are you sure you want to cancel this application?", "Cancel Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                return;
+
+            if (localDrivingLicenseApplication.Cancel())
+            {
+                MessageBox.Show("Application cancelled successfully.");
+                _RefreshLocalDrivingLicenseApplicationsList();
+            }
+            else
+                MessageBox.Show("Failed to cancel application. Please try again.");
         }
     }
 }

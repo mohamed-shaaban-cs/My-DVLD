@@ -168,11 +168,11 @@ namespace DVLD_BusinessLogic
 
         public bool Cancel()
         {
-            return clsApplicationData.UpdateStatus(this.ApplicationID, (byte)enApplicationStatus.Cancelled);
+            return clsApplicationData.UpdateStatus(ApplicationID, (byte)enApplicationStatus.Cancelled);
         }
-        public bool Complete()
+        public bool Complete(int ApplicationID)
         {
-            return clsApplicationData.UpdateStatus(this.ApplicationID, (byte)enApplicationStatus.Completed);
+            return clsApplicationData.UpdateStatus(ApplicationID, (byte)enApplicationStatus.Completed);
         }
 
         public bool Save()
