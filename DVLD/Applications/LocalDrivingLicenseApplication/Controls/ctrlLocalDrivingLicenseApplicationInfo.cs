@@ -33,9 +33,12 @@ namespace DVLD.Applications.LocalDrivingLicenseApplication.Controls
 
         void _FillLocalDrivingLicenseApplicationInfo()
         {
+            _LocalDrivingLicenseApplicationID = _LocalDrivingLicenseApplication.LocalDrivingLicenseApplicationID;
+
             lblDLApplicationID.Text = _LocalDrivingLicenseApplication.LocalDrivingLicenseApplicationID.ToString();
             lblAppliedForLicense.Text= clsLicenseClass.Find(_LocalDrivingLicenseApplication.LicenseClassID).ClassName;
             lblPassedTests.Text = $"{clsLocalDrivingLicenseApplication.countPassedTests(_LocalDrivingLicenseApplication.LocalDrivingLicenseApplicationID)}/3";
+            ctrlApplicationBasicInfo1.LoadApplicationInfo(_LocalDrivingLicenseApplication.ApplicationID);
 
             // Enable the link label only if the application status is Completed and have license class assigned
             llblShowLicenseInfo.Enabled = _LocalDrivingLicenseApplication.ApplicationStatus == clsApplication.enApplicationStatus.Completed;
@@ -53,8 +56,8 @@ namespace DVLD.Applications.LocalDrivingLicenseApplication.Controls
         }
         public void LoadApplicationInfoByLocalDrivingLicenseAppID(int localDrivingLicenseApplicationID)
         {
-            //_LocalDrivingLicenseApplicationID = localDrivingLicenseApplicationID;
-            _LocalDrivingLicenseApplication = clsLocalDrivingLicenseApplication.FindByLocalDrivingLicenseApplicationID(_LocalDrivingLicenseApplicationID);
+            
+            _LocalDrivingLicenseApplication = clsLocalDrivingLicenseApplication.FindByLocalDrivingLicenseApplicationID(localDrivingLicenseApplicationID);
             if (_LocalDrivingLicenseApplication == null)
             {
                 ResetLocalDrivingLicenseApplicationInfo();
@@ -64,6 +67,23 @@ namespace DVLD.Applications.LocalDrivingLicenseApplication.Controls
 
             _FillLocalDrivingLicenseApplicationInfo(); 
         }
+        public void LoadApplicationInfoByApplicationID(int applicationID)
+        {
+            
+            _LocalDrivingLicenseApplication = clsLocalDrivingLicenseApplication.FindByApplicationID(applicationID);
+            if (_LocalDrivingLicenseApplication == null)
+            {
+                ResetLocalDrivingLicenseApplicationInfo();
+                MessageBox.Show($"Application with ID {applicationID} not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
+            _FillLocalDrivingLicenseApplicationInfo(); 
+        }
+
+        private void ctrlLocalDrivingLicenseApplicationInfo_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

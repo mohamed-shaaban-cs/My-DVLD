@@ -37,6 +37,8 @@ namespace DVLD
 
         private void _FillApplicationInfo()
         {
+            _ApplicationID = _Application.ApplicationID;
+
             lblAppicationID.Text = _Application.ApplicationID.ToString();
             lblStatus.Text = _Application.ApplicationStatus.ToString();
             lblFees.Text = _Application.PaidFees.ToString("C");
@@ -49,8 +51,8 @@ namespace DVLD
 
         public void LoadApplicationInfo(int applicationID)
         {
-            _ApplicationID = applicationID;
-            _Application = clsApplication.FindBaseApplication(_ApplicationID);
+            
+            _Application = clsApplication.FindBaseApplication(applicationID);
             if(_Application == null)
             {
                 ResetApplicationInfo();

@@ -28,17 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.ctrlLocalDrivingLicenseApplicationInfo1 = new DVLD.Applications.LocalDrivingLicenseApplication.Controls.ctrlLocalDrivingLicenseApplicationInfo();
             this.crtlClose = new System.Windows.Forms.Button();
+            this.ctrlLocalDrivingLicenseApplicationInfo1 = new DVLD.Applications.LocalDrivingLicenseApplication.Controls.ctrlLocalDrivingLicenseApplicationInfo();
             this.SuspendLayout();
-            // 
-            // ctrlLocalDrivingLicenseApplicationInfo1
-            // 
-            this.ctrlLocalDrivingLicenseApplicationInfo1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(24)))), ((int)(((byte)(40)))));
-            this.ctrlLocalDrivingLicenseApplicationInfo1.Location = new System.Drawing.Point(2, 3);
-            this.ctrlLocalDrivingLicenseApplicationInfo1.Name = "ctrlLocalDrivingLicenseApplicationInfo1";
-            this.ctrlLocalDrivingLicenseApplicationInfo1.Size = new System.Drawing.Size(921, 441);
-            this.ctrlLocalDrivingLicenseApplicationInfo1.TabIndex = 0;
             // 
             // crtlClose
             // 
@@ -54,6 +46,15 @@
             this.crtlClose.Text = "Close";
             this.crtlClose.UseVisualStyleBackColor = false;
             this.crtlClose.Click += new System.EventHandler(this.crtlClose_Click);
+            // 
+            // ctrlLocalDrivingLicenseApplicationInfo1
+            // 
+            this.ctrlLocalDrivingLicenseApplicationInfo1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(24)))), ((int)(((byte)(40)))));
+            this.ctrlLocalDrivingLicenseApplicationInfo1.Location = new System.Drawing.Point(2, 3);
+            this.ctrlLocalDrivingLicenseApplicationInfo1.Name = "ctrlLocalDrivingLicenseApplicationInfo1";
+            this.ctrlLocalDrivingLicenseApplicationInfo1.Size = new System.Drawing.Size(921, 441);
+            this.ctrlLocalDrivingLicenseApplicationInfo1.TabIndex = 0;
+            this.ctrlLocalDrivingLicenseApplicationInfo1.Load += new System.EventHandler(this.ctrlLocalDrivingLicenseApplicationInfo1_Load);
             // 
             // frmLocalDrivingLicenseApplicationInfo
             // 

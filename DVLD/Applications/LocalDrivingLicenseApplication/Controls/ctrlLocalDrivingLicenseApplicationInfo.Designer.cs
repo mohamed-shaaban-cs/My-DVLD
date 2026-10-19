@@ -41,6 +41,7 @@
             this.lblDLApplicationID = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.ctrlApplicationBasicInfo1 = new DVLD.ctrlApplicationBasicInfo();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
@@ -190,14 +191,24 @@
             this.label5.TabIndex = 47;
             this.label5.Text = "Applied For License :";
             // 
+            // ctrlApplicationBasicInfo1
+            // 
+            this.ctrlApplicationBasicInfo1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(24)))), ((int)(((byte)(40)))));
+            this.ctrlApplicationBasicInfo1.Location = new System.Drawing.Point(13, 163);
+            this.ctrlApplicationBasicInfo1.Name = "ctrlApplicationBasicInfo1";
+            this.ctrlApplicationBasicInfo1.Size = new System.Drawing.Size(905, 256);
+            this.ctrlApplicationBasicInfo1.TabIndex = 1;
+            // 
             // ctrlLocalDrivingLicenseApplicationInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(24)))), ((int)(((byte)(40)))));
+            this.Controls.Add(this.ctrlApplicationBasicInfo1);
             this.Controls.Add(this.groupBox1);
             this.Name = "ctrlLocalDrivingLicenseApplicationInfo";
-            this.Size = new System.Drawing.Size(921, 441);
+            this.Size = new System.Drawing.Size(921, 435);
+            this.Load += new System.EventHandler(this.ctrlLocalDrivingLicenseApplicationInfo_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
@@ -223,5 +234,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.LinkLabel llblShowLicenseInfo;
         private System.Windows.Forms.PictureBox pictureBox6;
+        private ctrlApplicationBasicInfo ctrlApplicationBasicInfo1;
     }
 }
