@@ -1,10 +1,11 @@
-﻿using System;
+﻿using DVLD.Login;
+using DVLD_BusinessLogic; 
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using DVLD.Login;
-using DVLD_BusinessLogic; 
 
 namespace DVLD
 {
@@ -18,7 +19,9 @@ namespace DVLD
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
+            // Set the culture to invariant culture to avoid issues with number and date formatting
+            CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
+            
             Application.Run(new frmLogin());
 
         }
