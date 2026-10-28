@@ -56,12 +56,7 @@ namespace DVLD.Applications.LocalDrivingLicenseApplication
 
         private void tbSeach_TextChanged(object sender, EventArgs e)
         {
-            if (tbSeach.Text.Trim() == "" || tbSeach.Text == null)
-            {
-                dtAllLocalDrivingLicenseApplications.DefaultView.RowFilter = "";
-                lblRecordsCount.Text = dgvList.Rows.Count.ToString();
-                return;
-            }
+            
             string filterColumn = "";
             switch (cbFilters.SelectedItem.ToString())
             {
@@ -78,9 +73,17 @@ namespace DVLD.Applications.LocalDrivingLicenseApplication
                     filterColumn = "Status";
                     break;
                 default:
-                    filterColumn = cbFilters.SelectedItem.ToString();
+                    filterColumn = "none";
                     break;
             }
+            if (tbSeach.Text.Trim() == "" || filterColumn == "none")
+            {
+                dtAllLocalDrivingLicenseApplications.DefaultView.RowFilter = "";
+                lblRecordsCount.Text = dgvList.Rows.Count.ToString();
+                return;
+            }
+
+
             if (filterColumn == "LocalDrivingLicenseApplicationID")
                 dtAllLocalDrivingLicenseApplications.DefaultView.RowFilter = string.Format("[{0}] = {1}", filterColumn, tbSeach.Text.Trim());
             else if (filterColumn == "Status")
@@ -141,6 +144,7 @@ namespace DVLD.Applications.LocalDrivingLicenseApplication
             int localDrivingLicenseApplicationID = (int)dgvList.SelectedRows[0].Cells["LocalDrivingLicenseApplicationID"].Value;
             frmLocalDrivingLicenseApplicationInfo frmInfo = new frmLocalDrivingLicenseApplicationInfo(localDrivingLicenseApplicationID);
             frmInfo.ShowDialog();   
+            _RefreshLocalDrivingLicenseApplicationsList();
         }
 
         private void editToolStripMenuItem_Click(object sender, EventArgs e)
@@ -174,49 +178,51 @@ namespace DVLD.Applications.LocalDrivingLicenseApplication
 
         private void contextMenuStrip1_Opened(object sender, EventArgs e)
         {
-            switch (dgvList.SelectedRows[0].Cells["Status"].Value.ToString())
+            clsLocalDrivingLicenseApplication localDrivingLicenseApplication = clsLocalDrivingLicenseApplication.FindByLocalDrivingLicenseApplicationID((int)dgvList.SelectedRows[0].Cells["LocalDrivingLicenseApplicationID"].Value);
+
+            int TotalPassedTests = clsLocalDrivingLicenseApplication.countPassedTests(localDrivingLicenseApplication.LocalDrivingLicenseApplicationID);
+
+            bool LicenseExists = false; // You need to implement a method to check if the license has been issued for this application.
+
+            showDetailsToolStripMenuItem.Enabled = true;
+            editToolStripMenuItem.Enabled = !LicenseExists && localDrivingLicenseApplication.ApplicationStatus == clsApplication.enApplicationStatus.New;  
+
+            //We only allow to Delete or Cancel the Application if the Application status is New.
+            deleteToolStripMenuItem.Enabled = localDrivingLicenseApplication.ApplicationStatus == clsApplication.enApplicationStatus.New;
+            CancelApplicationToolStripMenuItem.Enabled = localDrivingLicenseApplication.ApplicationStatus == clsApplication.enApplicationStatus.New;
+
+            SchduleTestsToolStripMenuItem.Enabled = !LicenseExists;
+
+            IssueDrivingLicenseFirstTime.Enabled = !LicenseExists && TotalPassedTests == 3;
+            ShowLicense.Enabled = LicenseExists;
+            ShowPersonLicenseHistory.Enabled = true;
+
+            bool PassedVisionTest = false; //not implemented yet, you need to implement a method to check if the applicant has passed the vision test for this application.
+            bool PassedWrittenTest = false; //not implemented yet, you need to implement a method to check if the applicant has passed the written test for this application.
+            bool PassedStreetTest = false; //not implemented yet, you need to implement a method to check if the applicant has passed the street test for this application.
+
+            scheduleStreetTestToolStripMenuItem.Enabled = ( !PassedStreetTest || PassedVisionTest || PassedWrittenTest);
+            if(SchduleTestsToolStripMenuItem.Enabled)
             {
-                case "New":
-                    showDetailsToolStripMenuItem.Enabled = true;
-                    deleteToolStripMenuItem.Enabled = true;
-                    editToolStripMenuItem.Enabled = true;
-                    CancelApplicationToolStripMenuItem.Enabled = true;
-                    SchduleTestsToolStripMenuItem.Enabled = true;
-                    IssueDrivingLicenseFirstTime.Enabled = false;
-                    ShowLicense.Enabled = false;
-                    ShowPersonLicenseHistory.Enabled = true;
-                    break;
-                case "Cancelled":
-                    showDetailsToolStripMenuItem.Enabled = true;
-                    deleteToolStripMenuItem.Enabled = false;
-                    editToolStripMenuItem.Enabled = false;
-                    CancelApplicationToolStripMenuItem.Enabled = false;
-                    SchduleTestsToolStripMenuItem.Enabled = false;
-                    IssueDrivingLicenseFirstTime.Enabled = false;
-                    ShowLicense.Enabled = false;
-                    ShowPersonLicenseHistory.Enabled = true;
-                    break;
-                case "Completed":
-                    showDetailsToolStripMenuItem.Enabled = true;
-                    deleteToolStripMenuItem.Enabled = false;
-                    editToolStripMenuItem.Enabled = false;
-                    CancelApplicationToolStripMenuItem.Enabled = false;
-                    SchduleTestsToolStripMenuItem.Enabled = false;
-                    IssueDrivingLicenseFirstTime.Enabled = true;
-                    ShowLicense.Enabled = true;
-                    ShowPersonLicenseHistory.Enabled = true;
-                    break;
+                scheduleVisionTestToolStripMenuItem.Enabled = !PassedVisionTest;
+                scheduleWrittenTestToolStripMenuItem.Enabled = !PassedWrittenTest;
+                scheduleStreetTestToolStripMenuItem.Enabled = !PassedStreetTest;
             }
-            
-            
+
+
+
         }
 
         private void CancelApplicationToolStripMenuItem_Click(object sender, EventArgs e)
         {
             int LocalDrivingLicenseApplicationID = (int)dgvList.SelectedRows[0].Cells["LocalDrivingLicenseApplicationID"].Value;
             clsLocalDrivingLicenseApplication localDrivingLicenseApplication = clsLocalDrivingLicenseApplication.FindByLocalDrivingLicenseApplicationID(LocalDrivingLicenseApplicationID);
-            
-            if(MessageBox.Show("Are you sure you want to cancel this application?", "Cancel Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+            if(localDrivingLicenseApplication == null)
+            {
+                MessageBox.Show("Failed to find the application. Please try again.");
+                return;
+            }
+            if (MessageBox.Show("Are you sure you want to cancel this application?", "Cancel Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
                 return;
 
             if (localDrivingLicenseApplication.Cancel())

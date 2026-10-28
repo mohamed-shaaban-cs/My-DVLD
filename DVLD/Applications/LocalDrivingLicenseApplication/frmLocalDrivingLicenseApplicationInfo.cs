@@ -13,7 +13,7 @@ namespace DVLD.Applications.LocalDrivingLicenseApplication
 {
     public partial class frmLocalDrivingLicenseApplicationInfo : Form
     {
-        int _LocalDrivingLicenseApplicationID;
+        int _LocalDrivingLicenseApplicationID=-1;
         public frmLocalDrivingLicenseApplicationInfo(int localDrivingLicenseApplicationID)
         {
             InitializeComponent();
@@ -30,9 +30,5 @@ namespace DVLD.Applications.LocalDrivingLicenseApplication
             ctrlLocalDrivingLicenseApplicationInfo1.LoadApplicationInfoByLocalDrivingLicenseAppID(_LocalDrivingLicenseApplicationID);
         }
 
-        private void ctrlLocalDrivingLicenseApplicationInfo1_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }
