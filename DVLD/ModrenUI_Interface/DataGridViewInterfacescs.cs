@@ -10,7 +10,7 @@ namespace ModrenUI_Interface
 {
     internal class DataGridViewInterfacescs
     {
-        static internal void DataGridViewModrenStayle(DataGridView dgvModrenStayle)
+        static internal void DataGridViewModernStayle(DataGridView dgvModrenStayle)
         {
             // عام (General)
             dgvModrenStayle.Dock = DockStyle.Fill;

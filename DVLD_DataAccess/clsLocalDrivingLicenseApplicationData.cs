@@ -286,12 +286,12 @@ namespace DVLD_DataAccess
         }
         public static byte CountPassedTests(int LocalDrivingLicenseApplicationID)
         {
-            byte totalTrials = 0;
+            byte PassedTests = 0;
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
             string query = @"SELECT   COUNT(1) as PassedTests
                          FROM            TestAppointments INNER JOIN
                          Tests ON TestAppointments.TestAppointmentID = Tests.TestAppointmentID
-                         WHERE TestAppointments.LocalDrivingLicenseApplicationID =@LocalDrivingLicenseApplicationID and  Tests.TestResult = 1
+                         WHERE TestAppointments.LocalDrivingLicenseApplicationID =@LocalDrivingLicenseApplicationID and  TestResult = 1
                          ";
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@LocalDrivingLicenseApplicationID", LocalDrivingLicenseApplicationID);
@@ -301,7 +301,7 @@ namespace DVLD_DataAccess
                 object result = command.ExecuteScalar();
                 if (result != null)
                 {
-                    totalTrials = Convert.ToByte(result);
+                    PassedTests = Convert.ToByte(result);
                 }
             }
             catch (Exception ex)
@@ -312,7 +312,68 @@ namespace DVLD_DataAccess
             {
                 connection.Close();
             }
-            return totalTrials;
+            return PassedTests;
+        }
+        public static bool IsHavePassedTestPerTestType(int LocalDrivingLicenseApplicationID,int TestTypeID)
+        {
+            bool IsHavePassedTest = false;
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = @"SELECT   COUNT(1) as PassedTests
+                         FROM            TestAppointments INNER JOIN
+                         Tests ON TestAppointments.TestAppointmentID = Tests.TestAppointmentID
+                         WHERE TestAppointments.LocalDrivingLicenseApplicationID =@LocalDrivingLicenseApplicationID and  Tests.TestResult = 1 and TestTypeID = @TestTypeID
+                         ";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@LocalDrivingLicenseApplicationID", LocalDrivingLicenseApplicationID);
+            command.Parameters.AddWithValue("@TestTypeID", TestTypeID);
+            try
+            {
+                connection.Open();
+                object result = command.ExecuteScalar();
+                if (result != null)
+                {
+                    IsHavePassedTest = Convert.ToBoolean(result);
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log Exception
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return IsHavePassedTest;
+        }
+        public static bool IsHaveActiveTestAppointment(int LocalDrivingLicenseApplicationID,int TestTypeID)
+        {
+            bool IsHaveActiveTestAppointment = false;
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = @"SELECT   count(1) as ActiveTests
+                         FROM            TestAppointments 
+                         WHERE TestAppointments.LocalDrivingLicenseApplicationID =@LocalDrivingLicenseApplicationID and  IsLocked = 0 and TestTypeID = @TestTypeID
+                         ";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@LocalDrivingLicenseApplicationID", LocalDrivingLicenseApplicationID);
+            command.Parameters.AddWithValue("@TestTypeID", TestTypeID);
+            try
+            {
+                connection.Open();
+                object result = command.ExecuteScalar();
+                if (result != null)
+                {
+                    IsHaveActiveTestAppointment = Convert.ToBoolean(result);
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log Exception
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return IsHaveActiveTestAppointment;
         }
 
 

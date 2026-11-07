@@ -14,7 +14,7 @@ namespace DVLD_BusinessLogic
         {
             NewLocalDrivingLicense = 1, RenewDrivingLicense = 2,
             ReplacementForALostDrivingLicense = 3, ReplacementForDamagedDrivingLicense = 4,
-            ReleaseDetainedDrivingLicsense = 5, NewInternationalLicense = 6, RetakeTest = 7
+            ReleaseDetainedDrivingLicsense = 5, NewInternationalLicense = 6, RetakeTest = 9
         }
 
         public enum enApplicationStatus { New = 1, Cancelled = 2, Completed = 3 }
@@ -49,7 +49,7 @@ namespace DVLD_BusinessLogic
         }
         public DateTime ApplicationDate { get; set; }
         public int ApplicationTypeID { get; set; }
-        private clsApplicationType _ApplicationTypeInfo;
+        private clsApplicationType _ApplicationTypeInfo=null;
         public clsApplicationType ApplicationTypeInfo
         {
             get

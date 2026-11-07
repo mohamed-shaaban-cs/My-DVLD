@@ -1,4 +1,5 @@
-﻿using DVLD_BusinessLogic;
+﻿using DVLD.Tests;
+using DVLD_BusinessLogic;
 using ModrenUI_Interface;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static DVLD_BusinessLogic.clsTestType;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace DVLD.Applications.LocalDrivingLicenseApplication
@@ -28,16 +30,18 @@ namespace DVLD.Applications.LocalDrivingLicenseApplication
         private void frmLocalDrivingLicenseApplicationsList_Load(object sender, EventArgs e)
         {
             _RefreshLocalDrivingLicenseApplicationsList();
-            DataGridViewInterfacescs.DataGridViewModrenStayle(dgvList);
+            DataGridViewInterfacescs.DataGridViewModernStayle(dgvList);
 
-            dgvList.Columns["LocalDrivingLicenseApplicationID"].HeaderText = "L.D.L.AppID";
-            dgvList.Columns["ClassName"].HeaderText = "Driving Class";
-            dgvList.Columns["NationalNo"].HeaderText = "National No.";
-            dgvList.Columns["FullName"].HeaderText = "Full Name";
-            dgvList.Columns["ApplicationDate"].HeaderText = "Application Date";
-            dgvList.Columns["PassedTestCount"].HeaderText = "Passed Tests";
-            dgvList.Columns["Status"].HeaderText = "Status";
-
+            if (dgvList != null)
+            {
+                dgvList.Columns["LocalDrivingLicenseApplicationID"].HeaderText = "L.D.L.AppID";
+                dgvList.Columns["ClassName"].HeaderText = "Driving Class";
+                dgvList.Columns["NationalNo"].HeaderText = "National No.";
+                dgvList.Columns["FullName"].HeaderText = "Full Name";
+                dgvList.Columns["ApplicationDate"].HeaderText = "Application Date";
+                dgvList.Columns["PassedTestCount"].HeaderText = "Passed Tests";
+                dgvList.Columns["Status"].HeaderText = "Status";
+            }
 
         }
 
@@ -180,7 +184,7 @@ namespace DVLD.Applications.LocalDrivingLicenseApplication
         {
             clsLocalDrivingLicenseApplication localDrivingLicenseApplication = clsLocalDrivingLicenseApplication.FindByLocalDrivingLicenseApplicationID((int)dgvList.SelectedRows[0].Cells["LocalDrivingLicenseApplicationID"].Value);
 
-            int TotalPassedTests = clsLocalDrivingLicenseApplication.countPassedTests(localDrivingLicenseApplication.LocalDrivingLicenseApplicationID);
+            int TotalPassedTests = clsLocalDrivingLicenseApplication.countPassedTests(localDrivingLicenseApplication._LocalDrivingLicenseApplicationID);
 
             bool LicenseExists = false; // You need to implement a method to check if the license has been issued for this application.
 
@@ -197,16 +201,16 @@ namespace DVLD.Applications.LocalDrivingLicenseApplication
             ShowLicense.Enabled = LicenseExists;
             ShowPersonLicenseHistory.Enabled = true;
 
-            bool PassedVisionTest = false; //not implemented yet, you need to implement a method to check if the applicant has passed the vision test for this application.
-            bool PassedWrittenTest = false; //not implemented yet, you need to implement a method to check if the applicant has passed the written test for this application.
-            bool PassedStreetTest = false; //not implemented yet, you need to implement a method to check if the applicant has passed the street test for this application.
+            bool PassedVisionTest = clsLocalDrivingLicenseApplication.IsHavePassedTestPerTestType(localDrivingLicenseApplication._LocalDrivingLicenseApplicationID, clsTestType.enTestType.VisionTest);
+            bool PassedWrittenTest = clsLocalDrivingLicenseApplication.IsHavePassedTestPerTestType(localDrivingLicenseApplication._LocalDrivingLicenseApplicationID, (clsTestType.enTestType.WrittenTest));
+            bool PassedStreetTest = clsLocalDrivingLicenseApplication.IsHavePassedTestPerTestType(localDrivingLicenseApplication._LocalDrivingLicenseApplicationID, clsTestType.enTestType.StreetTest);
 
-            scheduleStreetTestToolStripMenuItem.Enabled = ( !PassedStreetTest || PassedVisionTest || PassedWrittenTest);
-            if(SchduleTestsToolStripMenuItem.Enabled)
+            SchduleTestsToolStripMenuItem.Enabled = ((!PassedStreetTest || !PassedVisionTest || !PassedWrittenTest ) && localDrivingLicenseApplication.ApplicationStatus == clsApplication.enApplicationStatus.New);
+            if (SchduleTestsToolStripMenuItem.Enabled)
             {
-                scheduleVisionTestToolStripMenuItem.Enabled = !PassedVisionTest;
-                scheduleWrittenTestToolStripMenuItem.Enabled = !PassedWrittenTest;
-                scheduleStreetTestToolStripMenuItem.Enabled = !PassedStreetTest;
+                scheduleVisionTestToolStripMenuItem.Enabled = (!PassedVisionTest);
+                scheduleWrittenTestToolStripMenuItem.Enabled = (!PassedWrittenTest && PassedVisionTest);
+                scheduleStreetTestToolStripMenuItem.Enabled = (!PassedStreetTest && PassedVisionTest && PassedWrittenTest);
             }
 
 
@@ -232,6 +236,27 @@ namespace DVLD.Applications.LocalDrivingLicenseApplication
             }
             else
                 MessageBox.Show("Failed to cancel application. Please try again.");
+        }
+
+        private void scheduleVisionTestToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmTestAppointments frmTestAppointment = new frmTestAppointments((int)dgvList.SelectedRows[0].Cells["LocalDrivingLicenseApplicationID"].Value, clsTestType.enTestType.VisionTest);
+            frmTestAppointment.ShowDialog();
+            //_RefreshLocalDrivingLicenseApplicationsList();
+        }
+
+        private void scheduleWrittenTestToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmTestAppointments frmTestAppointment = new frmTestAppointments((int)dgvList.SelectedRows[0].Cells["LocalDrivingLicenseApplicationID"].Value, clsTestType.enTestType.WrittenTest);
+            frmTestAppointment.ShowDialog();
+            //_RefreshLocalDrivingLicenseApplicationsList();
+        }
+
+        private void scheduleStreetTestToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmTestAppointments frmTestAppointment = new frmTestAppointments((int)dgvList.SelectedRows[0].Cells["LocalDrivingLicenseApplicationID"].Value, clsTestType.enTestType.StreetTest);
+            frmTestAppointment.ShowDialog();
+            _RefreshLocalDrivingLicenseApplicationsList();
         }
     }
 }

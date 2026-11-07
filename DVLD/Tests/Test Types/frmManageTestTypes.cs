@@ -26,7 +26,7 @@ namespace DVLD.Applications.Test_Types
             _dgvTestTypes.DataSource = _dtTestTypes;
             lblRecordsCount.Text = _dgvTestTypes.Rows.Count.ToString();
 
-            ModrenUI_Interface.DataGridViewInterfacescs.DataGridViewModrenStayle(_dgvTestTypes);
+            ModrenUI_Interface.DataGridViewInterfacescs.DataGridViewModernStayle(_dgvTestTypes);
 
             if (_dgvTestTypes.Rows.Count > 0)
             {

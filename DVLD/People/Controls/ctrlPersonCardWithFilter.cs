@@ -58,20 +58,20 @@ namespace DVLD.People.Controls
 
         public clsPerson SelectedPersonInfo { get { return ctrlPersonCard1.SelectedPersonInfo; } }
 
-
-        public void LoadPersonInfo(int personID)
-        {
-            cbFindBy.SelectedIndex = 1; // Set to "Person ID"
-            txtFilterValue.Text = personID.ToString();
-            FindNow();
-        }
         private void crtlPersonCardWithFilter_Load(object sender, EventArgs e)
         {
             cbFindBy.SelectedIndex = 0;
             txtFilterValue.Focus();
         }
 
-        private void FindNow()
+        public void LoadPersonInfo(int personID)
+        {
+            cbFindBy.SelectedIndex = 1; // Set to "Person ID"
+            txtFilterValue.Text = personID.ToString();
+            _FindNow();
+        }
+
+        private void _FindNow()
         {
             switch (cbFindBy.SelectedIndex)
             {
@@ -96,7 +96,7 @@ namespace DVLD.People.Controls
                 MessageBox.Show("Please correct the errors before searching.");
                 return;
             }
-            FindNow();
+            _FindNow();
 
         }
 

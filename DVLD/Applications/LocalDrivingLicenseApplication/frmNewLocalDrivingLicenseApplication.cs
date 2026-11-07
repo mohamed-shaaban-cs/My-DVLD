@@ -82,7 +82,7 @@ namespace DVLD.Applications.LocalDrivingLicenseApplication
             {
                 lblDLApplicationID.Text = _LocalDrivingLicenseApplication.ApplicationID.ToString();
                 lblApplicationDate.Text = _LocalDrivingLicenseApplication.ApplicationDate.ToString("yyyy-MM-dd");
-                cbLicenseClass.SelectedIndex = _LocalDrivingLicenseApplication.LicenseClassID + 1;
+                cbLicenseClass.SelectedIndex = _LocalDrivingLicenseApplication._LicenseClassID + 1;
                 lblApplicationFees.Text = _LocalDrivingLicenseApplication.PaidFees.ToString("C");
                 lblCreatedByUser.Text = clsUser.FindByUserID(_LocalDrivingLicenseApplication.CreatedByUserID).UserName;
                 ctrlPersonCardWithFilter1.LoadPersonInfo(_LocalDrivingLicenseApplication.ApplicantPersonID);
@@ -148,7 +148,7 @@ namespace DVLD.Applications.LocalDrivingLicenseApplication
 
             _LocalDrivingLicenseApplication.ApplicantPersonID = ctrlPersonCardWithFilter1.PersonID;
             _LocalDrivingLicenseApplication.ApplicationTypeID = (int)clsApplication.enApplicationType.NewLocalDrivingLicense;
-            _LocalDrivingLicenseApplication.LicenseClassID = LicenseClassID;
+            _LocalDrivingLicenseApplication._LicenseClassID = LicenseClassID;
             _LocalDrivingLicenseApplication.PaidFees = clsApplicationType.Find((int)clsApplication.enApplicationType.NewLocalDrivingLicense).ApplicationFees;
             _LocalDrivingLicenseApplication.CreatedByUserID = clsGlobal.CurrentUser.UserID;
 

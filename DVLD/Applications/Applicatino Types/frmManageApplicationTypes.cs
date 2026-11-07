@@ -25,7 +25,7 @@ namespace DVLD.Applications.Applicatino_Types
             _dgvApplicationTypes.DataSource = _dtApplicationTypes;
             lblRecordsCount.Text = _dgvApplicationTypes.Rows.Count.ToString();
 
-            ModrenUI_Interface.DataGridViewInterfacescs.DataGridViewModrenStayle(_dgvApplicationTypes);
+            ModrenUI_Interface.DataGridViewInterfacescs.DataGridViewModernStayle(_dgvApplicationTypes);
 
             if (_dgvApplicationTypes.Rows.Count > 0)
             {

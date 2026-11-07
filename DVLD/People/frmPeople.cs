@@ -25,7 +25,7 @@ namespace DVLD.People
         private void frmManagePeople_Load(object sender, EventArgs e)
         {
             _RefreshPeopleList();
-            ModrenUI_Interface.DataGridViewInterfacescs.DataGridViewModrenStayle(dgvPeople);
+            ModrenUI_Interface.DataGridViewInterfacescs.DataGridViewModernStayle(dgvPeople);
             cbFilters.SelectedIndex = 0;
 
             dgvPeople.Columns["PersonID"].HeaderText = "Person ID";

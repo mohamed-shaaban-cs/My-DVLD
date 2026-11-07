@@ -210,7 +210,6 @@
             this.groupBox1.TabIndex = 57;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Person Information";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // lblEditPersonInfo
             // 
@@ -444,7 +443,6 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "ctrlPersonCard";
             this.Size = new System.Drawing.Size(982, 359);
-            this.Load += new System.EventHandler(this.ctrlPersonCard_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbPersonImage)).EndInit();

@@ -29,11 +29,6 @@ namespace DVLD.People.Controls
             InitializeComponent();
         }
 
-        private void ctrlPersonCard_Load(object sender, EventArgs e)
-        {
-
-        }
-
         public  void ResetPersonInfo()
         {
             
@@ -117,10 +112,6 @@ namespace DVLD.People.Controls
                     pbPersonImage.ImageLocation = ImagePath;
                 else
                     MessageBox.Show($"Image file not found: {ImagePath}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
         }
 
         

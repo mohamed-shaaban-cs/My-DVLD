@@ -69,6 +69,21 @@ namespace DVLD_BusinessLogic
             else
                 return null;
         }
+        public static clsTest FindByTestAppointmentID(int TestAppointmentID)
+        {
+            int TestID = -1;
+            bool TestResult = false;
+            string Notes = "";
+            int CreatedByUserID = -1;
+
+            
+            bool IsFound = clsTestData.GetTestInfoByTestAppointmentID(TestAppointmentID , ref TestID, ref TestResult, ref Notes, ref CreatedByUserID);
+
+            if (IsFound)
+                return new clsTest(TestID, TestAppointmentID, TestResult, Notes, CreatedByUserID);
+            else
+                return null;
+        }
 
         public bool Save()
         {

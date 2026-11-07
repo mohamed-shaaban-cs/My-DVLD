@@ -7,7 +7,7 @@ namespace DVLD_DataAccess
 {
     public static class clsTestAppointmentData
     {
-        public static bool GetTestAppointmentInfoByID(int TestAppointmentID, ref int TestTypeID,ref int LocalDrivingLicenseApplicationID,ref object AppointmentDate,ref decimal PaidFees,ref int CreatedByUserID,ref bool IsLocked,ref int RetakeTestApplicationID)
+        public static bool GetTestAppointmentInfoByID(int TestAppointmentID, ref int TestTypeID,ref int LocalDrivingLicenseApplicationID,ref DateTime AppointmentDate,ref decimal PaidFees,ref int CreatedByUserID,ref bool IsLocked,ref int RetakeTestApplicationID)
         {
             bool isFound = false;
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
@@ -22,13 +22,13 @@ namespace DVLD_DataAccess
                 if (Reader.Read())
                 {
                     isFound = true;
-   TestTypeID = Reader["TestTypeID"] != DBNull.Value ? (int)Reader["TestTypeID"] : -1;
-   LocalDrivingLicenseApplicationID = Reader["LocalDrivingLicenseApplicationID"] != DBNull.Value ? (int)Reader["LocalDrivingLicenseApplicationID"] : -1;
-   AppointmentDate = Reader["AppointmentDate"] != DBNull.Value ? (object)Reader["AppointmentDate"] : null;
-   PaidFees = Reader["PaidFees"] != DBNull.Value ? (decimal)Reader["PaidFees"] : 0.0m;
-   CreatedByUserID = Reader["CreatedByUserID"] != DBNull.Value ? (int)Reader["CreatedByUserID"] : -1;
-   IsLocked = Reader["IsLocked"] != DBNull.Value ? (bool)Reader["IsLocked"] : false;
-   RetakeTestApplicationID = Reader["RetakeTestApplicationID"] != DBNull.Value ? (int)Reader["RetakeTestApplicationID"] : -1;
+                    TestTypeID = Reader["TestTypeID"] != DBNull.Value ? (int)Reader["TestTypeID"] : -1;
+                    LocalDrivingLicenseApplicationID = Reader["LocalDrivingLicenseApplicationID"] != DBNull.Value ? (int)Reader["LocalDrivingLicenseApplicationID"] : -1;
+                    AppointmentDate = Reader["AppointmentDate"] != DBNull.Value ? (DateTime)Reader["AppointmentDate"] : DateTime.Now;
+                    PaidFees = Reader["PaidFees"] != DBNull.Value ? (decimal)Reader["PaidFees"] : 0.0m;
+                    CreatedByUserID = Reader["CreatedByUserID"] != DBNull.Value ? (int)Reader["CreatedByUserID"] : -1;
+                    IsLocked = Reader["IsLocked"] != DBNull.Value ? (bool)Reader["IsLocked"] : false;
+                    RetakeTestApplicationID = Reader["RetakeTestApplicationID"] != DBNull.Value ? (int)Reader["RetakeTestApplicationID"] : -1;
 
                 }
                 Reader.Close();
@@ -45,7 +45,7 @@ namespace DVLD_DataAccess
             return isFound;
         }
 
-        public static int AddNewTestAppointment( int TestTypeID, int LocalDrivingLicenseApplicationID, object AppointmentDate, decimal PaidFees, int CreatedByUserID, bool IsLocked, int RetakeTestApplicationID)
+        public static int AddNewTestAppointment( int TestTypeID, int LocalDrivingLicenseApplicationID, DateTime AppointmentDate, decimal PaidFees, int CreatedByUserID, bool IsLocked, int RetakeTestApplicationID)
         {
             int InsertedID = -1;
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
@@ -60,7 +60,7 @@ namespace DVLD_DataAccess
    command.Parameters.AddWithValue("@PaidFees",PaidFees);
    command.Parameters.AddWithValue("@CreatedByUserID",CreatedByUserID);
    command.Parameters.AddWithValue("@IsLocked",IsLocked);
-   command.Parameters.AddWithValue("@RetakeTestApplicationID",RetakeTestApplicationID);
+            command.Parameters.AddWithValue("@RetakeTestApplicationID", (RetakeTestApplicationID == -1 ? (object)DBNull.Value : RetakeTestApplicationID));
 
 
             try
@@ -83,7 +83,7 @@ namespace DVLD_DataAccess
             return InsertedID;
         }
 
-        public static bool UpdateTestAppointment(int TestAppointmentID,  int TestTypeID, int LocalDrivingLicenseApplicationID, object AppointmentDate, decimal PaidFees, int CreatedByUserID, bool IsLocked, int RetakeTestApplicationID)
+        public static bool UpdateTestAppointment(int TestAppointmentID,  int TestTypeID, int LocalDrivingLicenseApplicationID, DateTime AppointmentDate, decimal PaidFees, int CreatedByUserID, bool IsLocked, int RetakeTestApplicationID)
         {
             int rowsAffected = 0;
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
@@ -98,7 +98,7 @@ namespace DVLD_DataAccess
    command.Parameters.AddWithValue("@PaidFees",PaidFees);
    command.Parameters.AddWithValue("@CreatedByUserID",CreatedByUserID);
    command.Parameters.AddWithValue("@IsLocked",IsLocked);
-   command.Parameters.AddWithValue("@RetakeTestApplicationID",RetakeTestApplicationID);
+   command.Parameters.AddWithValue("@RetakeTestApplicationID",(RetakeTestApplicationID == -1 ? (object)DBNull.Value : RetakeTestApplicationID));
 
             command.Parameters.AddWithValue("@TestAppointmentID", TestAppointmentID);
 
@@ -176,6 +176,35 @@ namespace DVLD_DataAccess
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
             string query = "SELECT * FROM TestAppointments";
             SqlCommand command = new SqlCommand(query, connection);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    dt.Load(reader);
+                }
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                // Log Exception
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return dt;
+        }
+        public static DataTable GetAllTestAppointmentsByTestTypeIDAndLocalDrivingLicenseApplicationID(int TestTypeID, int LocalDrivingLicenseApplicationID)
+        {
+            DataTable dt = new DataTable();
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = "SELECT TestAppointmentID,AppointmentDate,PaidFees,IsLocked FROM TestAppointments WHERE TestTypeID = @TestTypeID AND LocalDrivingLicenseApplicationID = @LocalDrivingLicenseApplicationID";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@TestTypeID", TestTypeID);
+            command.Parameters.AddWithValue("@LocalDrivingLicenseApplicationID", LocalDrivingLicenseApplicationID);
 
             try
             {

@@ -11,13 +11,46 @@ namespace DVLD_BusinessLogic
         public enMode Mode = enMode.AddNew;
 
         public int TestAppointmentID { get; set; }
+        
         public int TestTypeID { get; set; }
+        clsTestType _TestTypeInfo;
+        public clsTestType TestTypeInfo {
+            get 
+            { 
+                if(this.TestTypeID == -1 && this._TestTypeInfo == null)
+                    return null;
+
+                return clsTestType.Find((clsTestType.enTestType)this.TestTypeID); 
+            } 
+        }
         public int LocalDrivingLicenseApplicationID { get; set; }
-        public object AppointmentDate { get; set; }
+
+        clsLocalDrivingLicenseApplication _LocalDrivingLicenseApplicationInfo;
+        public clsLocalDrivingLicenseApplication LocalDrivingLicenseApplicationInfo
+        {
+            get
+            {
+                if (this.LocalDrivingLicenseApplicationID != -1 && this._LocalDrivingLicenseApplicationInfo == null)
+                    this._LocalDrivingLicenseApplicationInfo = clsLocalDrivingLicenseApplication.FindByLocalDrivingLicenseApplicationID(this.LocalDrivingLicenseApplicationID);
+                
+                    return this._LocalDrivingLicenseApplicationInfo;
+            }
+        }
+        public DateTime AppointmentDate { get; set; }
         public decimal PaidFees { get; set; }
         public int CreatedByUserID { get; set; }
         public bool IsLocked { get; set; }
         public int RetakeTestApplicationID { get; set; }
+        clsApplication _ApplicationRetakeInfo = null;
+        public clsApplication ApplicationRetakeInfo { 
+            get 
+            { 
+                if(this._ApplicationRetakeInfo == null && this.RetakeTestApplicationID != -1)
+                    this._ApplicationRetakeInfo = clsApplication.FindBaseApplication(this.RetakeTestApplicationID);
+
+                return this._ApplicationRetakeInfo;
+            } 
+        }
 
 
         // Default Constructor للمستخدم الجديد
@@ -26,7 +59,7 @@ namespace DVLD_BusinessLogic
             this.TestAppointmentID = -1;
             this.TestTypeID = -1;
             this.LocalDrivingLicenseApplicationID = -1;
-            this.AppointmentDate = null;
+            this.AppointmentDate = DateTime.Now;
             this.PaidFees = 0.0m;
             this.CreatedByUserID = -1;
             this.IsLocked = false;
@@ -36,7 +69,7 @@ namespace DVLD_BusinessLogic
         }
 
         // Parameterized Constructor لتحميل بيانات موجودة
-        private clsTestAppointment(int TestAppointmentID, int TestTypeID, int LocalDrivingLicenseApplicationID, object AppointmentDate, decimal PaidFees, int CreatedByUserID, bool IsLocked, int RetakeTestApplicationID)
+        private clsTestAppointment(int TestAppointmentID, int TestTypeID, int LocalDrivingLicenseApplicationID, DateTime AppointmentDate, decimal PaidFees, int CreatedByUserID, bool IsLocked, int RetakeTestApplicationID)
         {
             this.TestAppointmentID = TestAppointmentID;
             this.TestTypeID = TestTypeID;
@@ -67,7 +100,7 @@ namespace DVLD_BusinessLogic
         {
             int TestTypeID = -1;
             int LocalDrivingLicenseApplicationID = -1;
-            object AppointmentDate = null;
+            DateTime AppointmentDate = DateTime.Now;
             decimal PaidFees = 0.0m;
             int CreatedByUserID = -1;
             bool IsLocked = false;
@@ -109,6 +142,11 @@ namespace DVLD_BusinessLogic
         {
             
             return clsTestAppointmentData.GetAllTestAppointments();
+        }
+        public static DataTable GetAllTestAppointmentsByTestType(clsTestType.enTestType TestTypeID, int LocalDrivingLicenseApplicationID)
+        {
+            
+            return clsTestAppointmentData.GetAllTestAppointmentsByTestTypeIDAndLocalDrivingLicenseApplicationID((int)TestTypeID, LocalDrivingLicenseApplicationID);
         }
 
         public static bool DeleteTestAppointment(int TestAppointmentID)

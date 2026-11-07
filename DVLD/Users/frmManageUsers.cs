@@ -23,7 +23,7 @@ namespace DVLD.Users
         private void frmManageUsers_Load(object sender, EventArgs e)
         {
             _RefreshUsersList();
-            ModrenUI_Interface.DataGridViewInterfacescs.DataGridViewModrenStayle(dgvUsers);
+            ModrenUI_Interface.DataGridViewInterfacescs.DataGridViewModernStayle(dgvUsers);
             if(dgvUsers.Rows.Count > 0)
             {
                 dgvUsers.Columns[0].HeaderText = "User ID";
