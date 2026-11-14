@@ -12,8 +12,8 @@ namespace DVLD_BusinessLogic
 
         public int DriverID { get; set; }
         public int PersonID { get; set; }
+        public DateTime CreatedDate { get; set; }
         public int CreatedByUserID { get; set; }
-        public object CreatedDate { get; set; }
 
 
         // Default Constructor للمستخدم الجديد
@@ -22,13 +22,13 @@ namespace DVLD_BusinessLogic
             this.DriverID = -1;
             this.PersonID = -1;
             this.CreatedByUserID = -1;
-            this.CreatedDate = null;
+            this.CreatedDate = DateTime.Now;
 
             Mode = enMode.AddNew;
         }
 
         // Parameterized Constructor لتحميل بيانات موجودة
-        private clsDriver(int DriverID, int PersonID, int CreatedByUserID, object CreatedDate)
+        private clsDriver(int DriverID, int PersonID, int CreatedByUserID, DateTime CreatedDate)
         {
             this.DriverID = DriverID;
             this.PersonID = PersonID;
@@ -55,7 +55,7 @@ namespace DVLD_BusinessLogic
         {
             int PersonID = -1;
             int CreatedByUserID = -1;
-            object CreatedDate = null;
+            DateTime CreatedDate = DateTime.Now;
 
             
             bool IsFound = clsDriverData.GetDriverInfoByID(DriverID, ref PersonID, ref CreatedByUserID, ref CreatedDate);

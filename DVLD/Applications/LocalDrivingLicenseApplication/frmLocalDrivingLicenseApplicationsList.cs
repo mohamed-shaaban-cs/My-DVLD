@@ -1,4 +1,5 @@
-﻿using DVLD.Tests;
+﻿using DVLD.Licenses.Local_License;
+using DVLD.Tests;
 using DVLD_BusinessLogic;
 using ModrenUI_Interface;
 using System;
@@ -184,26 +185,26 @@ namespace DVLD.Applications.LocalDrivingLicenseApplication
         {
             clsLocalDrivingLicenseApplication localDrivingLicenseApplication = clsLocalDrivingLicenseApplication.FindByLocalDrivingLicenseApplicationID((int)dgvList.SelectedRows[0].Cells["LocalDrivingLicenseApplicationID"].Value);
 
-            int TotalPassedTests = clsLocalDrivingLicenseApplication.countPassedTests(localDrivingLicenseApplication._LocalDrivingLicenseApplicationID);
+            int TotalPassedTests = clsLocalDrivingLicenseApplication.countPassedTests(localDrivingLicenseApplication.LocalDrivingLicenseApplicationID);
 
-            bool LicenseExists = false; // You need to implement a method to check if the license has been issued for this application.
+            bool IsLicenseIssued = localDrivingLicenseApplication.IsLicenseIssued(); 
 
             showDetailsToolStripMenuItem.Enabled = true;
-            editToolStripMenuItem.Enabled = !LicenseExists && localDrivingLicenseApplication.ApplicationStatus == clsApplication.enApplicationStatus.New;  
+            editToolStripMenuItem.Enabled = !IsLicenseIssued && localDrivingLicenseApplication.ApplicationStatus == clsApplication.enApplicationStatus.New;  
 
             //We only allow to Delete or Cancel the Application if the Application status is New.
             deleteToolStripMenuItem.Enabled = localDrivingLicenseApplication.ApplicationStatus == clsApplication.enApplicationStatus.New;
             CancelApplicationToolStripMenuItem.Enabled = localDrivingLicenseApplication.ApplicationStatus == clsApplication.enApplicationStatus.New;
 
-            SchduleTestsToolStripMenuItem.Enabled = !LicenseExists;
+            SchduleTestsToolStripMenuItem.Enabled = !IsLicenseIssued;
 
-            IssueDrivingLicenseFirstTime.Enabled = !LicenseExists && TotalPassedTests == 3;
-            ShowLicense.Enabled = LicenseExists;
+            IssueDrivingLicenseFirstTime.Enabled = !IsLicenseIssued && TotalPassedTests == 3;
+            ShowLicense.Enabled = IsLicenseIssued;
             ShowPersonLicenseHistory.Enabled = true;
 
-            bool PassedVisionTest = clsLocalDrivingLicenseApplication.IsHavePassedTestPerTestType(localDrivingLicenseApplication._LocalDrivingLicenseApplicationID, clsTestType.enTestType.VisionTest);
-            bool PassedWrittenTest = clsLocalDrivingLicenseApplication.IsHavePassedTestPerTestType(localDrivingLicenseApplication._LocalDrivingLicenseApplicationID, (clsTestType.enTestType.WrittenTest));
-            bool PassedStreetTest = clsLocalDrivingLicenseApplication.IsHavePassedTestPerTestType(localDrivingLicenseApplication._LocalDrivingLicenseApplicationID, clsTestType.enTestType.StreetTest);
+            bool PassedVisionTest = clsLocalDrivingLicenseApplication.IsHavePassedTestPerTestType(localDrivingLicenseApplication.LocalDrivingLicenseApplicationID, clsTestType.enTestType.VisionTest);
+            bool PassedWrittenTest = clsLocalDrivingLicenseApplication.IsHavePassedTestPerTestType(localDrivingLicenseApplication.LocalDrivingLicenseApplicationID, (clsTestType.enTestType.WrittenTest));
+            bool PassedStreetTest = clsLocalDrivingLicenseApplication.IsHavePassedTestPerTestType(localDrivingLicenseApplication.LocalDrivingLicenseApplicationID, clsTestType.enTestType.StreetTest);
 
             SchduleTestsToolStripMenuItem.Enabled = ((!PassedStreetTest || !PassedVisionTest || !PassedWrittenTest ) && localDrivingLicenseApplication.ApplicationStatus == clsApplication.enApplicationStatus.New);
             if (SchduleTestsToolStripMenuItem.Enabled)
@@ -257,6 +258,22 @@ namespace DVLD.Applications.LocalDrivingLicenseApplication
             frmTestAppointments frmTestAppointment = new frmTestAppointments((int)dgvList.SelectedRows[0].Cells["LocalDrivingLicenseApplicationID"].Value, clsTestType.enTestType.StreetTest);
             frmTestAppointment.ShowDialog();
             _RefreshLocalDrivingLicenseApplicationsList();
+        }
+
+        private void IssueDrivingLicenseFirstTime_Click(object sender, EventArgs e)
+        {
+            frmIssueDriverLicenseFortheFirstTime frmIssueDriverLicense = new frmIssueDriverLicenseFortheFirstTime((int)dgvList.SelectedRows[0].Cells["LocalDrivingLicenseApplicationID"].Value);
+            frmIssueDriverLicense.ShowDialog();
+            _RefreshLocalDrivingLicenseApplicationsList();
+        }
+
+        private void ShowLicense_Click(object sender, EventArgs e)
+        {
+            clsLicense license = clsLicense.FindbyApplicationID(clsLocalDrivingLicenseApplication.FindByLocalDrivingLicenseApplicationID((int)dgvList.SelectedRows[0].Cells["LocalDrivingLicenseApplicationID"].Value).ApplicationID);
+            if (license != null)
+            {
+                // Display license information
+            }
         }
     }
 }

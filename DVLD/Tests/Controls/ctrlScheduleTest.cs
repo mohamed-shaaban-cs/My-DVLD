@@ -79,10 +79,10 @@ namespace DVLD.Tests.Controls
         {
             _SetDefaultValues();
 
-            lblD_L_Application_ID.Text = _LocalDrivingLicenseApplicationInfo._LocalDrivingLicenseApplicationID.ToString();
+            lblD_L_Application_ID.Text = _LocalDrivingLicenseApplicationInfo.LocalDrivingLicenseApplicationID.ToString();
             lblD_Class.Text = _LocalDrivingLicenseApplicationInfo.LicenseClassInfo.ClassName;
             lblPersonName.Text = _LocalDrivingLicenseApplicationInfo.ApplicantFullName;
-            lblTrial.Text = clsLocalDrivingLicenseApplication.TotalTrialsPerTestType(_LocalDrivingLicenseApplicationInfo._LocalDrivingLicenseApplicationID, _TestTypeInfo.TestTypeID).ToString();
+            lblTrial.Text = clsLocalDrivingLicenseApplication.TotalTrialsPerTestType(_LocalDrivingLicenseApplicationInfo.LocalDrivingLicenseApplicationID, _TestTypeInfo.TestTypeID).ToString();
             lblTestTypeFees.Text = _TestTypeInfo.TestTypeFees.ToString("C2");
 
             if(_RetakeTestMode == enRetakeTestMode.Retake)
@@ -122,7 +122,7 @@ namespace DVLD.Tests.Controls
             _TestAppointment = new clsTestAppointment();
             _LocalDrivingLicenseApplicationInfo = clsLocalDrivingLicenseApplication.FindByLocalDrivingLicenseApplicationID(LocalDrivingLicenseApplicationID);
             _TestTypeInfo = clsTestType.Find(TestType);
-            if (clsLocalDrivingLicenseApplication.TotalTrialsPerTestType(_LocalDrivingLicenseApplicationInfo._LocalDrivingLicenseApplicationID, _TestTypeInfo.TestTypeID) > 0) //check if the user has already taken the test before
+            if (clsLocalDrivingLicenseApplication.TotalTrialsPerTestType(_LocalDrivingLicenseApplicationInfo.LocalDrivingLicenseApplicationID, _TestTypeInfo.TestTypeID) > 0) //check if the user has already taken the test before
             {
                 _RetakeTestMode = enRetakeTestMode.Retake;
                 
@@ -178,7 +178,7 @@ namespace DVLD.Tests.Controls
                     lblR_Test_App_ID.Text = _ApplicationRetakeInfo.ApplicationID.ToString();
                 }
                 _TestAppointment = new clsTestAppointment();
-                _TestAppointment.LocalDrivingLicenseApplicationID = _LocalDrivingLicenseApplicationInfo._LocalDrivingLicenseApplicationID;
+                _TestAppointment.LocalDrivingLicenseApplicationID = _LocalDrivingLicenseApplicationInfo.LocalDrivingLicenseApplicationID;
                 _TestAppointment.TestTypeID = (int)_TestTypeInfo.TestTypeID;
                 _TestAppointment.AppointmentDate = dtpDate.Value;
                 _TestAppointment.PaidFees = _TestTypeInfo.TestTypeFees;

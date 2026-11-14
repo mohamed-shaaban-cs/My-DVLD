@@ -405,5 +405,35 @@ namespace DVLD_DataAccess
             return dt;
         }
 
+        public static bool IsLicenseIssued(int ApplicationID)
+        {
+            bool isIssued = false;
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = @"SELECT   COUNT(1) as IssuedLicenses
+                         FROM            Licenses 
+                         WHERE Licenses.ApplicationID =@ApplicationID
+                         ";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@ApplicationID", ApplicationID);
+            try
+            {
+                connection.Open();
+                object result = command.ExecuteScalar();
+                if (result != null)
+                {
+                    isIssued = Convert.ToBoolean(result);
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log Exception
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return isIssued;
+        }
+
     }
 }

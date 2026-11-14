@@ -7,7 +7,7 @@ namespace DVLD_DataAccess
 {
     public static class clsDriverData
     {
-        public static bool GetDriverInfoByID(int DriverID, ref int PersonID,ref int CreatedByUserID,ref object CreatedDate)
+        public static bool GetDriverInfoByID(int DriverID, ref int PersonID,ref int CreatedByUserID,ref DateTime CreatedDate)
         {
             bool isFound = false;
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
@@ -22,9 +22,9 @@ namespace DVLD_DataAccess
                 if (Reader.Read())
                 {
                     isFound = true;
-   PersonID = Reader["PersonID"] != DBNull.Value ? (int)Reader["PersonID"] : -1;
-   CreatedByUserID = Reader["CreatedByUserID"] != DBNull.Value ? (int)Reader["CreatedByUserID"] : -1;
-   CreatedDate = Reader["CreatedDate"] != DBNull.Value ? (object)Reader["CreatedDate"] : null;
+                    PersonID = Reader["PersonID"] != DBNull.Value ? (int)Reader["PersonID"] : -1;
+                    CreatedByUserID = Reader["CreatedByUserID"] != DBNull.Value ? (int)Reader["CreatedByUserID"] : -1;
+                    CreatedDate = Reader["CreatedDate"] != DBNull.Value ? (DateTime)Reader["CreatedDate"] : DateTime.Now;
 
                 }
                 Reader.Close();
@@ -41,7 +41,7 @@ namespace DVLD_DataAccess
             return isFound;
         }
 
-        public static int AddNewDriver( int PersonID, int CreatedByUserID, object CreatedDate)
+        public static int AddNewDriver( int PersonID, int CreatedByUserID, DateTime CreatedDate)
         {
             int InsertedID = -1;
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
@@ -75,7 +75,7 @@ namespace DVLD_DataAccess
             return InsertedID;
         }
 
-        public static bool UpdateDriver(int DriverID,  int PersonID, int CreatedByUserID, object CreatedDate)
+        public static bool UpdateDriver(int DriverID, int PersonID, int CreatedByUserID, DateTime CreatedDate)
         {
             int rowsAffected = 0;
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
@@ -84,9 +84,9 @@ namespace DVLD_DataAccess
                              WHERE DriverID = @DriverID";
             SqlCommand command = new SqlCommand(query, connection);
 
-   command.Parameters.AddWithValue("@PersonID",PersonID);
-   command.Parameters.AddWithValue("@CreatedByUserID",CreatedByUserID);
-   command.Parameters.AddWithValue("@CreatedDate",CreatedDate);
+            command.Parameters.AddWithValue("@PersonID", PersonID);
+            command.Parameters.AddWithValue("@CreatedByUserID", CreatedByUserID);
+            command.Parameters.AddWithValue("@CreatedDate", CreatedDate);
 
             command.Parameters.AddWithValue("@DriverID", DriverID);
 
