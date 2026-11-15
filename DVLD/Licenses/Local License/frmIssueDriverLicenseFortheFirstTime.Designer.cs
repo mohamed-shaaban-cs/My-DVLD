@@ -108,7 +108,7 @@
             this.pictureBox8.TabIndex = 83;
             this.pictureBox8.TabStop = false;
             // 
-            // frm_Issue_Driver_License_For_the_First_Time
+            // frmIssueDriverLicenseFortheFirstTime
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -120,7 +120,9 @@
             this.Controls.Add(this.tbNotes);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.ctrlLocalDrivingLicenseApplicationInfo1);
-            this.Name = "frm_Issue_Driver_License_For_the_First_Time";
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Name = "frmIssueDriverLicenseFortheFirstTime";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Issue Driver License For the First Time";
             this.Load += new System.EventHandler(this.frm_Issue_Driver_License_For_the_First_Time_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();

@@ -12,6 +12,17 @@ namespace DVLD_BusinessLogic
 
         public int DriverID { get; set; }
         public int PersonID { get; set; }
+
+        private clsPerson _PersonInfo;
+        public clsPerson PersonInfo
+        {
+            get
+            {
+                if (_PersonInfo == null && this.PersonID != -1)
+                    _PersonInfo = clsPerson.Find(this.PersonID);
+                return _PersonInfo;
+            }
+        }
         public DateTime CreatedDate { get; set; }
         public int CreatedByUserID { get; set; }
 

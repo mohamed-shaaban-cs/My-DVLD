@@ -9,6 +9,8 @@ namespace DVLD_BusinessLogic
     {
         public enum enMode { AddNew = 0, Update = 1 };
         public enMode Mode = enMode.AddNew;
+        public enum enGender { Male = 1, Female = 2 };
+
 
         public int PersonID { get; set; }
         public string NationalNo { get; set; }

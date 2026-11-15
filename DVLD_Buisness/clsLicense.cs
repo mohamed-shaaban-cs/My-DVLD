@@ -13,6 +13,17 @@ namespace DVLD_BusinessLogic
 
         public int LicenseID { get; set; }
         public int ApplicationID { get; set; }
+
+        clsApplication _ApplicationInfo;
+        public clsApplication ApplicationInfo
+        {
+            get
+            {
+                if (_ApplicationInfo == null && this.ApplicationID != -1)
+                    _ApplicationInfo = clsApplication.FindBaseApplication(this.ApplicationID);
+                return _ApplicationInfo;
+            }
+        }
         public int DriverID { get; set; }
         clsDriver _DriverInfo;
         public clsDriver DriverInfo
@@ -26,6 +37,16 @@ namespace DVLD_BusinessLogic
         }
 
         public int LicenseClassID { get; set; }
+        clsLicenseClass _LicenseClassInfo;
+        public clsLicenseClass LicenseClassInfo
+        {
+            get
+            {
+                if (_LicenseClassInfo == null && this.LicenseClassID != -1)
+                    _LicenseClassInfo = clsLicenseClass.Find(this.LicenseClassID);
+                return _LicenseClassInfo;
+            }
+        }
         public DateTime IssueDate { get; set; }
         public DateTime ExpirationDate { get; set; }
         public string Notes { get; set; }
@@ -118,8 +139,8 @@ namespace DVLD_BusinessLogic
             byte IssueReason = (byte)enIssueReason.FirstTime;
             int CreatedByUserID = 0;
 
-            
-            bool IsFound = clsLicenseData.GetLicenseInfoByID(  ApplicationID, ref LicenseID, ref DriverID, ref LicenseClass, ref IssueDate, ref ExpirationDate, ref Notes, ref PaidFees, ref IsActive, ref IssueReason, ref CreatedByUserID);
+
+            bool IsFound = clsLicenseData.GetLicenseInfoByApplicationID(ApplicationID, ref LicenseID, ref DriverID, ref LicenseClass, ref IssueDate, ref ExpirationDate, ref Notes, ref PaidFees, ref IsActive, ref IssueReason, ref CreatedByUserID);
 
             if (IsFound)
                 return new clsLicense(LicenseID, ApplicationID, DriverID, LicenseClass, IssueDate, ExpirationDate, Notes, PaidFees, IsActive, (enIssueReason)IssueReason, CreatedByUserID);

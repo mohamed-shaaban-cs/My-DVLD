@@ -272,7 +272,8 @@ namespace DVLD.Applications.LocalDrivingLicenseApplication
             clsLicense license = clsLicense.FindbyApplicationID(clsLocalDrivingLicenseApplication.FindByLocalDrivingLicenseApplicationID((int)dgvList.SelectedRows[0].Cells["LocalDrivingLicenseApplicationID"].Value).ApplicationID);
             if (license != null)
             {
-                // Display license information
+                frmLocalDirverLicenseInfo frmLicenseInfo = new frmLocalDirverLicenseInfo(license.LicenseID);
+                frmLicenseInfo.ShowDialog();
             }
         }
     }
