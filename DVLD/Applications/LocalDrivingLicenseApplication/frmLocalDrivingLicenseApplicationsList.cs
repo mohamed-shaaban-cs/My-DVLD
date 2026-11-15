@@ -1,4 +1,5 @@
-﻿using DVLD.Licenses.Local_License;
+﻿using DVLD.Licenses;
+using DVLD.Licenses.Local_License;
 using DVLD.Tests;
 using DVLD_BusinessLogic;
 using ModrenUI_Interface;
@@ -275,6 +276,12 @@ namespace DVLD.Applications.LocalDrivingLicenseApplication
                 frmLocalDirverLicenseInfo frmLicenseInfo = new frmLocalDirverLicenseInfo(license.LicenseID);
                 frmLicenseInfo.ShowDialog();
             }
+        }
+
+        private void ShowPersonLicenseHistory_Click(object sender, EventArgs e)
+        {
+            frmLicenseDriverHistory frmLicenseDriverHistory = new frmLicenseDriverHistory(clsLocalDrivingLicenseApplication.FindByLocalDrivingLicenseApplicationID((int)dgvList.SelectedRows[0].Cells["LocalDrivingLicenseApplicationID"].Value).ApplicantPersonID);
+            frmLicenseDriverHistory.ShowDialog();
         }
     }
 }

@@ -318,5 +318,36 @@ namespace DVLD_DataAccess
             }
             return dt;
         }
+        public static DataTable GetLicensesHistoryWithDriverID(int DriverID)
+        {
+            DataTable dt = new DataTable();
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = @"SELECT       Licenses.LicenseID, Licenses.ApplicationID, LicenseClasses.ClassName, Licenses.IssueDate, Licenses.ExpirationDate, Licenses.IsActive
+                             FROM            LicenseClasses INNER JOIN
+                                             Licenses ON LicenseClasses.LicenseClassID = Licenses.LicenseClassID
+                            WHERE DriverID = @DriverID";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@DriverID", DriverID);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    dt.Load(reader);
+                }
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                // Log Exception
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return dt;
+        }
     }
 }

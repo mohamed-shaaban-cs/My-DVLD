@@ -197,5 +197,35 @@ namespace DVLD_DataAccess
             }
             return dt;
         }
+        public static DataTable GetInternationalLicensesHistoryWithDriverID(int DriverID)
+        {
+            DataTable dt = new DataTable();
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = @"SELECT       InternationalLicenseID, ApplicationID, IssuedUsingLocalLicenseID, IssueDate, ExpirationDate, IsActive
+                             FROM            InternationalLicenses 
+                             WHERE DriverID = @DriverID";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@DriverID", DriverID);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    dt.Load(reader);
+                }
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                // Log Exception
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return dt;
+        }
     }
 }

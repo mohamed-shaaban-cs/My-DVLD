@@ -90,6 +90,18 @@
     <Compile Include="Applications\LocalDrivingLicenseApplication\frmNewLocalDrivingLicenseApplication.Designer.cs">
       <DependentUpon>frmNewLocalDrivingLicenseApplication.cs</DependentUpon>
     </Compile>
+    <Compile Include="Licenses\Controls\ctrlDriverLicensesHistory.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Licenses\Controls\ctrlDriverLicensesHistory.Designer.cs">
+      <DependentUpon>ctrlDriverLicensesHistory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Licenses\frmLicenseDriverHistory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Licenses\frmLicenseDriverHistory.Designer.cs">
+      <DependentUpon>frmLicenseDriverHistory.cs</DependentUpon>
+    </Compile>
     <Compile Include="Licenses\Local License\Controls\ctrlLocalDriverLicenseInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -257,6 +269,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Applications\LocalDrivingLicenseApplication\frmNewLocalDrivingLicenseApplication.resx">
       <DependentUpon>frmNewLocalDrivingLicenseApplication.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Licenses\Controls\ctrlDriverLicensesHistory.resx">
+      <DependentUpon>ctrlDriverLicensesHistory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Licenses\frmLicenseDriverHistory.resx">
+      <DependentUpon>frmLicenseDriverHistory.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Licenses\Local License\Controls\ctrlLocalDriverLicenseInfo.resx">
       <DependentUpon>ctrlLocalDriverLicenseInfo.cs</DependentUpon>
@@ -645,6 +663,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\LicenseView 400.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PersonLicenseHistory 512.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

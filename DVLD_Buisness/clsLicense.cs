@@ -203,6 +203,11 @@ namespace DVLD_BusinessLogic
             
             return clsLicenseData.GetAllLicenses();
         }
+        public static DataTable GetLicensesHistoryWithDriverID(int DriverID)
+        {
+            
+            return clsLicenseData.GetLicensesHistoryWithDriverID(DriverID);
+        }
 
         public static bool DeleteLicense(int LicenseID)
         {

@@ -1,4 +1,5 @@
-﻿using DVLD.People;
+﻿using DVLD.Licenses.Local_License;
+using DVLD.People;
 using DVLD_BusinessLogic;
 using System;
 using System.Collections.Generic;
@@ -88,6 +89,16 @@ namespace DVLD.Applications.LocalDrivingLicenseApplication.Controls
         private void ctrlLocalDrivingLicenseApplicationInfo_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void llblShowLicenseInfo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            clsLicense license = clsLicense.FindbyApplicationID(ctrlApplicationBasicInfo1.ApplicationID);
+            if (license != null)
+            {
+                frmLocalDirverLicenseInfo frmLicenseInfo = new frmLocalDirverLicenseInfo(license.LicenseID);
+                frmLicenseInfo.ShowDialog();
+            }
         }
     }
 }

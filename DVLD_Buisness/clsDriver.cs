@@ -76,6 +76,20 @@ namespace DVLD_BusinessLogic
             else
                 return null;
         }
+        public static clsDriver FindByPersonID(int PersonID)
+        {
+            int DriverID = -1;
+            int CreatedByUserID = -1;
+            DateTime CreatedDate = DateTime.Now;
+
+            
+            bool IsFound = clsDriverData.GetDriverInfoByPersonID(PersonID, ref DriverID, ref CreatedByUserID, ref CreatedDate);
+
+            if (IsFound)
+                return new clsDriver(DriverID, PersonID, CreatedByUserID, CreatedDate);
+            else
+                return null;
+        }
 
         public bool Save()
         {

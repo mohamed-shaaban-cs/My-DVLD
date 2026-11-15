@@ -63,7 +63,9 @@
             this.ClientSize = new System.Drawing.Size(930, 502);
             this.Controls.Add(this.crtlClose);
             this.Controls.Add(this.ctrlLocalDrivingLicenseApplicationInfo1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmLocalDrivingLicenseApplicationInfo";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Local Driving License Application Info";
             this.Load += new System.EventHandler(this.frmLocalDrivingLicenseApplicationInfo_Load);
             this.ResumeLayout(false);
