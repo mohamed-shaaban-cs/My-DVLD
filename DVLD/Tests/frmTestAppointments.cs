@@ -76,14 +76,14 @@ namespace DVLD.Tests
                 MessageBox.Show($"You have already passed the {_TestTypeInfo.TestTypeTitle}. You cannot schedule a new appointment.", "Test Already Passed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            frmScheduleTest frmScheduleTest = new frmScheduleTest(_LocalDrivingLicenseApplicationID, _TestType);
+            frmScheduleTest frmScheduleTest = new frmScheduleTest(_LocalDrivingLicenseApplicationID);
             frmScheduleTest.ShowDialog();
             _RefreshTestAppointmentsList();
         }
 
         private void editToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmScheduleTest frmScheduleTest = new frmScheduleTest((int)dgvTestAppointmentsList.CurrentRow.Cells["TestAppointmentID"].Value);
+            frmScheduleTest frmScheduleTest = new frmScheduleTest(_LocalDrivingLicenseApplicationID, (int)dgvTestAppointmentsList.CurrentRow.Cells["TestAppointmentID"].Value);
             frmScheduleTest.ShowDialog();
             _RefreshTestAppointmentsList();
         }

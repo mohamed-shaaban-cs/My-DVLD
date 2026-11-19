@@ -13,18 +13,17 @@ namespace DVLD.Tests
 {
     public partial class frmScheduleTest : Form
     {
-        public frmScheduleTest(int LocalDrivingLicenseApplicationID, clsTestType.enTestType TestType)
+        public frmScheduleTest(int LocalDrivingLicenseApplicationID)
         {
             InitializeComponent();
-            ctrlScheduleTest1.LoadNewScheduleTestInfo(LocalDrivingLicenseApplicationID, TestType);
-        }
-        public frmScheduleTest(int TestAppointmentID)
-        {
-            InitializeComponent();
-            ctrlScheduleTest1.LoadExistingScheduleTestInfo(TestAppointmentID);
-
+            ctrlScheduleTest1.LoadInfo(LocalDrivingLicenseApplicationID);
         }
         
+        public frmScheduleTest(int LocalDrivingLicenseApplicationID, int TestAppointmentID)
+        {
+            InitializeComponent();
+            ctrlScheduleTest1.LoadInfo(LocalDrivingLicenseApplicationID, TestAppointmentID);
+        }
 
         private void crtlClose_Click(object sender, EventArgs e)
         {

@@ -1,7 +1,8 @@
 
+using DVLD_DataAccess; // تأكد إن ده نفس اسم الـ Namespace بتاع طبقة الداتا عندك
 using System;
 using System.Data;
-using DVLD_DataAccess; // تأكد إن ده نفس اسم الـ Namespace بتاع طبقة الداتا عندك
+using System.Data.SqlClient;
 
 namespace DVLD_BusinessLogic
 {
@@ -154,11 +155,20 @@ namespace DVLD_BusinessLogic
             return clsLocalDrivingLicenseApplicationData.IsLocalDrivingLicenseApplicationExist(LocalDrivingLicenseApplicationID);
         }
 
+        
+        public bool DoseAttendTestType( clsTestType.enTestType TestTypeID)
+        {
+            return clsLocalDrivingLicenseApplicationData.DoseAttendTestType(LocalDrivingLicenseApplicationID, (int)TestTypeID);
+        }
+        public bool DosePassTestType(clsTestType.enTestType TestTypeID)
+        {
+            return clsLocalDrivingLicenseApplicationData.DosePassTestType(LocalDrivingLicenseApplicationID, (int)TestTypeID);
+        }
         public static byte TotalTrialsPerTestType(int LocalDrivingLicenseApplicationID, clsTestType.enTestType TestTypeID)
         {
             return clsLocalDrivingLicenseApplicationData.TotalTrialsPerTestType(LocalDrivingLicenseApplicationID, (int)TestTypeID);
         }
-
+        
         public static byte countPassedTests(int LocalDrivingLicenseApplicationID)
         {
             return clsLocalDrivingLicenseApplicationData.CountPassedTests(LocalDrivingLicenseApplicationID);

@@ -53,6 +53,7 @@
             this.ctrlScheduleTest1.Name = "ctrlScheduleTest1";
             this.ctrlScheduleTest1.Size = new System.Drawing.Size(554, 730);
             this.ctrlScheduleTest1.TabIndex = 0;
+            this.ctrlScheduleTest1.TestTypeID = DVLD_BusinessLogic.clsTestType.enTestType.StreetTest;
             this.ctrlScheduleTest1._OnTestAppointmentSaved += new System.EventHandler(this.ctrlScheduleTest1__OnTestAppointmentSaved);
             // 
             // frmScheduleTest

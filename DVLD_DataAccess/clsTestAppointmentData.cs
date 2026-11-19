@@ -44,6 +44,46 @@ namespace DVLD_DataAccess
             }
             return isFound;
         }
+        public static bool GetLastTestAppointments(int LocalDrivingLicenseApplicationID, int TestTypeID, ref int TestAppointmentID, ref DateTime AppointmentDate, ref decimal PaidFees, ref int CreatedByUserID, ref bool IsLocked, ref int RetakeTestApplicationID)
+        {
+            bool isFound = false;
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = @"SELECT top 1 * FROM TestAppointments 
+                             WHERE TestTypeID = @TestTypeID 
+                                    AND LocalDrivingLicenseApplicationID = @LocalDrivingLicenseApplicationID
+                             ORDER BY AppointmentDate DESC";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@TestTypeID", TestTypeID);
+            command.Parameters.AddWithValue("@LocalDrivingLicenseApplicationID", LocalDrivingLicenseApplicationID);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader Reader = command.ExecuteReader();
+                if (Reader.Read())
+                {
+                    isFound = true;
+                    TestAppointmentID = Reader["TestAppointmentID"] != DBNull.Value ? (int)Reader["TestAppointmentID"] : -1;
+                    AppointmentDate = Reader["AppointmentDate"] != DBNull.Value ? (DateTime)Reader["AppointmentDate"] : DateTime.Now;
+                    PaidFees = Reader["PaidFees"] != DBNull.Value ? (decimal)Reader["PaidFees"] : 0.0m;
+                    CreatedByUserID = Reader["CreatedByUserID"] != DBNull.Value ? (int)Reader["CreatedByUserID"] : -1;
+                    IsLocked = Reader["IsLocked"] != DBNull.Value ? (bool)Reader["IsLocked"] : false;
+                    RetakeTestApplicationID = Reader["RetakeTestApplicationID"] != DBNull.Value ? (int)Reader["RetakeTestApplicationID"] : -1;
+
+                }
+                Reader.Close();
+            }
+            catch (Exception ex)
+            {
+                // Log Exception
+                isFound = false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return isFound;
+        }
 
         public static int AddNewTestAppointment( int TestTypeID, int LocalDrivingLicenseApplicationID, DateTime AppointmentDate, decimal PaidFees, int CreatedByUserID, bool IsLocked, int RetakeTestApplicationID)
         {
@@ -197,6 +237,7 @@ namespace DVLD_DataAccess
             }
             return dt;
         }
+
         public static DataTable GetAllTestAppointmentsByTestTypeIDAndLocalDrivingLicenseApplicationID(int TestTypeID, int LocalDrivingLicenseApplicationID)
         {
             DataTable dt = new DataTable();
@@ -226,5 +267,36 @@ namespace DVLD_DataAccess
             }
             return dt;
         }
+
+        public static bool GetTestID(int TestAppointmentID, ref int TestID)
+        {
+            bool isFound = false;
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = "SELECT TestID FROM Tests WHERE TestAppointmentID = @TestAppointmentID";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@TestAppointmentID", TestAppointmentID);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader Reader = command.ExecuteReader();
+                if (Reader.Read())
+                {
+                    TestID = (int)Reader["TestID"];
+                    isFound = true;
+                }
+                Reader.Close();
+            }
+            catch (Exception ex)
+            {
+                // Log Exception
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return isFound;
+        }
+
     }
 }

@@ -2,6 +2,7 @@
 using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Runtime.InteropServices;
 
 namespace DVLD_DataAccess
 {
@@ -252,7 +253,6 @@ namespace DVLD_DataAccess
             }
             return isPassed;
         }
-
         public static byte TotalTrialsPerTestType(int LocalDrivingLicenseApplicationID, int TestTypeID)
         {
             byte totalTrials = 0;
@@ -349,7 +349,7 @@ namespace DVLD_DataAccess
         {
             bool IsHaveActiveTestAppointment = false;
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-            string query = @"SELECT   count(1) as ActiveTests
+            string query = @"SELECT Top 1  found = 1
                          FROM            TestAppointments 
                          WHERE TestAppointments.LocalDrivingLicenseApplicationID =@LocalDrivingLicenseApplicationID and  IsLocked = 0 and TestTypeID = @TestTypeID
                          ";
@@ -360,10 +360,11 @@ namespace DVLD_DataAccess
             {
                 connection.Open();
                 object result = command.ExecuteScalar();
-                if (result != null)
-                {
-                    IsHaveActiveTestAppointment = Convert.ToBoolean(result);
-                }
+                if (result != null && Convert.ToInt32(result) > 0)
+                    IsHaveActiveTestAppointment = true;
+                else 
+                    IsHaveActiveTestAppointment = false;
+
             }
             catch (Exception ex)
             {
