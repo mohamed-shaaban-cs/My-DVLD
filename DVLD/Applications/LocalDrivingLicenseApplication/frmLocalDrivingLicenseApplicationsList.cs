@@ -244,14 +244,14 @@ namespace DVLD.Applications.LocalDrivingLicenseApplication
         {
             frmTestAppointments frmTestAppointment = new frmTestAppointments((int)dgvList.SelectedRows[0].Cells["LocalDrivingLicenseApplicationID"].Value, clsTestType.enTestType.VisionTest);
             frmTestAppointment.ShowDialog();
-            //_RefreshLocalDrivingLicenseApplicationsList();
+            _RefreshLocalDrivingLicenseApplicationsList();
         }
 
         private void scheduleWrittenTestToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmTestAppointments frmTestAppointment = new frmTestAppointments((int)dgvList.SelectedRows[0].Cells["LocalDrivingLicenseApplicationID"].Value, clsTestType.enTestType.WrittenTest);
             frmTestAppointment.ShowDialog();
-            //_RefreshLocalDrivingLicenseApplicationsList();
+            _RefreshLocalDrivingLicenseApplicationsList();
         }
 
         private void scheduleStreetTestToolStripMenuItem_Click(object sender, EventArgs e)

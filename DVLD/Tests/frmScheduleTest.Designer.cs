@@ -45,7 +45,7 @@
             this.crtlClose.TabIndex = 27;
             this.crtlClose.Text = "Close";
             this.crtlClose.UseVisualStyleBackColor = false;
-            this.crtlClose.Click += new System.EventHandler(this.crtlClose_Click);
+            this.crtlClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // ctrlScheduleTest1
             // 
@@ -53,6 +53,7 @@
             this.ctrlScheduleTest1.Name = "ctrlScheduleTest1";
             this.ctrlScheduleTest1.Size = new System.Drawing.Size(554, 730);
             this.ctrlScheduleTest1.TabIndex = 0;
+            this.ctrlScheduleTest1.TestTypeID = DVLD_BusinessLogic.clsTestType.enTestType.StreetTest;
             this.ctrlScheduleTest1._OnTestAppointmentSaved += new System.EventHandler(this.ctrlScheduleTest1__OnTestAppointmentSaved);
             // 
             // frmScheduleTest
@@ -67,6 +68,7 @@
             this.Name = "frmScheduleTest";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ScheduleTest";
+            this.Load += new System.EventHandler(this.frmScheduleTest_Load_1);
             this.ResumeLayout(false);
 
         }

@@ -12,12 +12,12 @@ namespace DVLD_BusinessLogic
 
         public int TestAppointmentID { get; set; }
         
-        public int TestTypeID { get; set; }
+        public clsTestType.enTestType TestTypeID { get; set; }
         clsTestType _TestTypeInfo;
         public clsTestType TestTypeInfo {
             get 
             { 
-                if(this.TestTypeID == -1 && this._TestTypeInfo == null)
+                if(this.TestTypeID == null && this._TestTypeInfo == null)
                     return null;
 
                 return clsTestType.Find((clsTestType.enTestType)this.TestTypeID); 
@@ -41,23 +41,20 @@ namespace DVLD_BusinessLogic
         public int CreatedByUserID { get; set; }
         public bool IsLocked { get; set; }
         public int RetakeTestApplicationID { get; set; }
-        clsApplication _ApplicationRetakeInfo = null;
-        public clsApplication ApplicationRetakeInfo { 
-            get 
-            { 
-                if(this._ApplicationRetakeInfo == null && this.RetakeTestApplicationID != -1)
-                    this._ApplicationRetakeInfo = clsApplication.FindBaseApplication(this.RetakeTestApplicationID);
+        public clsApplication RetakeTestAppInfo { get;set;}
 
-                return this._ApplicationRetakeInfo;
-            } 
+        public int TestID
+        { 
+            get
+            {
+                return _GetTestID(this.TestAppointmentID);
+            }
         }
-
 
         // Default Constructor للمستخدم الجديد
         public clsTestAppointment()
         {
             this.TestAppointmentID = -1;
-            this.TestTypeID = -1;
             this.LocalDrivingLicenseApplicationID = -1;
             this.AppointmentDate = DateTime.Now;
             this.PaidFees = 0.0m;
@@ -69,7 +66,7 @@ namespace DVLD_BusinessLogic
         }
 
         // Parameterized Constructor لتحميل بيانات موجودة
-        private clsTestAppointment(int TestAppointmentID, int TestTypeID, int LocalDrivingLicenseApplicationID, DateTime AppointmentDate, decimal PaidFees, int CreatedByUserID, bool IsLocked, int RetakeTestApplicationID)
+        private clsTestAppointment(int TestAppointmentID, clsTestType.enTestType TestTypeID, int LocalDrivingLicenseApplicationID, DateTime AppointmentDate, decimal PaidFees, int CreatedByUserID, bool IsLocked, int RetakeTestApplicationID)
         {
             this.TestAppointmentID = TestAppointmentID;
             this.TestTypeID = TestTypeID;
@@ -79,6 +76,7 @@ namespace DVLD_BusinessLogic
             this.CreatedByUserID = CreatedByUserID;
             this.IsLocked = IsLocked;
             this.RetakeTestApplicationID = RetakeTestApplicationID;
+            this.RetakeTestAppInfo = clsApplication.FindBaseApplication(RetakeTestApplicationID);
 
             Mode = enMode.Update;
         }
@@ -86,14 +84,14 @@ namespace DVLD_BusinessLogic
         private bool _AddNewTestAppointment()
         {
             // التعديل هنا: استخدام cls{ClassName}Data
-            this.TestAppointmentID = clsTestAppointmentData.AddNewTestAppointment(this.TestTypeID, this.LocalDrivingLicenseApplicationID, this.AppointmentDate, this.PaidFees, this.CreatedByUserID, this.IsLocked, this.RetakeTestApplicationID);
+            this.TestAppointmentID = clsTestAppointmentData.AddNewTestAppointment((int)this.TestTypeID, this.LocalDrivingLicenseApplicationID, this.AppointmentDate, this.PaidFees, this.CreatedByUserID, this.IsLocked, this.RetakeTestApplicationID);
             return (this.TestAppointmentID != -1);
         }
 
         private bool _UpdateTestAppointment()
         {
             // التعديل هنا
-            return clsTestAppointmentData.UpdateTestAppointment(this.TestAppointmentID, this.TestTypeID, this.LocalDrivingLicenseApplicationID, this.AppointmentDate, this.PaidFees, this.CreatedByUserID, this.IsLocked, this.RetakeTestApplicationID);
+            return clsTestAppointmentData.UpdateTestAppointment(this.TestAppointmentID, (int)this.TestTypeID, this.LocalDrivingLicenseApplicationID, this.AppointmentDate, this.PaidFees, this.CreatedByUserID, this.IsLocked, this.RetakeTestApplicationID);
         }
 
         public static clsTestAppointment Find(int TestAppointmentID)
@@ -110,11 +108,37 @@ namespace DVLD_BusinessLogic
             bool IsFound = clsTestAppointmentData.GetTestAppointmentInfoByID(TestAppointmentID, ref TestTypeID, ref LocalDrivingLicenseApplicationID, ref AppointmentDate, ref PaidFees, ref CreatedByUserID, ref IsLocked, ref RetakeTestApplicationID);
 
             if (IsFound)
-                return new clsTestAppointment(TestAppointmentID, TestTypeID, LocalDrivingLicenseApplicationID, AppointmentDate, PaidFees, CreatedByUserID, IsLocked, RetakeTestApplicationID);
+                return new clsTestAppointment(TestAppointmentID, (clsTestType.enTestType)TestTypeID, LocalDrivingLicenseApplicationID, AppointmentDate, PaidFees, CreatedByUserID, IsLocked, RetakeTestApplicationID);
             else
                 return null;
         }
+        public static clsTestAppointment FindForLastTestAppointment(int LocalDrivingLicenseApplicationID, clsTestType.enTestType testTypeID)
+        {
+            int TestTypeID = (int)testTypeID;
+            int TestAppointmentID = -1;
+            DateTime AppointmentDate = DateTime.Now;
+            decimal PaidFees = 0.0m;
+            int CreatedByUserID = -1;
+            bool IsLocked = false;
+            int RetakeTestApplicationID = -1;
 
+            
+            bool IsFound = clsTestAppointmentData.GetLastTestAppointments( LocalDrivingLicenseApplicationID,TestTypeID,ref TestAppointmentID,    ref AppointmentDate, ref PaidFees, ref CreatedByUserID, ref IsLocked, ref RetakeTestApplicationID);
+
+            if (IsFound)
+                return new clsTestAppointment(TestAppointmentID, (clsTestType.enTestType)TestTypeID, LocalDrivingLicenseApplicationID, AppointmentDate, PaidFees, CreatedByUserID, IsLocked, RetakeTestApplicationID);
+            else
+                return null;
+        }
+        private static int _GetTestID(int TestAppointmentID)
+        {
+            int TestTypeID = -1;
+
+            bool IsFound = clsTestAppointmentData.GetTestID(TestAppointmentID, ref TestTypeID);
+
+            return TestTypeID;
+
+        }
         public bool Save()
         {
             switch (Mode)

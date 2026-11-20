@@ -56,9 +56,9 @@
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.lblPersonName = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.lblD_L_Application_ID = new System.Windows.Forms.Label();
+            this.lblL_D_L_Application_ID = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.lblAppointmentLoackedMassage = new System.Windows.Forms.Label();
+            this.lblUserMassage = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.lblTitle = new System.Windows.Forms.Label();
             this.picTitleImage = new System.Windows.Forms.PictureBox();
@@ -98,9 +98,9 @@
             this.gbScheduleTest.Controls.Add(this.pictureBox4);
             this.gbScheduleTest.Controls.Add(this.lblPersonName);
             this.gbScheduleTest.Controls.Add(this.pictureBox3);
-            this.gbScheduleTest.Controls.Add(this.lblD_L_Application_ID);
+            this.gbScheduleTest.Controls.Add(this.lblL_D_L_Application_ID);
             this.gbScheduleTest.Controls.Add(this.label5);
-            this.gbScheduleTest.Controls.Add(this.lblAppointmentLoackedMassage);
+            this.gbScheduleTest.Controls.Add(this.lblUserMassage);
             this.gbScheduleTest.Controls.Add(this.tableLayoutPanel1);
             this.gbScheduleTest.Controls.Add(this.picTitleImage);
             this.gbScheduleTest.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -117,7 +117,6 @@
             // 
             this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(133)))), ((int)(((byte)(198)))));
             this.btnSave.CausesValidation = false;
-            this.btnSave.Enabled = false;
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
@@ -419,17 +418,17 @@
             this.pictureBox3.TabIndex = 58;
             this.pictureBox3.TabStop = false;
             // 
-            // lblD_L_Application_ID
+            // lblL_D_L_Application_ID
             // 
-            this.lblD_L_Application_ID.AutoSize = true;
-            this.lblD_L_Application_ID.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblD_L_Application_ID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblD_L_Application_ID.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lblD_L_Application_ID.Location = new System.Drawing.Point(210, 281);
-            this.lblD_L_Application_ID.Name = "lblD_L_Application_ID";
-            this.lblD_L_Application_ID.Size = new System.Drawing.Size(39, 20);
-            this.lblD_L_Application_ID.TabIndex = 59;
-            this.lblD_L_Application_ID.Text = "???";
+            this.lblL_D_L_Application_ID.AutoSize = true;
+            this.lblL_D_L_Application_ID.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblL_D_L_Application_ID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblL_D_L_Application_ID.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lblL_D_L_Application_ID.Location = new System.Drawing.Point(210, 281);
+            this.lblL_D_L_Application_ID.Name = "lblL_D_L_Application_ID";
+            this.lblL_D_L_Application_ID.Size = new System.Drawing.Size(39, 20);
+            this.lblL_D_L_Application_ID.TabIndex = 59;
+            this.lblL_D_L_Application_ID.Text = "???";
             // 
             // label5
             // 
@@ -443,16 +442,16 @@
             this.label5.TabIndex = 56;
             this.label5.Text = "D.Class :";
             // 
-            // lblAppointmentLoackedMassage
+            // lblUserMassage
             // 
-            this.lblAppointmentLoackedMassage.AutoSize = true;
-            this.lblAppointmentLoackedMassage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAppointmentLoackedMassage.ForeColor = System.Drawing.Color.Brown;
-            this.lblAppointmentLoackedMassage.Location = new System.Drawing.Point(81, 243);
-            this.lblAppointmentLoackedMassage.Name = "lblAppointmentLoackedMassage";
-            this.lblAppointmentLoackedMassage.Size = new System.Drawing.Size(381, 20);
-            this.lblAppointmentLoackedMassage.TabIndex = 35;
-            this.lblAppointmentLoackedMassage.Text = "Person already sat for the test, appointment loacked.";
+            this.lblUserMassage.AutoSize = true;
+            this.lblUserMassage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUserMassage.ForeColor = System.Drawing.Color.Brown;
+            this.lblUserMassage.Location = new System.Drawing.Point(81, 243);
+            this.lblUserMassage.Name = "lblUserMassage";
+            this.lblUserMassage.Size = new System.Drawing.Size(381, 20);
+            this.lblUserMassage.TabIndex = 35;
+            this.lblUserMassage.Text = "Person already sat for the test, appointment loacked.";
             // 
             // tableLayoutPanel1
             // 
@@ -525,12 +524,12 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.PictureBox picTitleImage;
-        private System.Windows.Forms.Label lblAppointmentLoackedMassage;
+        private System.Windows.Forms.Label lblUserMassage;
         private System.Windows.Forms.Label lblD_Class;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label label;
         private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.Label lblD_L_Application_ID;
+        private System.Windows.Forms.Label lblL_D_L_Application_ID;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label lbl1d;
         private System.Windows.Forms.Label label4;
