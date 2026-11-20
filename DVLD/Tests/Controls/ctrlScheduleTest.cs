@@ -26,7 +26,6 @@ namespace DVLD.Tests.Controls
         int _TestAppointmentID;
         clsTestAppointment _TestAppointment;
         clsTestType.enTestType _TestTypeID = clsTestType.enTestType.VisionTest;
-        clsTestType _TestTypeInfo;
         public clsTestType.enTestType TestTypeID 
         { 
             get 
@@ -55,7 +54,10 @@ namespace DVLD.Tests.Controls
             } 
         }
 
-
+        public ctrlScheduleTest()
+        {
+            InitializeComponent();
+        }
 
         public void LoadInfo(int LocalDrivingLicenseApplicationID, int TestAppointmentID = -1)
         {
@@ -102,12 +104,12 @@ namespace DVLD.Tests.Controls
             lblD_Class.Text = _LocalDrivingLicenseApplicationInfo.LicenseClassInfo.ClassName;
             lblPersonName.Text = _LocalDrivingLicenseApplicationInfo.ApplicantFullName;
 
-            lblTrial.Text = clsLocalDrivingLicenseApplication.TotalTrialsPerTestType(_LocalDrivingLicenseApplicationInfo.LocalDrivingLicenseApplicationID, _TestTypeInfo.TestTypeID).ToString();
+            lblTrial.Text = clsLocalDrivingLicenseApplication.TotalTrialsPerTestType(_LocalDrivingLicenseApplicationInfo.LocalDrivingLicenseApplicationID, _TestTypeID).ToString();
 
             if (_Mode == enMode.AddNew)
             {
                 clsTestType TestTypeInfo = clsTestType.Find(_TestTypeID);
-                lblTestTypeFees.Text = TestTypeInfo.TestTypeFees.ToString("C2");
+                lblTestTypeFees.Text = TestTypeInfo.TestTypeFees.ToString();
                 dtpDate.MinDate = DateTime.Now;
 
                 _TestAppointment = new clsTestAppointment();
@@ -141,7 +143,7 @@ namespace DVLD.Tests.Controls
                 return false;
             }
 
-            lblTestTypeFees.Text = _TestAppointment.PaidFees.ToString("C2");
+            lblTestTypeFees.Text = _TestAppointment.PaidFees.ToString();
 
             //set the min date for the date picker to the appointment date if the appointment date is in the past, otherwise set it to today
             if (DateTime.Compare(DateTime.Now, _TestAppointment.AppointmentDate) > 0)
@@ -158,7 +160,7 @@ namespace DVLD.Tests.Controls
             }
             else
             {
-                lblR_App_Fees.Text = _TestAppointment.RetakeTestAppInfo.PaidFees.ToString("C2");
+                lblR_App_Fees.Text = _TestAppointment.RetakeTestAppInfo.PaidFees.ToString();
                 lblR_Test_App_ID.Text = _TestAppointment.RetakeTestApplicationID.ToString();
                 lblTitle.Text = "Schedule Retake Test";
                 gbRetakeTestInfo.Enabled = true;
@@ -173,7 +175,7 @@ namespace DVLD.Tests.Controls
             if (_Mode == enMode.AddNew && clsLocalDrivingLicenseApplication.IsHaveActiveTestAppointment(_LocalDrivingLicenseApplicationInfo.LocalDrivingLicenseApplicationID, _TestTypeID))
             {
                 lblUserMassage.Text = "Person Already have an active appointment for this test";
-                lblUserMassage.Enabled = true;
+                lblUserMassage.Visible = true;
                 btnSave.Enabled = false;
                 dtpDate.Enabled = false;
                 return false;
@@ -186,7 +188,7 @@ namespace DVLD.Tests.Controls
             if (_Mode == enMode.Update && _TestAppointment.IsLocked)
             {
                 lblUserMassage.Text = "Person Already sat for the Test,appointment loacked.";
-                lblUserMassage.Enabled = true;
+                lblUserMassage.Visible = true;
                 btnSave.Enabled = false;
                 dtpDate.Enabled = false;
                 return false;
@@ -207,14 +209,14 @@ namespace DVLD.Tests.Controls
                     if (!_LocalDrivingLicenseApplicationInfo.DosePassTestType(clsTestType.enTestType.VisionTest))
                     {
                         lblUserMassage.Text = "Cannot Sechule, Vision Test should be passed First";
-                        lblUserMassage.Enabled = true;
+                        lblUserMassage.Visible = true;
                         dtpDate.Enabled = false;
                         btnSave.Enabled = false;
                         return false;
                     }
                     else
                     {
-                        lblUserMassage.Enabled = false;
+                        lblUserMassage.Visible = false;
                         dtpDate.Enabled = true;
                         btnSave.Enabled = true;
                     }
@@ -223,14 +225,14 @@ namespace DVLD.Tests.Controls
                     if (!_LocalDrivingLicenseApplicationInfo.DosePassTestType(clsTestType.enTestType.WrittenTest))
                     {
                         lblUserMassage.Text = "Cannot Sechule, Written Test should be passed First";
-                        lblUserMassage.Enabled = true;
+                        lblUserMassage.Visible = true;
                         dtpDate.Enabled = false;
                         btnSave.Enabled = false;
                         return false;
                     }
                     else
                     {
-                        lblUserMassage.Enabled = false;
+                        lblUserMassage.Visible = false;
                         dtpDate.Enabled = true;
                         btnSave.Enabled = true;
                     }
@@ -272,7 +274,7 @@ namespace DVLD.Tests.Controls
                 _TestAppointment.LocalDrivingLicenseApplicationID = _LocalDrivingLicenseApplicationInfo.LocalDrivingLicenseApplicationID;
                 _TestAppointment.TestTypeID = _TestTypeID;
                 _TestAppointment.AppointmentDate = dtpDate.Value;
-                _TestAppointment.PaidFees = Convert.ToDecimal(lblR_App_Fees.Text);
+                _TestAppointment.PaidFees = Convert.ToDecimal(lblTestTypeFees.Text);
                 _TestAppointment.CreatedByUserID = Global_Classes.clsGlobal.CurrentUser.UserID;
 
             if (_TestAppointment.Save())

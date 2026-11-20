@@ -45,7 +45,7 @@
             this.crtlClose.TabIndex = 27;
             this.crtlClose.Text = "Close";
             this.crtlClose.UseVisualStyleBackColor = false;
-            this.crtlClose.Click += new System.EventHandler(this.crtlClose_Click);
+            this.crtlClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // ctrlScheduleTest1
             // 
@@ -68,6 +68,7 @@
             this.Name = "frmScheduleTest";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ScheduleTest";
+            this.Load += new System.EventHandler(this.frmScheduleTest_Load_1);
             this.ResumeLayout(false);
 
         }

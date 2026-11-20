@@ -117,7 +117,6 @@
             // 
             this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(133)))), ((int)(((byte)(198)))));
             this.btnSave.CausesValidation = false;
-            this.btnSave.Enabled = false;
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
@@ -419,14 +418,14 @@
             this.pictureBox3.TabIndex = 58;
             this.pictureBox3.TabStop = false;
             // 
-            // lblD_L_Application_ID
+            // lblL_D_L_Application_ID
             // 
             this.lblL_D_L_Application_ID.AutoSize = true;
             this.lblL_D_L_Application_ID.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblL_D_L_Application_ID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblL_D_L_Application_ID.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.lblL_D_L_Application_ID.Location = new System.Drawing.Point(210, 281);
-            this.lblL_D_L_Application_ID.Name = "lblD_L_Application_ID";
+            this.lblL_D_L_Application_ID.Name = "lblL_D_L_Application_ID";
             this.lblL_D_L_Application_ID.Size = new System.Drawing.Size(39, 20);
             this.lblL_D_L_Application_ID.TabIndex = 59;
             this.lblL_D_L_Application_ID.Text = "???";
@@ -443,13 +442,13 @@
             this.label5.TabIndex = 56;
             this.label5.Text = "D.Class :";
             // 
-            // lblAppointmentLoackedMassage
+            // lblUserMassage
             // 
             this.lblUserMassage.AutoSize = true;
             this.lblUserMassage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUserMassage.ForeColor = System.Drawing.Color.Brown;
             this.lblUserMassage.Location = new System.Drawing.Point(81, 243);
-            this.lblUserMassage.Name = "lblAppointmentLoackedMassage";
+            this.lblUserMassage.Name = "lblUserMassage";
             this.lblUserMassage.Size = new System.Drawing.Size(381, 20);
             this.lblUserMassage.TabIndex = 35;
             this.lblUserMassage.Text = "Person already sat for the test, appointment loacked.";
