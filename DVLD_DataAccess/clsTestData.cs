@@ -53,8 +53,8 @@ namespace DVLD_DataAccess
                             FROM TestAppointments 
                             INNER JOIN Tests
                                        ON TestAppointments.TestAppointmentID = Tests.TestAppointmentID
-                            WHERE    (LocalDrivingLicenseApplicationID = LocalDrivingLicenseApplicationID)
-                                     AND ( TestTypeID = TestTypeID)
+                            WHERE    (LocalDrivingLicenseApplicationID = @LocalDrivingLicenseApplicationID)
+                                     AND ( TestTypeID = @TestTypeID)
                             ORDER BY Tests.TestAppointmentID DESC";
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@LocalDrivingLicenseApplicationID", LocalDrivingLicenseApplicationID);
@@ -129,6 +129,7 @@ namespace DVLD_DataAccess
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
             string query = @"INSERT INTO Tests ([TestAppointmentID], [TestResult], [Notes], [CreatedByUserID])
                              VALUES (@TestAppointmentID, @TestResult, @Notes, @CreatedByUserID);
+
                              Update TestAppointments
                              Set IsLocked=1 where TestAppointmentID = @TestAppointmentID;
                              SELECT SCOPE_IDENTITY();";

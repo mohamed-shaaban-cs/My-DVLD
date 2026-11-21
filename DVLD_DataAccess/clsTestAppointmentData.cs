@@ -268,24 +268,22 @@ namespace DVLD_DataAccess
             return dt;
         }
 
-        public static bool GetTestID(int TestAppointmentID, ref int TestID)
+        public static int GetTestID(int TestAppointmentID)
         {
-            bool isFound = false;
+            int TestID = -1;
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-            string query = "SELECT TestID FROM Tests WHERE TestAppointmentID = @TestAppointmentID Order By AppointmentDate DESC";
+            string query = "SELECT TestID FROM Tests WHERE TestAppointmentID = @TestAppointmentID";
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@TestAppointmentID", TestAppointmentID);
 
             try
             {
                 connection.Open();
-                SqlDataReader Reader = command.ExecuteReader();
-                if (Reader.Read())
+                object Reader = command.ExecuteScalar();
+                if (Reader != null)
                 {
-                    TestID = (int)Reader["TestID"];
-                    isFound = true;
+                    TestID = (int)Reader;
                 }
-                Reader.Close();
             }
             catch (Exception ex)
             {
@@ -295,7 +293,7 @@ namespace DVLD_DataAccess
             {
                 connection.Close();
             }
-            return isFound;
+            return TestID;
         }
 
     }

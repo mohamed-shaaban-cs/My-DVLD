@@ -270,7 +270,7 @@ namespace DVLD_DataAccess
         }
         public static bool DoesPersonHaveActiveApplicatinoForLicenseClass(int PersonID , int ApplicationTypeID, int LicenseClassID)
         {
-            return (GetActiveApplicationIDForLicenseClass(PersonID, ApplicationTypeID, LicenseClassID) != -1);
+            return GetActiveApplicationIDForLicenseClass(PersonID, ApplicationTypeID, LicenseClassID) != -1;
         }
 
         public static bool UpdateStatus(int ApplicationID, byte NewStatus)

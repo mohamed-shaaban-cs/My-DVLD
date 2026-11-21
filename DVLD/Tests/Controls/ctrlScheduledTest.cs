@@ -13,11 +13,41 @@ namespace DVLD.Tests.Controls
 {
     public partial class ScheduledTest : UserControl
     {
-        clsTestAppointment _TestAppointment;
-        int _TestID;
+        public clsTestAppointment TestAppointment { set; get; }
+        int _TestID = -1;
         public int TestID
         {
-            get { return _TestID; } 
+            get { return _TestID; }
+            set
+            {
+                _TestID = value;
+                lblTestID.Text = _TestID.ToString();
+            }
+        }
+
+        clsTestType.enTestType _TestTypeID = clsTestType.enTestType.VisionTest;
+        public clsTestType.enTestType TestTypeID 
+        { 
+            get { return _TestTypeID; }
+            set
+            {
+                _TestTypeID = value;
+                switch (_TestTypeID)
+                {
+                    case clsTestType.enTestType.WrittenTest:
+                        gbScheduleTest.Text = "Schedule Written Test";
+                        picTitleImage.Image = Properties.Resources.Written_Test_512;
+                        break;
+                    case clsTestType.enTestType.VisionTest:
+                        gbScheduleTest.Text = "Schedule Vision Test";
+                        picTitleImage.Image = Properties.Resources.Vision_512;
+                        break;
+                    case clsTestType.enTestType.StreetTest:
+                        gbScheduleTest.Text = "Schedule Street Test";
+                        picTitleImage.Image = Properties.Resources.driving_test_512;
+                        break;
+                }
+            }
         }
         public ScheduledTest()
         {
@@ -25,54 +55,32 @@ namespace DVLD.Tests.Controls
         }
        void _FillTestAppointmentInfo()
         {
-            switch (_TestAppointment.TestTypeInfo.TestTypeID)
-            {
-                case clsTestType.enTestType.WrittenTest:
-                    gbScheduleTest.Text = "Schedule Written Test";
-                    picTitleImage.Image = Properties.Resources.Written_Test_512;
-                    break;
-                case clsTestType.enTestType.VisionTest:
-                    gbScheduleTest.Text = "Schedule Vision Test";
-                    picTitleImage.Image = Properties.Resources.Vision_512;
-                    break;
-                case clsTestType.enTestType.StreetTest:
-                    gbScheduleTest.Text = "Schedule Street Test";
-                    picTitleImage.Image = Properties.Resources.driving_test_512;
-                    break;
-            }
-            lblD_L_Application_ID.Text = _TestAppointment.LocalDrivingLicenseApplicationID.ToString();
-                lblD_Class.Text = _TestAppointment.LocalDrivingLicenseApplicationInfo.LicenseClassInfo.ClassName.ToString();
-                lblPersonName.Text = _TestAppointment.LocalDrivingLicenseApplicationInfo.ApplicantFullName;
-                lblTrial.Text = _TestAppointment.LocalDrivingLicenseApplicationInfo.countPassedTests().ToString();
-                lblDate.Text = _TestAppointment.AppointmentDate.ToString("dd/MM/yyyy");
-                lblTestTypeFees.Text = _TestAppointment.TestTypeInfo.TestTypeFees.ToString("C2");
-                lblTestID.Text = "Not Taken Yet";
+            
+            lblD_L_Application_ID.Text = TestAppointment.LocalDrivingLicenseApplicationID.ToString();
+                lblD_Class.Text = TestAppointment.LocalDrivingLicenseApplicationInfo.LicenseClassInfo.ClassName.ToString();
+                lblPersonName.Text = TestAppointment.LocalDrivingLicenseApplicationInfo.ApplicantFullName;
+                lblTrial.Text = TestAppointment.LocalDrivingLicenseApplicationInfo.TotalTrialsPerTestType(TestTypeID).ToString();
+                lblDate.Text = TestAppointment.AppointmentDate.ToString("dd/MM/yyyy");
+                lblTestTypeFees.Text = TestAppointment.PaidFees.ToString("C2");
+                lblTestID.Text =(_TestID == -1)? "Not Taken Yet" : TestAppointment.TestID.ToString();
         }
         public void LoadTestAppointmentInfo(int appointmentId)
         {
-             _TestAppointment = clsTestAppointment.Find(appointmentId);
-            if(_TestAppointment == null)
+            TestAppointment = clsTestAppointment.Find(appointmentId);
+           
+            if(TestAppointment == null)
             {
                 MessageBox.Show($"Test Appointment with ID {appointmentId} not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            _FillTestAppointmentInfo();
-        }
-        public void LoadTestAppointmentInfo(clsTestAppointment testAppointment)
-        {
-            _TestAppointment = testAppointment;
-            if(_TestAppointment == null)
+            if(TestAppointment.LocalDrivingLicenseApplicationInfo == null)
             {
-                MessageBox.Show($"Test Appointment is Empty.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Local Driving License Application with ID {appointmentId} not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            _FillTestAppointmentInfo();
-        }
 
-        public void SetTestID(int testID)
-        {
-            _TestID = testID;
-            lblTestID.Text = testID.ToString();
+             _TestID = TestAppointment.TestID;
+            _FillTestAppointmentInfo();
         }
     }
 }
