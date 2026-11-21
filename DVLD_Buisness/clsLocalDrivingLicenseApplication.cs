@@ -11,16 +11,16 @@ namespace DVLD_BusinessLogic
          enum enMode { AddNew = 0, Update = 1 };
          enMode _Mode = enMode.AddNew;
 
-        public int LocalDrivingLicenseApplicationID { get; set; }
+        public int _LocalDrivingLicenseApplicationID { get; set; }
         
-        public int LicenseClassID { get; set; }
+        public int _LicenseClassID { get; set; }
         private clsLicenseClass _LicenseClassInfo;
         public clsLicenseClass LicenseClassInfo
         {
             get
             {
-                if (_LicenseClassInfo == null && this.LicenseClassID != -1)
-                    _LicenseClassInfo = clsLicenseClass.Find(this.LicenseClassID);
+                if (_LicenseClassInfo == null && this._LicenseClassID != -1)
+                    _LicenseClassInfo = clsLicenseClass.Find(this._LicenseClassID);
 
                 return _LicenseClassInfo;
             }
@@ -30,8 +30,8 @@ namespace DVLD_BusinessLogic
         // Default Constructor للمستخدم الجديد
         public clsLocalDrivingLicenseApplication()
         {
-            this.LocalDrivingLicenseApplicationID = -1;
-            this.LicenseClassID = -1;
+            this._LocalDrivingLicenseApplicationID = -1;
+            this._LicenseClassID = -1;
 
             _Mode = enMode.AddNew;
         }
@@ -40,8 +40,8 @@ namespace DVLD_BusinessLogic
         private clsLocalDrivingLicenseApplication(int LocalDrivingLicenseApplicationID, int LicenseClassID, int ApplicationID,
             int ApplicantPersonID, DateTime ApplicationDate, int ApplicationTypeID, byte ApplicationStatus, DateTime LastStatusDate, decimal PaidFees, int CreatedByUserID)
         {
-            this.LocalDrivingLicenseApplicationID = LocalDrivingLicenseApplicationID;
-            this.LicenseClassID = LicenseClassID;
+            this._LocalDrivingLicenseApplicationID = LocalDrivingLicenseApplicationID;
+            this._LicenseClassID = LicenseClassID;
             this.ApplicationID = ApplicationID;
             this.ApplicantPersonID = ApplicantPersonID;
             this.ApplicationDate = ApplicationDate;
@@ -57,14 +57,14 @@ namespace DVLD_BusinessLogic
         private bool _AddNewLocalDrivingLicenseApplication()
         {
             // التعديل هنا: استخدام cls{ClassName}Data
-            this.LocalDrivingLicenseApplicationID = clsLocalDrivingLicenseApplicationData.AddNewLocalDrivingLicenseApplication(this.ApplicationID, this.LicenseClassID);
-            return (this.LocalDrivingLicenseApplicationID != -1);
+            this._LocalDrivingLicenseApplicationID = clsLocalDrivingLicenseApplicationData.AddNewLocalDrivingLicenseApplication(this.ApplicationID, this._LicenseClassID);
+            return (this._LocalDrivingLicenseApplicationID != -1);
         }
 
         private bool _UpdateLocalDrivingLicenseApplication()
         {
             // التعديل هنا
-            return clsLocalDrivingLicenseApplicationData.UpdateLocalDrivingLicenseApplication(this.LocalDrivingLicenseApplicationID, this.ApplicationID, this.LicenseClassID);
+            return clsLocalDrivingLicenseApplicationData.UpdateLocalDrivingLicenseApplication(this._LocalDrivingLicenseApplicationID, this.ApplicationID, this._LicenseClassID);
         }
 
 
@@ -155,18 +155,26 @@ namespace DVLD_BusinessLogic
             return clsLocalDrivingLicenseApplicationData.IsLocalDrivingLicenseApplicationExist(LocalDrivingLicenseApplicationID);
         }
 
+        public clsTest GetLastTestPerTestTypeID(clsTestType.enTestType TestTypeID)
+        {
+            return clsTest.FindtLastTestPerTestTypeAndLocalDrivingLicenseApplicationID(_LocalDrivingLicenseApplicationID,TestTypeID);
+        }
         
         public bool DoseAttendTestType( clsTestType.enTestType TestTypeID)
         {
-            return clsLocalDrivingLicenseApplicationData.DoseAttendTestType(LocalDrivingLicenseApplicationID, (int)TestTypeID);
+            return clsLocalDrivingLicenseApplicationData.DoseAttendTestType(_LocalDrivingLicenseApplicationID, (int)TestTypeID);
         }
         public bool DosePassTestType(clsTestType.enTestType TestTypeID)
         {
-            return clsLocalDrivingLicenseApplicationData.DosePassTestType(LocalDrivingLicenseApplicationID, (int)TestTypeID);
+            return clsLocalDrivingLicenseApplicationData.DosePassTestType(_LocalDrivingLicenseApplicationID, (int)TestTypeID);
         }
         public static byte TotalTrialsPerTestType(int LocalDrivingLicenseApplicationID, clsTestType.enTestType TestTypeID)
         {
             return clsLocalDrivingLicenseApplicationData.TotalTrialsPerTestType(LocalDrivingLicenseApplicationID, (int)TestTypeID);
+        }
+        public byte TotalTrialsPerTestType(clsTestType.enTestType TestTypeID)
+        {
+            return clsLocalDrivingLicenseApplicationData.TotalTrialsPerTestType(_LocalDrivingLicenseApplicationID, (int)TestTypeID);
         }
         
         public static byte countPassedTests(int LocalDrivingLicenseApplicationID)
@@ -175,7 +183,7 @@ namespace DVLD_BusinessLogic
         }
         public  byte countPassedTests()
         {
-            return clsLocalDrivingLicenseApplicationData.CountPassedTests(LocalDrivingLicenseApplicationID);
+            return clsLocalDrivingLicenseApplicationData.CountPassedTests(_LocalDrivingLicenseApplicationID);
         }
         public static bool IsHavePassedTestPerTestType(int LocalDrivingLicenseApplicationID,clsTestType.enTestType TestTypeID)
         {
@@ -184,6 +192,10 @@ namespace DVLD_BusinessLogic
         public static bool IsHaveActiveTestAppointment(int LocalDrivingLicenseApplicationID,clsTestType.enTestType TestTypeID)
         {
             return clsLocalDrivingLicenseApplicationData.IsHaveActiveTestAppointment(LocalDrivingLicenseApplicationID, (int)TestTypeID);
+        }
+        public  bool IsHaveActiveTestAppointment(clsTestType.enTestType TestTypeID)
+        {
+            return clsLocalDrivingLicenseApplicationData.IsHaveActiveTestAppointment(_LocalDrivingLicenseApplicationID, (int)TestTypeID);
         }
 
         public bool IsLicenseIssued()

@@ -87,14 +87,14 @@ namespace DVLD_DataAccess
             }
             return isFound;
         }
-        public static bool GetActiveLicenseInfoByPersonID(int PersonID, int LicenseClassID, ref int LicenseID, ref int ApplicationID, ref int DriverID, ref int LicenseClass, ref DateTime IssueDate, ref DateTime ExpirationDate, ref string Notes, ref decimal PaidFees, ref bool IsActive, ref byte IssueReason, ref int CreatedByUserID)
+        public static bool GetActiveLicenseInfoByPersonID(int PersonID, int LicenseClassID)
         {
             bool isFound = false;
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-            string query = @"SELECT       Licenses.LicenseID, Applications.ApplicantPersonID, Licenses.LicenseClassID , IsActive
+            string query = @"SELECT    1 found
                          FROM            Applications INNER JOIN
                          Licenses ON Applications.ApplicationID = Licenses.ApplicationID
-                         Where ApplicantPersonID = @PersonID And LicenseClass = @LicenseClassID And IsActive = 1; ";
+                         Where ApplicationPersonID = @PersonID And LicenseClassID = @LicenseClassID And IsActive = 1;";
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@PersonID", PersonID);
             command.Parameters.AddWithValue("@LicenseClassID", LicenseClassID);
@@ -102,23 +102,11 @@ namespace DVLD_DataAccess
             try
             {
                 connection.Open();
-                SqlDataReader Reader = command.ExecuteReader();
-                if (Reader.Read())
+                object Reader = command.ExecuteScalar();
+                if (Reader != null)
                 {
                     isFound = true;
-   LicenseID = Reader["LicenseID"] != DBNull.Value ? (int)Reader["LicenseID"] : -1;
-   ApplicationID = Reader["ApplicationID"] != DBNull.Value ? (int)Reader["ApplicationID"] : -1;
-   DriverID = Reader["DriverID"] != DBNull.Value ? (int)Reader["DriverID"] : -1;
-   IssueDate = Reader["IssueDate"] != DBNull.Value ? (DateTime)Reader["IssueDate"] : DateTime.Now;
-   ExpirationDate = Reader["ExpirationDate"] != DBNull.Value ? (DateTime)Reader["ExpirationDate"] : DateTime.Now;
-   Notes = Reader["Notes"] != DBNull.Value ? (string)Reader["Notes"] : "";
-   PaidFees = Reader["PaidFees"] != DBNull.Value ? (decimal)Reader["PaidFees"] : 0.0m;
-   IsActive = Reader["IsActive"] != DBNull.Value ? (bool)Reader["IsActive"] : false;
-   IssueReason = Reader["IssueReason"] != DBNull.Value ? (byte)Reader["IssueReason"] : (byte)0;
-   CreatedByUserID = Reader["CreatedByUserID"] != DBNull.Value ? (int)Reader["CreatedByUserID"] : -1;
-
                 }
-                Reader.Close();
             }
             catch (Exception ex)
             {

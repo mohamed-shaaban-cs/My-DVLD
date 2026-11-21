@@ -45,7 +45,7 @@ namespace DVLD.Licenses.Local_License
             clsLicense License = new clsLicense();
             License.ApplicationID = _LocalDrivingLicenseApplicationInfo.ApplicationID;
             License.DriverID = Driver.DriverID;
-            License.LicenseClassID = _LocalDrivingLicenseApplicationInfo.LicenseClassID;
+            License.LicenseClassID = _LocalDrivingLicenseApplicationInfo._LicenseClassID;
             License.ExpirationDate = DateTime.Now.AddYears(_LocalDrivingLicenseApplicationInfo.LicenseClassInfo.DefaultValidityLength); // Example: 10-year expiration
             License.Notes = tbNotes.Text ;
             License.PaidFees = _LocalDrivingLicenseApplicationInfo.LicenseClassInfo.ClassFees;

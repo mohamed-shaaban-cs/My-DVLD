@@ -82,7 +82,7 @@ namespace DVLD.Applications.LocalDrivingLicenseApplication
             {
                 lblDLApplicationID.Text = _LocalDrivingLicenseApplication.ApplicationID.ToString();
                 lblApplicationDate.Text = _LocalDrivingLicenseApplication.ApplicationDate.ToString("yyyy-MM-dd");
-                cbLicenseClass.SelectedIndex = _LocalDrivingLicenseApplication.LicenseClassID + 1;
+                cbLicenseClass.SelectedIndex = _LocalDrivingLicenseApplication._LicenseClassID - 1;
                 lblApplicationFees.Text = _LocalDrivingLicenseApplication.PaidFees.ToString("C");
                 lblCreatedByUser.Text = clsUser.FindByUserID(_LocalDrivingLicenseApplication.CreatedByUserID).UserName;
                 ctrlPersonCardWithFilter1.LoadPersonInfo(_LocalDrivingLicenseApplication.ApplicantPersonID);
@@ -125,30 +125,36 @@ namespace DVLD.Applications.LocalDrivingLicenseApplication
 
         private void btnSaveUserData_Click(object sender, EventArgs e)
         {
-            int LicenseClassID = clsLicenseClass.Find(cbLicenseClass.Text).LicenseClassID;
-            int PersonAge = DateTime.Now.Year - ctrlPersonCardWithFilter1.SelectedPersonInfo.DateOfBirth.Year;
-            PersonAge = (DateTime.Now.DayOfYear < ctrlPersonCardWithFilter1.SelectedPersonInfo.DateOfBirth.DayOfYear) ? PersonAge - 1 : PersonAge;
+            clsLicenseClass LicenseClassInfo = clsLicenseClass.Find(cbLicenseClass.Text);
+            DateTime today = DateTime.Today;
+            DateTime dateOfBirth = ctrlPersonCardWithFilter1.SelectedPersonInfo.DateOfBirth;
+            int PersonAge = today.Year - dateOfBirth.Year;
+            
 
-            if (clsLicenseClass.Find(cbLicenseClass.Text).MinimumAllowedAge > PersonAge)
+           if(today.Month < dateOfBirth.Month || (today.Month == dateOfBirth.Month && today.Day < dateOfBirth.Day))
+                PersonAge--;
+
+            if (LicenseClassInfo.MinimumAllowedAge > PersonAge)
             {
                 MessageBox.Show("Person is not old enough for the selected license class.", "Age Restriction", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            if (clsLocalDrivingLicenseApplication.DoesPersonHaveActiveApplicationForLicenseClass(ctrlPersonCardWithFilter1.PersonID,(clsApplication.enApplicationType) clsApplication.enApplicationType.NewLocalDrivingLicense, LicenseClassID))
+            if (clsLocalDrivingLicenseApplication.DoesPersonHaveActiveApplicationForLicenseClass(ctrlPersonCardWithFilter1.PersonID,(clsApplication.enApplicationType) clsApplication.enApplicationType.NewLocalDrivingLicense, LicenseClassInfo.LicenseClassID)
+                && LicenseClassInfo.LicenseClassID != _LocalDrivingLicenseApplication._LicenseClassID)
             {
                 MessageBox.Show("This person already has an active application.", "Active Application", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if(clsLicense.IsActiveLicenseExistByPersonID(ctrlPersonCardWithFilter1.PersonID, LicenseClassID))
+            if(clsLicense.IsActiveLicenseExistByPersonID(ctrlPersonCardWithFilter1.PersonID, LicenseClassInfo.LicenseClassID))
             {
-                MessageBox.Show("This person already has an active license for the selected class.", "Active License", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("This person already holds an active license for the selected class.", "Active License", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             _LocalDrivingLicenseApplication.ApplicantPersonID = ctrlPersonCardWithFilter1.PersonID;
             _LocalDrivingLicenseApplication.ApplicationTypeID = (int)clsApplication.enApplicationType.NewLocalDrivingLicense;
-            _LocalDrivingLicenseApplication.LicenseClassID = LicenseClassID;
+            _LocalDrivingLicenseApplication._LicenseClassID = LicenseClassInfo.LicenseClassID;
             _LocalDrivingLicenseApplication.PaidFees = clsApplicationType.Find((int)clsApplication.enApplicationType.NewLocalDrivingLicense).ApplicationFees;
             _LocalDrivingLicenseApplication.CreatedByUserID = clsGlobal.CurrentUser.UserID;
 

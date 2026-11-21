@@ -186,7 +186,7 @@ namespace DVLD.Applications.LocalDrivingLicenseApplication
         {
             clsLocalDrivingLicenseApplication localDrivingLicenseApplication = clsLocalDrivingLicenseApplication.FindByLocalDrivingLicenseApplicationID((int)dgvList.SelectedRows[0].Cells["LocalDrivingLicenseApplicationID"].Value);
 
-            int TotalPassedTests = clsLocalDrivingLicenseApplication.countPassedTests(localDrivingLicenseApplication.LocalDrivingLicenseApplicationID);
+            int TotalPassedTests = clsLocalDrivingLicenseApplication.countPassedTests(localDrivingLicenseApplication._LocalDrivingLicenseApplicationID);
 
             bool IsLicenseIssued = localDrivingLicenseApplication.IsLicenseIssued(); 
 
@@ -203,9 +203,9 @@ namespace DVLD.Applications.LocalDrivingLicenseApplication
             ShowLicense.Enabled = IsLicenseIssued;
             ShowPersonLicenseHistory.Enabled = true;
 
-            bool PassedVisionTest = clsLocalDrivingLicenseApplication.IsHavePassedTestPerTestType(localDrivingLicenseApplication.LocalDrivingLicenseApplicationID, clsTestType.enTestType.VisionTest);
-            bool PassedWrittenTest = clsLocalDrivingLicenseApplication.IsHavePassedTestPerTestType(localDrivingLicenseApplication.LocalDrivingLicenseApplicationID, (clsTestType.enTestType.WrittenTest));
-            bool PassedStreetTest = clsLocalDrivingLicenseApplication.IsHavePassedTestPerTestType(localDrivingLicenseApplication.LocalDrivingLicenseApplicationID, clsTestType.enTestType.StreetTest);
+            bool PassedVisionTest = clsLocalDrivingLicenseApplication.IsHavePassedTestPerTestType(localDrivingLicenseApplication._LocalDrivingLicenseApplicationID, clsTestType.enTestType.VisionTest);
+            bool PassedWrittenTest = clsLocalDrivingLicenseApplication.IsHavePassedTestPerTestType(localDrivingLicenseApplication._LocalDrivingLicenseApplicationID, (clsTestType.enTestType.WrittenTest));
+            bool PassedStreetTest = clsLocalDrivingLicenseApplication.IsHavePassedTestPerTestType(localDrivingLicenseApplication._LocalDrivingLicenseApplicationID, clsTestType.enTestType.StreetTest);
 
             SchduleTestsToolStripMenuItem.Enabled = ((!PassedStreetTest || !PassedVisionTest || !PassedWrittenTest ) && localDrivingLicenseApplication.ApplicationStatus == clsApplication.enApplicationStatus.New);
             if (SchduleTestsToolStripMenuItem.Enabled)

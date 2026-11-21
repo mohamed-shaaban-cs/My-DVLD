@@ -14,30 +14,20 @@ namespace DVLD.Tests
 {
     public partial class frmScheduledTest : Form
     {
+        int _TestAppointmentID = -1;
+        clsTestType.enTestType _TestTypeID;
         clsTestAppointment _TestAppointmentIfNo;
+        int _TestID = -1;
         clsTest _Test;
-        public frmScheduledTest(int TestAppointmentID)
+        public frmScheduledTest(int TestAppointmentID, clsTestType.enTestType TestTypeID)
         {
             InitializeComponent();
-
-            _RestDefultValues();
-
-            _TestAppointmentIfNo = clsTestAppointment.Find(TestAppointmentID);
-            if(_TestAppointmentIfNo == null)
-            {
-                MessageBox.Show($"Test Appointment with ID {TestAppointmentID} not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.Close();
-            }
-
-            scheduledTest1.LoadTestAppointmentInfo(_TestAppointmentIfNo);
-
-            if(_TestAppointmentIfNo.IsLocked)
-                LoadTestData();
+            _TestTypeID = TestTypeID;
+            _TestAppointmentID = TestAppointmentID;
             
         }
-        void _RestDefultValues()
+        private void frmScheduledTest_Load(object sender, EventArgs e)
         {
-            _Test = new clsTest();
 
             tbNotes.Text = "";
 
@@ -47,23 +37,37 @@ namespace DVLD.Tests
             btnSave.Enabled = true;
 
             lblAppointmentLoackedMassage.Visible = false;
+
+
+            ctrlscheduledTest1.TestTypeID = _TestTypeID;
+
+            ctrlscheduledTest1.LoadTestAppointmentInfo(_TestAppointmentID);
+            if (ctrlscheduledTest1.TestAppointment == null)
+                btnSave.Enabled = false;
+            else
+                btnSave.Enabled = true;
+
+            int TestID = ctrlscheduledTest1.TestID;
+            //if Test Appointment Have a Test
+            if (TestID != -1)
+            {             
+                _Test = clsTest.FindByTestAppointmentID(TestID); 
+                LoadTestData();
+                return;
+            }
+            else
+            _Test = new clsTest();
+                
         }
 
         void LoadTestData()
         {
-            clsTest Test = clsTest.FindByTestAppointmentID(_TestAppointmentIfNo.TestAppointmentID);
-
-            //if Test Appointment not Have a Test
-            if (Test == null)
-                return;
-
-            scheduledTest1.SetTestID(Test.TestID);
-            if (Test.TestResult)
+            if (_Test.TestResult)
                 rbPass.Checked = true;
             else
                 rbFail.Checked = true;
 
-            tbNotes.Text = Test.Notes;
+            tbNotes.Text = _Test.Notes;
 
             rbPass.Enabled = false;
             rbFail.Enabled = false;
@@ -75,25 +79,23 @@ namespace DVLD.Tests
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            _Test.TestAppointmentID = _TestAppointmentIfNo.TestAppointmentID;
-            _Test.TestResult = (rbPass.Checked == true)? true : false;
+            if (DialogResult.No == MessageBox.Show("Are you sure you want Save Test Result", "Save Result",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Information))
+                return;
+
+            _Test.TestAppointmentID = _TestAppointmentID;
+            _Test.TestResult = (rbPass.Checked == true) ? true : false;
             _Test.Notes = tbNotes.Text.Trim();
             _Test.CreatedByUserID = Global_Classes.clsGlobal.CurrentUser.UserID;
-            //lock the Test Appointment after saving the Test Result
-            _TestAppointmentIfNo.IsLocked = true;
-
-            if (DialogResult.Yes == MessageBox.Show("Are you sure you want Save Test Result", "Save Result", MessageBoxButtons.YesNo, MessageBoxIcon.Information))
+            
+            if (_Test.Save())
             {
-                if(_Test.Save() && _TestAppointmentIfNo.Save())
-                {
-                    MessageBox.Show("your Test Result Has been Saved Successfully ","Save Result",MessageBoxButtons.OK,MessageBoxIcon.Information);
-                    this.Close();
-                }
-                else
-                {
-                    MessageBox.Show("Faild to Save Test Result", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                
+                MessageBox.Show("your Test Result Has been Saved Successfully ", "Save Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Faild to Save Test Result", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -101,5 +103,6 @@ namespace DVLD.Tests
         {
             this.Close();
         }
+
     }
 }

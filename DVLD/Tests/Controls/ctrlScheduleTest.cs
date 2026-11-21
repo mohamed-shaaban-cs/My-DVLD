@@ -100,11 +100,11 @@ namespace DVLD.Tests.Controls
                 lblR_Test_App_ID.Text = "N/A";
             }
 
-            lblL_D_L_Application_ID.Text = _LocalDrivingLicenseApplicationInfo.LocalDrivingLicenseApplicationID.ToString();
+            lblL_D_L_Application_ID.Text = _LocalDrivingLicenseApplicationInfo._LocalDrivingLicenseApplicationID.ToString();
             lblD_Class.Text = _LocalDrivingLicenseApplicationInfo.LicenseClassInfo.ClassName;
             lblPersonName.Text = _LocalDrivingLicenseApplicationInfo.ApplicantFullName;
 
-            lblTrial.Text = clsLocalDrivingLicenseApplication.TotalTrialsPerTestType(_LocalDrivingLicenseApplicationInfo.LocalDrivingLicenseApplicationID, _TestTypeID).ToString();
+            lblTrial.Text = clsLocalDrivingLicenseApplication.TotalTrialsPerTestType(_LocalDrivingLicenseApplicationInfo._LocalDrivingLicenseApplicationID, _TestTypeID).ToString();
 
             if (_Mode == enMode.AddNew)
             {
@@ -172,7 +172,7 @@ namespace DVLD.Tests.Controls
 
         private bool _HandleActiveTestAppointmentConstraint()
         {
-            if (_Mode == enMode.AddNew && clsLocalDrivingLicenseApplication.IsHaveActiveTestAppointment(_LocalDrivingLicenseApplicationInfo.LocalDrivingLicenseApplicationID, _TestTypeID))
+            if (_Mode == enMode.AddNew && clsLocalDrivingLicenseApplication.IsHaveActiveTestAppointment(_LocalDrivingLicenseApplicationInfo._LocalDrivingLicenseApplicationID, _TestTypeID))
             {
                 lblUserMassage.Text = "Person Already have an active appointment for this test";
                 lblUserMassage.Visible = true;
@@ -271,7 +271,7 @@ namespace DVLD.Tests.Controls
                 return;  
 
 
-                _TestAppointment.LocalDrivingLicenseApplicationID = _LocalDrivingLicenseApplicationInfo.LocalDrivingLicenseApplicationID;
+                _TestAppointment.LocalDrivingLicenseApplicationID = _LocalDrivingLicenseApplicationInfo._LocalDrivingLicenseApplicationID;
                 _TestAppointment.TestTypeID = _TestTypeID;
                 _TestAppointment.AppointmentDate = dtpDate.Value;
                 _TestAppointment.PaidFees = Convert.ToDecimal(lblTestTypeFees.Text);

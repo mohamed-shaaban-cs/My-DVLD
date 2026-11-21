@@ -38,7 +38,7 @@
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.pictureBox10 = new System.Windows.Forms.PictureBox();
-            this.scheduledTest1 = new DVLD.Tests.Controls.ScheduledTest();
+            this.ctrlscheduledTest1 = new DVLD.Tests.Controls.ScheduledTest();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
             this.SuspendLayout();
@@ -167,11 +167,11 @@
             // 
             // scheduledTest1
             // 
-            this.scheduledTest1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(24)))), ((int)(((byte)(40)))));
-            this.scheduledTest1.Location = new System.Drawing.Point(4, 11);
-            this.scheduledTest1.Name = "scheduledTest1";
-            this.scheduledTest1.Size = new System.Drawing.Size(565, 560);
-            this.scheduledTest1.TabIndex = 81;
+            this.ctrlscheduledTest1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(24)))), ((int)(((byte)(40)))));
+            this.ctrlscheduledTest1.Location = new System.Drawing.Point(4, 11);
+            this.ctrlscheduledTest1.Name = "scheduledTest1";
+            this.ctrlscheduledTest1.Size = new System.Drawing.Size(565, 560);
+            this.ctrlscheduledTest1.TabIndex = 81;
             // 
             // frmScheduledTest
             // 
@@ -179,7 +179,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(24)))), ((int)(((byte)(40)))));
             this.ClientSize = new System.Drawing.Size(574, 802);
-            this.Controls.Add(this.scheduledTest1);
+            this.Controls.Add(this.ctrlscheduledTest1);
             this.Controls.Add(this.crtlClose);
             this.Controls.Add(this.pictureBox8);
             this.Controls.Add(this.tbNotes);
@@ -194,6 +194,7 @@
             this.Name = "frmScheduledTest";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Take Test";
+            this.Load += new System.EventHandler(this.frmScheduledTest_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
             this.ResumeLayout(false);
@@ -213,6 +214,6 @@
         private System.Windows.Forms.Label lable6;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label lblAppointmentLoackedMassage;
-        private Controls.ScheduledTest scheduledTest1;
+        private Controls.ScheduledTest ctrlscheduledTest1;
     }
 }

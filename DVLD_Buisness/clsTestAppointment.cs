@@ -132,12 +132,7 @@ namespace DVLD_BusinessLogic
         }
         private static int _GetTestID(int TestAppointmentID)
         {
-            int TestTypeID = -1;
-
-            bool IsFound = clsTestAppointmentData.GetTestID(TestAppointmentID, ref TestTypeID);
-
-            return TestTypeID;
-
+             return  clsTestAppointmentData.GetTestID(TestAppointmentID);
         }
         public bool Save()
         {

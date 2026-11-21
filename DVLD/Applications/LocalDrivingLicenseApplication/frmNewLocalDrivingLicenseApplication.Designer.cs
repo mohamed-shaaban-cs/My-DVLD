@@ -33,6 +33,7 @@
             this.tcAdd_UpdateLocalDrivingLicenseApplication = new System.Windows.Forms.TabControl();
             this.tabPersonalInfo = new System.Windows.Forms.TabPage();
             this.btnNext = new System.Windows.Forms.Button();
+            this.ctrlPersonCardWithFilter1 = new DVLD.People.Controls.ctrlPersonCardWithFilter();
             this.tabApplicationInfo = new System.Windows.Forms.TabPage();
             this.cbLicenseClass = new System.Windows.Forms.ComboBox();
             this.lblApplicationFees = new System.Windows.Forms.Label();
@@ -51,7 +52,6 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.btnSaveUserData = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
-            this.ctrlPersonCardWithFilter1 = new DVLD.People.Controls.ctrlPersonCardWithFilter();
             this.panel2.SuspendLayout();
             this.tcAdd_UpdateLocalDrivingLicenseApplication.SuspendLayout();
             this.tabPersonalInfo.SuspendLayout();
@@ -126,6 +126,20 @@
             this.btnNext.Text = "Next";
             this.btnNext.UseVisualStyleBackColor = false;
             this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
+            // 
+            // ctrlPersonCardWithFilter1
+            // 
+            this.ctrlPersonCardWithFilter1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(24)))), ((int)(((byte)(40)))));
+            this.ctrlPersonCardWithFilter1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ctrlPersonCardWithFilter1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ctrlPersonCardWithFilter1.FilterEnabled = true;
+            this.ctrlPersonCardWithFilter1.Location = new System.Drawing.Point(3, 3);
+            this.ctrlPersonCardWithFilter1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ctrlPersonCardWithFilter1.Name = "ctrlPersonCardWithFilter1";
+            this.ctrlPersonCardWithFilter1.ShowAddPersonButton = true;
+            this.ctrlPersonCardWithFilter1.Size = new System.Drawing.Size(1001, 531);
+            this.ctrlPersonCardWithFilter1.TabIndex = 0;
+            this.ctrlPersonCardWithFilter1.OnPersonSelected += new System.Action<int>(this.ctrlPersonCardWithFilter1_OnPersonSelected);
             // 
             // tabApplicationInfo
             // 
@@ -321,7 +335,6 @@
             // 
             this.btnSaveUserData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(133)))), ((int)(((byte)(198)))));
             this.btnSaveUserData.CausesValidation = false;
-            this.btnSaveUserData.Enabled = false;
             this.btnSaveUserData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSaveUserData.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSaveUserData.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
@@ -351,20 +364,6 @@
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = false;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            // 
-            // ctrlPersonCardWithFilter1
-            // 
-            this.ctrlPersonCardWithFilter1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(24)))), ((int)(((byte)(40)))));
-            this.ctrlPersonCardWithFilter1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ctrlPersonCardWithFilter1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ctrlPersonCardWithFilter1.FilterEnabled = true;
-            this.ctrlPersonCardWithFilter1.Location = new System.Drawing.Point(3, 3);
-            this.ctrlPersonCardWithFilter1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.ctrlPersonCardWithFilter1.Name = "ctrlPersonCardWithFilter1";
-            this.ctrlPersonCardWithFilter1.ShowAddPersonButton = true;
-            this.ctrlPersonCardWithFilter1.Size = new System.Drawing.Size(1001, 531);
-            this.ctrlPersonCardWithFilter1.TabIndex = 0;
-            this.ctrlPersonCardWithFilter1.OnPersonSelected += new System.Action<int>(this.ctrlPersonCardWithFilter1_OnPersonSelected);
             // 
             // frmNewLocalDrivingLicenseApplication
             // 
