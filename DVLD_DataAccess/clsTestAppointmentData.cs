@@ -272,7 +272,7 @@ namespace DVLD_DataAccess
         {
             bool isFound = false;
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-            string query = "SELECT TestID FROM Tests WHERE TestAppointmentID = @TestAppointmentID";
+            string query = "SELECT TestID FROM Tests WHERE TestAppointmentID = @TestAppointmentID Order By AppointmentDate DESC";
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@TestAppointmentID", TestAppointmentID);
 

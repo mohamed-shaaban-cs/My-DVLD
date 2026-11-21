@@ -22,10 +22,10 @@ namespace DVLD_DataAccess
                 if (Reader.Read())
                 {
                     isFound = true;
-   TestAppointmentID = Reader["TestAppointmentID"] != DBNull.Value ? (int)Reader["TestAppointmentID"] : -1;
-   TestResult = Reader["TestResult"] != DBNull.Value ? (bool)Reader["TestResult"] : false;
-   Notes = Reader["Notes"] != DBNull.Value ? (string)Reader["Notes"] : "";
-   CreatedByUserID = Reader["CreatedByUserID"] != DBNull.Value ? (int)Reader["CreatedByUserID"] : -1;
+                    TestAppointmentID = Reader["TestAppointmentID"] != DBNull.Value ? (int)Reader["TestAppointmentID"] : -1;
+                    TestResult = Reader["TestResult"] != DBNull.Value ? (bool)Reader["TestResult"] : false;
+                    Notes = Reader["Notes"] != DBNull.Value ? (string)Reader["Notes"] : "";
+                    CreatedByUserID = Reader["CreatedByUserID"] != DBNull.Value ? (int)Reader["CreatedByUserID"] : -1;
 
                 }
                 Reader.Close();
@@ -41,6 +41,53 @@ namespace DVLD_DataAccess
             }
             return isFound;
         }
+        public static bool GetLastTestPerTestTypeAndLocalDrivingLicenseApplicationID(int LocalDrivingLicenseApplicationID,int TestTypeID,ref int TestID,ref int TestAppointmentID,ref bool TestResult,ref string Notes,ref int CreatedByUserID)
+        {
+            bool isFound = false;
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = @"SELECT top 1 Tests.TestID, 
+                                 Tests.TestAppointmentID,
+                                 Tests.TestResult, 
+	                             Tests.Notes,
+                                 Tests.CreatedByUserID
+                            FROM TestAppointments 
+                            INNER JOIN Tests
+                                       ON TestAppointments.TestAppointmentID = Tests.TestAppointmentID
+                            WHERE    (LocalDrivingLicenseApplicationID = LocalDrivingLicenseApplicationID)
+                                     AND ( TestTypeID = TestTypeID)
+                            ORDER BY Tests.TestAppointmentID DESC";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@LocalDrivingLicenseApplicationID", LocalDrivingLicenseApplicationID);
+            command.Parameters.AddWithValue("@TestTypeID", TestTypeID);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader Reader = command.ExecuteReader();
+                if (Reader.Read())
+                {
+                    isFound = true;
+                    TestAppointmentID = Reader["TestAppointmentID"] != DBNull.Value ? (int)Reader["TestAppointmentID"] : -1;
+                    TestID = Reader["TestID"] != DBNull.Value ? (int)Reader["TestID"] : -1;
+                    TestResult = Reader["TestResult"] != DBNull.Value ? (bool)Reader["TestResult"] : false;
+                    Notes = Reader["Notes"] != DBNull.Value ? (string)Reader["Notes"] : "";
+                    CreatedByUserID = Reader["CreatedByUserID"] != DBNull.Value ? (int)Reader["CreatedByUserID"] : -1;
+
+                }
+                Reader.Close();
+            }
+            catch (Exception ex)
+            {
+                // Log Exception
+                isFound = false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return isFound;
+        }
+
         public static bool GetTestInfoByTestAppointmentID(int TestAppointmentID,ref int TestID,ref bool TestResult,ref string Notes,ref int CreatedByUserID)
         {
             bool isFound = false;
@@ -82,6 +129,8 @@ namespace DVLD_DataAccess
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
             string query = @"INSERT INTO Tests ([TestAppointmentID], [TestResult], [Notes], [CreatedByUserID])
                              VALUES (@TestAppointmentID, @TestResult, @Notes, @CreatedByUserID);
+                             Update TestAppointments
+                             Set IsLocked=1 where TestAppointmentID = @TestAppointmentID;
                              SELECT SCOPE_IDENTITY();";
             SqlCommand command = new SqlCommand(query, connection);
 

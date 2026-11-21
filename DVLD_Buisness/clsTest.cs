@@ -12,6 +12,24 @@ namespace DVLD_BusinessLogic
 
         public int TestID { get; set; }
         public int TestAppointmentID { get; set; }
+        private clsTestAppointment _TestAppointmentInfo;
+        public clsTestAppointment TestAppointmentInfo
+        {
+            get
+            {
+                if (_TestAppointmentInfo == null)
+                    _TestAppointmentInfo = clsTestAppointment.Find(TestAppointmentID);
+
+                return _TestAppointmentInfo;
+            }
+            set
+            {
+                
+
+                _TestAppointmentInfo = value;
+            }
+        }
+
         public bool TestResult { get; set; }
         public string Notes { get; set; }
         public int CreatedByUserID { get; set; }
@@ -63,6 +81,22 @@ namespace DVLD_BusinessLogic
 
             
             bool IsFound = clsTestData.GetTestInfoByID(TestID, ref TestAppointmentID, ref TestResult, ref Notes, ref CreatedByUserID);
+
+            if (IsFound)
+                return new clsTest(TestID, TestAppointmentID, TestResult, Notes, CreatedByUserID);
+            else
+                return null;
+        }
+        public static clsTest FindtLastTestPerTestTypeAndLocalDrivingLicenseApplicationID(int LocalDrivingLicenseApplicationID, clsTestType.enTestType TestTypeID)
+        {
+            int TestID = -1;
+            int TestAppointmentID = -1;
+            bool TestResult = false;
+            string Notes = "";
+            int CreatedByUserID = -1;
+
+
+            bool IsFound = clsTestData.GetLastTestPerTestTypeAndLocalDrivingLicenseApplicationID(LocalDrivingLicenseApplicationID, (int)TestTypeID,ref TestID, ref TestAppointmentID, ref TestResult, ref Notes, ref CreatedByUserID);
 
             if (IsFound)
                 return new clsTest(TestID, TestAppointmentID, TestResult, Notes, CreatedByUserID);

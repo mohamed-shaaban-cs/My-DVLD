@@ -27,7 +27,6 @@ namespace DVLD.Tests
             InitializeComponent();
             _LocalDrivingLicenseApplicationID = LocalDrivingLicenseApplicationID;
             _TestTypeID = TestType;
-            _TestTypeInfo = clsTestType.Find(TestType);
             
         }
 
@@ -66,12 +65,26 @@ namespace DVLD.Tests
 
         private void crtlNewLocalLicenseAppication_Click(object sender, EventArgs e)
         {
-            if(clsLocalDrivingLicenseApplication.IsHaveActiveTestAppointment(_LocalDrivingLicenseApplicationID, _TestTypeID))
+            clsLocalDrivingLicenseApplication localDrivingLicenseApplication = clsLocalDrivingLicenseApplication.FindByLocalDrivingLicenseApplicationID(_LocalDrivingLicenseApplicationID);
+            if(localDrivingLicenseApplication.IsHaveActiveTestAppointment(_TestTypeID))
             {
                 MessageBox.Show($"You already have an active {_TestTypeInfo.TestTypeTitle} appointment. You cannot schedule a new appointment until the existing one is completed.", "Active Appointment Exists", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            if(clsLocalDrivingLicenseApplication.IsHavePassedTestPerTestType(_LocalDrivingLicenseApplicationID, _TestTypeID))
+            //if(clsLocalDrivingLicenseApplication.IsHavePassedTestPerTestType(_LocalDrivingLicenseApplicationID, _TestTypeID))
+            //{
+            //    MessageBox.Show($"You have already passed the {_TestTypeInfo.TestTypeTitle}. You cannot schedule a new appointment.", "Test Already Passed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //    return;
+            //}
+            clsTest LastTest = localDrivingLicenseApplication.GetLastTestPerTestTypeID(_TestTypeID);
+            if(LastTest == null)
+            {
+                frmScheduleTest frm1 = new frmScheduleTest(_LocalDrivingLicenseApplicationID, _TestTypeID);
+                frm1.ShowDialog();
+                _RefreshTestAppointmentsList();
+                return;
+            }
+            if(LastTest.TestResult == true)
             {
                 MessageBox.Show($"You have already passed the {_TestTypeInfo.TestTypeTitle}. You cannot schedule a new appointment.", "Test Already Passed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
