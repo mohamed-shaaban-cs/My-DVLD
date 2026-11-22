@@ -42,7 +42,7 @@ namespace DVLD.Applications.LocalDrivingLicenseApplication.Controls
 
             lblDLApplicationID.Text = _LocalDrivingLicenseApplication._LocalDrivingLicenseApplicationID.ToString();
             lblAppliedForLicense.Text= clsLicenseClass.Find(_LocalDrivingLicenseApplication._LicenseClassID).ClassName;
-            lblPassedTests.Text = $"{clsLocalDrivingLicenseApplication.countPassedTests(_LocalDrivingLicenseApplication._LocalDrivingLicenseApplicationID)}/3";
+            lblPassedTests.Text = $"{_LocalDrivingLicenseApplication.countPassedTests()}/3";
             ctrlApplicationBasicInfo1.LoadApplicationInfo(_LocalDrivingLicenseApplication.ApplicationID);
 
             // Enable the link label only if the application status is Completed and have license class assigned

@@ -147,12 +147,41 @@ namespace DVLD_BusinessLogic
             else
                 return null;
         }
-
+        public static int GetActiveLicenseID(int PersonID, int LicenseClass)
+        {
+            return clsLicenseData.GetActiveLicenseIDByPersonID(PersonID, LicenseClass);
+        }
         public static bool IsActiveLicenseExistByPersonID(int PersonID, int LicenseClass)
         {
-            return clsLicenseData.GetActiveLicenseInfoByPersonID(PersonID, LicenseClass);
+            return clsLicenseData.GetActiveLicenseIDByPersonID(PersonID, LicenseClass) !=-1;
         }
 
+        public Boolean IsLicenseExpired()
+        {
+            return (this.ExpirationDate < DateTime.Now);
+        }
+
+        public bool DeactivateCurrentLicense()
+        {
+
+            return clsLicenseData.DeativateLicese(LicenseID);
+        }
+
+        public static string GetIssueReasonText(enIssueReason issueReason)
+        {
+            switch (issueReason)
+            {
+                case enIssueReason.FirstTime:
+                    return "First Time";
+                case enIssueReason.Renew:
+                    return "Renew";
+                case enIssueReason.ReplacementForDamaged:
+                    return "Replacement For Damaged";
+                case enIssueReason.ReplacementForLost:
+                    return "Replacement For Lost";
+            }
+            return "First Time";
+        }
         public bool Save()
         {
             switch (Mode)
@@ -184,7 +213,7 @@ namespace DVLD_BusinessLogic
         public static DataTable GetLicensesHistoryWithDriverID(int DriverID)
         {
             
-            return clsLicenseData.GetLicensesHistoryWithDriverID(DriverID);
+            return clsLicenseData.GetAllLicensesWithDriverID(DriverID);
         }
 
         public static bool DeleteLicense(int LicenseID)

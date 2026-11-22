@@ -135,14 +135,14 @@
             this.label2.TabIndex = 24;
             this.label2.Text = "Appointments :";
             // 
-            // label1
+            // lblTitle
             // 
             this.lblTitle.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("Microsoft YaHei UI", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.ForeColor = System.Drawing.Color.White;
             this.lblTitle.Location = new System.Drawing.Point(304, 5);
-            this.lblTitle.Name = "label1";
+            this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(309, 41);
             this.lblTitle.TabIndex = 23;
             this.lblTitle.Text = "Test Appointments";

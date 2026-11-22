@@ -186,7 +186,7 @@ namespace DVLD.Applications.LocalDrivingLicenseApplication
         {
             clsLocalDrivingLicenseApplication localDrivingLicenseApplication = clsLocalDrivingLicenseApplication.FindByLocalDrivingLicenseApplicationID((int)dgvList.SelectedRows[0].Cells["LocalDrivingLicenseApplicationID"].Value);
 
-            int TotalPassedTests = clsLocalDrivingLicenseApplication.countPassedTests(localDrivingLicenseApplication._LocalDrivingLicenseApplicationID);
+            int TotalPassedTests = localDrivingLicenseApplication.countPassedTests();
 
             bool IsLicenseIssued = localDrivingLicenseApplication.IsLicenseIssued(); 
 

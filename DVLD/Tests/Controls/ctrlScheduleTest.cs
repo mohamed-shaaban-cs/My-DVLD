@@ -104,7 +104,7 @@ namespace DVLD.Tests.Controls
             lblD_Class.Text = _LocalDrivingLicenseApplicationInfo.LicenseClassInfo.ClassName;
             lblPersonName.Text = _LocalDrivingLicenseApplicationInfo.ApplicantFullName;
 
-            lblTrial.Text = clsLocalDrivingLicenseApplication.TotalTrialsPerTestType(_LocalDrivingLicenseApplicationInfo._LocalDrivingLicenseApplicationID, _TestTypeID).ToString();
+            lblTrial.Text = _LocalDrivingLicenseApplicationInfo.TotalTrialsPerTestType(_TestTypeID).ToString();
 
             if (_Mode == enMode.AddNew)
             {

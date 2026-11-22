@@ -3,6 +3,8 @@ using DVLD_DataAccess; // تأكد إن ده نفس اسم الـ Namespace بت
 using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
+using System.Runtime.CompilerServices;
 
 namespace DVLD_BusinessLogic
 {
@@ -168,23 +170,22 @@ namespace DVLD_BusinessLogic
         {
             return clsLocalDrivingLicenseApplicationData.DosePassTestType(_LocalDrivingLicenseApplicationID, (int)TestTypeID);
         }
-        public static byte TotalTrialsPerTestType(int LocalDrivingLicenseApplicationID, clsTestType.enTestType TestTypeID)
-        {
-            return clsLocalDrivingLicenseApplicationData.TotalTrialsPerTestType(LocalDrivingLicenseApplicationID, (int)TestTypeID);
-        }
         public byte TotalTrialsPerTestType(clsTestType.enTestType TestTypeID)
         {
             return clsLocalDrivingLicenseApplicationData.TotalTrialsPerTestType(_LocalDrivingLicenseApplicationID, (int)TestTypeID);
         }
         
-        public static byte countPassedTests(int LocalDrivingLicenseApplicationID)
-        {
-            return clsLocalDrivingLicenseApplicationData.CountPassedTests(LocalDrivingLicenseApplicationID);
-        }
+
         public  byte countPassedTests()
         {
             return clsLocalDrivingLicenseApplicationData.CountPassedTests(_LocalDrivingLicenseApplicationID);
         }
+
+        public bool PassedAllTests()
+        {
+            return this.countPassedTests() == 3;
+        }
+
         public static bool IsHavePassedTestPerTestType(int LocalDrivingLicenseApplicationID,clsTestType.enTestType TestTypeID)
         {
             return clsLocalDrivingLicenseApplicationData.IsHavePassedTestPerTestType(LocalDrivingLicenseApplicationID, (int)TestTypeID);
@@ -196,6 +197,39 @@ namespace DVLD_BusinessLogic
         public  bool IsHaveActiveTestAppointment(clsTestType.enTestType TestTypeID)
         {
             return clsLocalDrivingLicenseApplicationData.IsHaveActiveTestAppointment(_LocalDrivingLicenseApplicationID, (int)TestTypeID);
+        }
+        public int GetActiveLicenseID()
+        {
+            return clsLicenseData.GetActiveLicenseIDByPersonID( this.ApplicantPersonID , this._LicenseClassID);
+        }
+        public int IssueDriverLicenseFirstTime(string notes,int currentUserID)
+        {
+            clsDriver Driver =  clsDriver.FindByPersonID(ApplicantPersonID);
+            if (Driver == null)
+            {
+                Driver = new clsDriver();
+                Driver.PersonID = ApplicantPersonID;
+                Driver.CreatedByUserID = currentUserID;
+                if (!Driver.Save())
+                {
+                    return -1;
+                }
+            } 
+            clsLicense License = new clsLicense();
+            License.ApplicationID = ApplicationID;
+            License.DriverID = Driver.DriverID;
+            License.LicenseClassID = _LicenseClassID;
+            License.ExpirationDate = DateTime.Now.AddYears(LicenseClassInfo.DefaultValidityLength); // Example: +10 year expiration
+            License.Notes = notes;
+            License.PaidFees = LicenseClassInfo.ClassFees;
+            License.IssueReason = clsLicense.enIssueReason.FirstTime;
+            License.CreatedByUserID =currentUserID;
+            if (License.Save())
+            {
+                this.Complete();
+                return License.LicenseID;
+            }
+                return -1;
         }
 
         public bool IsLicenseIssued()

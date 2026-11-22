@@ -410,7 +410,7 @@ namespace DVLD_DataAccess
         {
             bool isIssued = false;
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-            string query = @"SELECT   COUNT(1) as IssuedLicenses
+            string query = @"SELECT   Top(1) LicenseID
                          FROM            Licenses 
                          WHERE Licenses.ApplicationID =@ApplicationID
                          ";

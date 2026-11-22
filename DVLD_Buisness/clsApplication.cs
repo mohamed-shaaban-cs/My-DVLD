@@ -170,7 +170,7 @@ namespace DVLD_BusinessLogic
         {
             return clsApplicationData.UpdateStatus(ApplicationID, (byte)enApplicationStatus.Cancelled);
         }
-        public bool Complete(int ApplicationID)
+        public bool Complete()
         {
             return clsApplicationData.UpdateStatus(ApplicationID, (byte)enApplicationStatus.Completed);
         }
