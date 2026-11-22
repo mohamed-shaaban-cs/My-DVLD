@@ -16,6 +16,7 @@ namespace DVLD.Licenses.Local_License.Controls
     {
         int _LicenseID;
         clsLicense _LicenseInfo;
+
         public clsLicense SelectedLicenseInfo
         {
             get
@@ -25,10 +26,12 @@ namespace DVLD.Licenses.Local_License.Controls
                 return _LicenseInfo;
             }
         }
+        int LicenseID { get { return _LicenseID; } }
         public ctrlLocalDriverLicenseInfo()
         {
             InitializeComponent();
         }
+
         void _LoadPersonImage()
         {
             // Set default image based on gender
@@ -95,7 +98,7 @@ namespace DVLD.Licenses.Local_License.Controls
             pbPersonImage.ImageLocation = "";
         }
 
-        public void LoadLicenseInfo(int LicenseID)
+        public void LoadInfo(int LicenseID)
         {
             _LicenseID = LicenseID;
             _LicenseInfo = clsLicense.Find(LicenseID);

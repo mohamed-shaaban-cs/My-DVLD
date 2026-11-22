@@ -20,7 +20,7 @@ namespace DVLD.Licenses.Local_License
         }
         private void frmLocalDirverLicenseInfo_Load(object sender, EventArgs e)
         {
-            ctrlLocalDriverLicenseInfo1.LoadLicenseInfo(_LicenseID);
+            ctrlLocalDriverLicenseInfo1.LoadInfo(_LicenseID);
         }
 
         private void crtlClose_Click(object sender, EventArgs e)
