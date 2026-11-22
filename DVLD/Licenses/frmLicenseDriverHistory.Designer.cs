@@ -90,6 +90,7 @@
             this.ctrlPersonCardWithFilter1.ShowAddPersonButton = true;
             this.ctrlPersonCardWithFilter1.Size = new System.Drawing.Size(1000, 474);
             this.ctrlPersonCardWithFilter1.TabIndex = 16;
+            this.ctrlPersonCardWithFilter1.OnPersonSelected += new System.Action<int>(this.ctrlPersonCardWithFilter1_OnPersonSelected);
             // 
             // frmLicenseDriverHistory
             // 

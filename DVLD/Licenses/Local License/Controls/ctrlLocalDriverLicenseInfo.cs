@@ -16,6 +16,7 @@ namespace DVLD.Licenses.Local_License.Controls
     {
         int _LicenseID;
         clsLicense _LicenseInfo;
+
         public clsLicense SelectedLicenseInfo
         {
             get
@@ -25,10 +26,12 @@ namespace DVLD.Licenses.Local_License.Controls
                 return _LicenseInfo;
             }
         }
+        int LicenseID { get { return _LicenseID; } }
         public ctrlLocalDriverLicenseInfo()
         {
             InitializeComponent();
         }
+
         void _LoadPersonImage()
         {
             // Set default image based on gender
@@ -36,10 +39,12 @@ namespace DVLD.Licenses.Local_License.Controls
 
             string ImagePath = _LicenseInfo.DriverInfo.PersonInfo.ImagePath;
             if (!string.IsNullOrEmpty(ImagePath))
+            {
                 if (File.Exists(ImagePath)) // Check if the image file exists
                     pbPersonImage.ImageLocation = ImagePath;
-                else
+                else 
                     MessageBox.Show($"Image file not found: {ImagePath}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         void _FillLicenseInfo()
@@ -50,27 +55,10 @@ namespace DVLD.Licenses.Local_License.Controls
             lblNationalNo.Text = _LicenseInfo.DriverInfo.PersonInfo.NationalNo;
             lblGender.Text = _LicenseInfo.DriverInfo.PersonInfo.Gender == 0 ? "Male" : "Female";
             lblIssueDate.Text = _LicenseInfo.IssueDate.ToShortDateString();
-
-            switch(_LicenseInfo.IssueReason)
-            {
-                case clsLicense.enIssueReason.FirstTime:
-                    lblIssueReason.Text = "First Time";
-                    break;
-                case clsLicense.enIssueReason.Renew:
-                    lblIssueReason.Text = "Renew License";
-                    break;
-                case clsLicense.enIssueReason.ReplacementForLost:
-                    lblIssueReason.Text = "Replacement For Lost";
-                    break;
-                case clsLicense.enIssueReason.ReplacementForDamaged:
-                    lblIssueReason.Text = "Replacement For Damaged";
-                    break;
-                default:
-                    lblIssueReason.Text = "Unknown";
-                    break;
-            }
+            lblIssueReason.Text = clsLicense.GetIssueReasonText(_LicenseInfo.IssueReason);
             lblNotes.Text = _LicenseInfo.Notes;
             lblIsActive.Text = _LicenseInfo.IsActive ? "Yes" : "No";
+
             lblDateOfBirth.Text = _LicenseInfo.DriverInfo.PersonInfo.DateOfBirth.ToShortDateString();
             lblDriverID.Text = _LicenseInfo.DriverID.ToString();
             lblExpirationDate.Text = _LicenseInfo.ExpirationDate.ToShortDateString();
@@ -95,7 +83,7 @@ namespace DVLD.Licenses.Local_License.Controls
             pbPersonImage.ImageLocation = "";
         }
 
-        public void LoadLicenseInfo(int LicenseID)
+        public void LoadInfo(int LicenseID)
         {
             _LicenseID = LicenseID;
             _LicenseInfo = clsLicense.Find(LicenseID);

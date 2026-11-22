@@ -87,9 +87,9 @@ namespace DVLD_DataAccess
             }
             return isFound;
         }
-        public static bool GetActiveLicenseInfoByPersonID(int PersonID, int LicenseClassID)
+        public static int GetActiveLicenseIDByPersonID(int PersonID, int LicenseClassID)
         {
-            bool isFound = false;
+            int LicenseID = -1;
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
             string query = @"SELECT    1 found
                          FROM            Applications INNER JOIN
@@ -105,19 +105,44 @@ namespace DVLD_DataAccess
                 object Reader = command.ExecuteScalar();
                 if (Reader != null)
                 {
-                    isFound = true;
+                    LicenseID = (int)Reader;
                 }
             }
             catch (Exception ex)
             {
                 // Log Exception
-                isFound = false;
+                LicenseID = -1;
             }
             finally
             {
                 connection.Close();
             }
-            return isFound;
+            return LicenseID;
+        }
+        public static bool DeativateLicese(int LicenseID)
+        {
+            int rowsAffected = 0;
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = @"Update Licenses
+                             Set  IsActive = 0
+                             WHERE LicenseID = @LicenseID";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@LicenseID", LicenseID);
+
+            try
+            {
+                connection.Open();
+                rowsAffected = command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                // Log Exception
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return (rowsAffected > 0);
         }
 
         public static int AddNewLicense( int ApplicationID, int DriverID, int LicenseClassID, DateTime IssueDate, DateTime ExpirationDate, string Notes, decimal PaidFees, bool IsActive, byte IssueReason, int CreatedByUserID)
@@ -306,7 +331,7 @@ namespace DVLD_DataAccess
             }
             return dt;
         }
-        public static DataTable GetLicensesHistoryWithDriverID(int DriverID)
+        public static DataTable GetAllLicensesWithDriverID(int DriverID)
         {
             DataTable dt = new DataTable();
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
