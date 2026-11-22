@@ -15,40 +15,28 @@ namespace DVLD.Licenses.Controls
 {
     public partial class ctrlDriverLicensesHistory : UserControl
     {
-        int _DriverID;
+        int _DriverID =-1;
+        clsDriver _Driver;
+        public clsDriver Driver { get { return _Driver; } }
         DataTable _dtLocalLicensesHistory;
         DataTable _dtInternationalLicensesHistory;
         public ctrlDriverLicensesHistory()
         {
             InitializeComponent();
         }
-        void _RefreashLocalLicensesHistoryGrid()
+        void _LoadLocalLicensesInfo()
         {
             _dtLocalLicensesHistory = clsLicense.GetLicensesHistoryWithDriverID(_DriverID);
             dgvLocalList.DataSource = _dtLocalLicensesHistory;
+
             lblLocalRecords.Text = _dtLocalLicensesHistory.Rows.Count.ToString();
-        }
-        void _RefreashInternationalLicensesHistoryGrid()
-        {
-            _dtInternationalLicensesHistory = clsInternationalLicense.GetInternationalLicensesHistoryWithDriverID(_DriverID);
-            dgvInternationalList.DataSource = _dtInternationalLicensesHistory;
-            lblInternationalRecords.Text = _dtInternationalLicensesHistory.Rows.Count.ToString();
-        }
-        public void LoadLicensesHistory(int PersonID)
-        {
-            clsDriver driver = clsDriver.FindByPersonID(PersonID);
 
-            if(driver == null)
-                return;
 
-            _DriverID = driver.DriverID;
-
-            _RefreashLocalLicensesHistoryGrid();
             DataGridViewInterfacescs.DataGridViewModernStayle(dgvLocalList);
             if (dgvLocalList.Rows.Count > 0)
             {
 
-                dgvLocalList.Columns["LicenseID"].HeaderText= "lic.ID";
+                dgvLocalList.Columns["LicenseID"].HeaderText = "lic.ID";
                 dgvLocalList.Columns["LicenseID"].Width = 100;
                 dgvLocalList.Columns["ApplicationID"].HeaderText = "App.ID";
                 dgvLocalList.Columns["ApplicationID"].Width = 100;
@@ -62,7 +50,15 @@ namespace DVLD.Licenses.Controls
                 dgvLocalList.Columns["IsActive"].Width = 100;
             }
 
-            _RefreashInternationalLicensesHistoryGrid();
+        }
+        void _LoadInternationalLicensesInfo()
+        {
+            _dtInternationalLicensesHistory = clsInternationalLicense.GetInternationalLicensesHistoryWithDriverID(_DriverID);
+            dgvInternationalList.DataSource = _dtInternationalLicensesHistory;
+
+            lblInternationalRecords.Text = _dtInternationalLicensesHistory.Rows.Count.ToString();
+
+
             DataGridViewInterfacescs.DataGridViewModernStayle(dgvInternationalList);
             if (dgvInternationalList.Rows.Count > 0)
             {
@@ -79,19 +75,45 @@ namespace DVLD.Licenses.Controls
                 dgvInternationalList.Columns["IsActive"].HeaderText = "Is Active";
                 dgvInternationalList.Columns["IsActive"].Width = 100;
             }
+
+
+        }
+
+        public void Clear()
+        {
+            dgvInternationalList.DataSource = null;
+            dgvLocalList.DataSource = null;
+        }
+        public void LoadInfoByPersonID(int PersonID)
+        {
+             _Driver = clsDriver.FindByPersonID(PersonID);
+
+            if(_Driver == null)
+                return;
+
+            _DriverID = _Driver.DriverID;
+
+            _LoadLocalLicensesInfo();
+            _LoadInternationalLicensesInfo();
+            
+        }
+        public void LoadInfo(int DriverID)
+        {
+            _DriverID = DriverID;
+            _Driver = clsDriver.Find(DriverID);
+
+            if (_Driver != null)
+            {
+                _LoadLocalLicensesInfo();
+                _LoadInternationalLicensesInfo();
+            }
+            
         }
 
         private void ShowLicense_Click(object sender, EventArgs e)
         {
-            if(tcLicenseHistory.SelectedTab == tpLocal)
-            {
                 frmLocalDirverLicenseInfo frm = new frmLocalDirverLicenseInfo((int)dgvLocalList.SelectedRows[0].Cells["LicenseID"].Value);
                 frm.ShowDialog();
-            }
-            else if(tcLicenseHistory.SelectedTab == tpInternational)
-            {
-
-            }
         }
     }
 }
