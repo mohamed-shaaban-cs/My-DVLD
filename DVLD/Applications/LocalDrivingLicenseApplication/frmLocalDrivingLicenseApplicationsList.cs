@@ -283,5 +283,11 @@ namespace DVLD.Applications.LocalDrivingLicenseApplication
             frmLicenseDriverHistory frmLicenseDriverHistory = new frmLicenseDriverHistory(clsLocalDrivingLicenseApplication.FindByLocalDrivingLicenseApplicationID((int)dgvList.SelectedRows[0].Cells["LocalDrivingLicenseApplicationID"].Value).ApplicantPersonID);
             frmLicenseDriverHistory.ShowDialog();
         }
+
+        private void tbSeach_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (cbFilters.SelectedItem.ToString() == "L.D.L.App.ID")
+                e.Handled = (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar));
+        }
     }
 }

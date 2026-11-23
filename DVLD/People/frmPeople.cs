@@ -68,7 +68,7 @@ namespace DVLD.People
         private void tbSeach_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (cbFilters.SelectedItem.ToString() == "Person ID" || cbFilters.SelectedItem.ToString() == "Phone")
-                e.Handled = (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar));
+                e.Handled = (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar)); //mean a = ture , 1 =false , Enter = false .
         }
 
         private void tbSeach_TextChanged(object sender, EventArgs e)

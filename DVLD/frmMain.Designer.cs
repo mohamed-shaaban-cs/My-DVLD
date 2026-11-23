@@ -362,6 +362,7 @@
             this.dirversToolStripMenuItem.Name = "dirversToolStripMenuItem";
             this.dirversToolStripMenuItem.Size = new System.Drawing.Size(171, 68);
             this.dirversToolStripMenuItem.Text = "    Dirvers";
+            this.dirversToolStripMenuItem.Click += new System.EventHandler(this.dirversToolStripMenuItem_Click);
             // 
             // usersToolStripMenuItem
             // 
