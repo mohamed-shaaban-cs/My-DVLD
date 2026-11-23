@@ -81,11 +81,11 @@ namespace DVLD_DataAccess
             string query = @"INSERT INTO Drivers ([PersonID], [CreatedByUserID], [CreatedDate])
                              VALUES (@PersonID, @CreatedByUserID, @CreatedDate);
                              SELECT SCOPE_IDENTITY();";
-            SqlCommand command = new SqlCommand(query, connection);
+                SqlCommand command = new SqlCommand(query, connection);
 
-   command.Parameters.AddWithValue("@PersonID",PersonID);
-   command.Parameters.AddWithValue("@CreatedByUserID",CreatedByUserID);
-   command.Parameters.AddWithValue("@CreatedDate",CreatedDate);
+               command.Parameters.AddWithValue("@PersonID",PersonID);
+               command.Parameters.AddWithValue("@CreatedByUserID",CreatedByUserID);
+               command.Parameters.AddWithValue("@CreatedDate",CreatedDate);
 
 
             try
@@ -108,18 +108,17 @@ namespace DVLD_DataAccess
             return InsertedID;
         }
 
-        public static bool UpdateDriver(int DriverID, int PersonID, int CreatedByUserID, DateTime CreatedDate)
+        public static bool UpdateDriver(int DriverID, int PersonID, int CreatedByUserID)
         {
             int rowsAffected = 0;
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
             string query = @"UPDATE Drivers
-                             SET [PersonID] = @PersonID, [CreatedByUserID] = @CreatedByUserID, [CreatedDate] = @CreatedDate
+                             SET [PersonID] = @PersonID, [CreatedByUserID] = @CreatedByUserID
                              WHERE DriverID = @DriverID";
             SqlCommand command = new SqlCommand(query, connection);
 
             command.Parameters.AddWithValue("@PersonID", PersonID);
             command.Parameters.AddWithValue("@CreatedByUserID", CreatedByUserID);
-            command.Parameters.AddWithValue("@CreatedDate", CreatedDate);
 
             command.Parameters.AddWithValue("@DriverID", DriverID);
 

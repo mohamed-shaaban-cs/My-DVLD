@@ -1,4 +1,6 @@
-﻿using DVLD_BusinessLogic;
+﻿using DVLD.Licenses;
+using DVLD.People;
+using DVLD_BusinessLogic;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,12 +21,15 @@ namespace DVLD.Drivers
             InitializeComponent();
             cbFilters.SelectedIndex = 0;
         }
-
-        private void frmListDrivers_Load(object sender, EventArgs e)
+        void _RefreachList()
         {
             _dtDrivers = clsDriver.GetAllDrivers();
             dgvList.DataSource = _dtDrivers;
             lblRecordsCount.Text = dgvList.RowCount.ToString();
+        }
+        private void frmListDrivers_Load(object sender, EventArgs e)
+        {
+            _RefreachList();
             ModrenUI_Interface.DataGridViewInterfacescs.DataGridViewModernStayle(dgvList);
 
             dgvList.Columns["DriverID"].HeaderText = "Driver ID";
@@ -97,6 +102,20 @@ namespace DVLD.Drivers
         {
             if (cbFilters.SelectedItem.ToString() == "Person ID" || cbFilters.SelectedItem.ToString() == "Driver ID")
                 e.Handled = (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar));
+        }
+
+        private void showDetailsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmPersonDetails frm = new  frmPersonDetails((int)dgvList.SelectedRows[0].Cells["PersonID"].Value);
+            frm.ShowDialog();
+            _RefreachList();
+        }
+
+        private void addNewPersonToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmLicenseDriverHistory frm = new frmLicenseDriverHistory((int)dgvList.SelectedRows[0].Cells["PersonID"].Value);
+            frm.ShowDialog();
+            _RefreachList();
         }
     }
 }

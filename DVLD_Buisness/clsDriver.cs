@@ -59,7 +59,7 @@ namespace DVLD_BusinessLogic
         private bool _UpdateDriver()
         {
             // التعديل هنا
-            return clsDriverData.UpdateDriver(this.DriverID, this.PersonID, this.CreatedByUserID, this.CreatedDate);
+            return clsDriverData.UpdateDriver(this.DriverID, this.PersonID, this.CreatedByUserID);
         }
 
         public static clsDriver Find(int DriverID)
