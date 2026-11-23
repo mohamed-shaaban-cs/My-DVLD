@@ -195,14 +195,7 @@ namespace DVLD_DataAccess
         {
             DataTable dt = new DataTable();
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-            string query = @"
-                            SELECT       Drivers.DriverID, Drivers.PersonID, People.NationalNo, Concat_WS(People.FirstName, People.SecondName , People.ThirdName,People.LastName)as FullName
-                            ,Drivers.CreatedDate as Date,count(Licenses.LicenseID)as ActiveLicenses
-                            FROM            Drivers  inner join
-                                                     People ON Drivers.PersonID = People.PersonID  Full outer join
-                                                     Licenses ON Drivers.DriverID = Licenses.DriverID 
-                            WHERE Licenses.IsActive = 1
-                            Group by   Drivers.DriverID, Drivers.PersonID, People.NationalNo,Concat_WS(People.FirstName, People.SecondName , People.ThirdName,People.LastName),Drivers.CreatedDate";
+            string query = "select * From DriversView order By FullName ";
             SqlCommand command = new SqlCommand(query, connection);
 
             try
