@@ -88,8 +88,12 @@ namespace DVLD.Licenses.Controls
         {
              _Driver = clsDriver.FindByPersonID(PersonID);
 
-            if(_Driver == null)
+            if (_Driver == null)
+            {
+                MessageBox.Show("There is no driver Linked With Person With Id = " + PersonID, "Not Found", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
+
+            }
 
             _DriverID = _Driver.DriverID;
 
@@ -106,8 +110,11 @@ namespace DVLD.Licenses.Controls
             {
                 _LoadLocalLicensesInfo();
                 _LoadInternationalLicensesInfo();
+                return;
             }
-            
+            else
+                MessageBox.Show("There is no driver Linked With Person With Id = " + DriverID, "Not Found", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
         }
 
         private void ShowLicense_Click(object sender, EventArgs e)
