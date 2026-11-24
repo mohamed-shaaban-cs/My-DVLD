@@ -22,13 +22,50 @@ namespace DVLD_DataAccess
                 if (Reader.Read())
                 {
                     isFound = true;
-   ApplicationID = Reader["ApplicationID"] != DBNull.Value ? (int)Reader["ApplicationID"] : -1;
-   DriverID = Reader["DriverID"] != DBNull.Value ? (int)Reader["DriverID"] : -1;
-   IssuedUsingLocalLicenseID = Reader["IssuedUsingLocalLicenseID"] != DBNull.Value ? (int)Reader["IssuedUsingLocalLicenseID"] : -1;
-   IssueDate = Reader["IssueDate"] != DBNull.Value ? (object)Reader["IssueDate"] : null;
-   ExpirationDate = Reader["ExpirationDate"] != DBNull.Value ? (object)Reader["ExpirationDate"] : null;
-   IsActive = Reader["IsActive"] != DBNull.Value ? (bool)Reader["IsActive"] : false;
-   CreatedByUserID = Reader["CreatedByUserID"] != DBNull.Value ? (int)Reader["CreatedByUserID"] : -1;
+                    ApplicationID = Reader["ApplicationID"] != DBNull.Value ? (int)Reader["ApplicationID"] : -1;
+                    DriverID = Reader["DriverID"] != DBNull.Value ? (int)Reader["DriverID"] : -1;
+                    IssuedUsingLocalLicenseID = Reader["IssuedUsingLocalLicenseID"] != DBNull.Value ? (int)Reader["IssuedUsingLocalLicenseID"] : -1;
+                    IssueDate = Reader["IssueDate"] != DBNull.Value ? (object)Reader["IssueDate"] : null;
+                    ExpirationDate = Reader["ExpirationDate"] != DBNull.Value ? (object)Reader["ExpirationDate"] : null;
+                    IsActive = Reader["IsActive"] != DBNull.Value ? (bool)Reader["IsActive"] : false;
+                    CreatedByUserID = Reader["CreatedByUserID"] != DBNull.Value ? (int)Reader["CreatedByUserID"] : -1;
+
+                }
+                Reader.Close();
+            }
+            catch (Exception ex)
+            {
+                // Log Exception
+                isFound = false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return isFound;
+        }
+        public static bool GetInternationalLicenseInfoByDriverID( int DriverID,ref int InternationalLicenseID, ref int ApplicationID,ref int IssuedUsingLocalLicenseID,ref object IssueDate,ref object ExpirationDate,ref bool IsActive,ref int CreatedByUserID)
+        {
+            bool isFound = false;
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = "SELECT * FROM InternationalLicenses WHERE DriverID = @DriverID";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@DriverID", DriverID);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader Reader = command.ExecuteReader();
+                if (Reader.Read())
+                {
+                    isFound = true;
+                    InternationalLicenseID = Reader["InternationalLicenseID"] != DBNull.Value ? (int)Reader["DriverID"] : -1;
+                    ApplicationID = Reader["ApplicationID"] != DBNull.Value ? (int)Reader["ApplicationID"] : -1;
+                    IssuedUsingLocalLicenseID = Reader["IssuedUsingLocalLicenseID"] != DBNull.Value ? (int)Reader["IssuedUsingLocalLicenseID"] : -1;
+                    IssueDate = Reader["IssueDate"] != DBNull.Value ? (object)Reader["IssueDate"] : null;
+                    ExpirationDate = Reader["ExpirationDate"] != DBNull.Value ? (object)Reader["ExpirationDate"] : null;
+                    IsActive = Reader["IsActive"] != DBNull.Value ? (bool)Reader["IsActive"] : false;
+                    CreatedByUserID = Reader["CreatedByUserID"] != DBNull.Value ? (int)Reader["CreatedByUserID"] : -1;
 
                 }
                 Reader.Close();

@@ -12,7 +12,35 @@ namespace DVLD_BusinessLogic
 
         public int InternationalLicenseID { get; set; }
         public int ApplicationID { get; set; }
+        clsApplication _ApplicationInfo;
+        bool _isApplicationLoaded=false;
+        public clsApplication ApplicationInfo
+        {
+            get
+            {
+                if (!_isApplicationLoaded)
+                {
+                    _ApplicationInfo = clsApplication.FindBaseApplication(ApplicationID);
+                    _isApplicationLoaded = true;
+                }
+                return _ApplicationInfo;
+            }
+        }
         public int DriverID { get; set; }
+        clsApplication _DriverInfo;
+        bool _isDriverLoaded = false;
+        public clsApplication DriverInfo
+        {
+            get
+            {
+                if (!_isDriverLoaded)
+                {
+                    _DriverInfo = clsApplication.FindBaseApplication(DriverID);
+                    _isDriverLoaded = true;
+                }
+                return _DriverInfo;
+            }
+        }
         public int IssuedUsingLocalLicenseID { get; set; }
         public object IssueDate { get; set; }
         public object ExpirationDate { get; set; }
@@ -75,6 +103,24 @@ namespace DVLD_BusinessLogic
 
             
             bool IsFound = clsInternationalLicenseData.GetInternationalLicenseInfoByID(InternationalLicenseID, ref ApplicationID, ref DriverID, ref IssuedUsingLocalLicenseID, ref IssueDate, ref ExpirationDate, ref IsActive, ref CreatedByUserID);
+
+            if (IsFound)
+                return new clsInternationalLicense(InternationalLicenseID, ApplicationID, DriverID, IssuedUsingLocalLicenseID, IssueDate, ExpirationDate, IsActive, CreatedByUserID);
+            else
+                return null;
+        }
+        public static clsInternationalLicense FindByDriverID(int DriverID)
+        {
+            int InternationalLicenseID = -1;
+            int ApplicationID = -1;
+            int IssuedUsingLocalLicenseID = -1;
+            object IssueDate = null;
+            object ExpirationDate = null;
+            bool IsActive = false;
+            int CreatedByUserID = -1;
+
+            
+            bool IsFound = clsInternationalLicenseData.GetInternationalLicenseInfoByDriverID( DriverID,ref InternationalLicenseID, ref ApplicationID,  ref IssuedUsingLocalLicenseID, ref IssueDate, ref ExpirationDate, ref IsActive, ref CreatedByUserID);
 
             if (IsFound)
                 return new clsInternationalLicense(InternationalLicenseID, ApplicationID, DriverID, IssuedUsingLocalLicenseID, IssueDate, ExpirationDate, IsActive, CreatedByUserID);

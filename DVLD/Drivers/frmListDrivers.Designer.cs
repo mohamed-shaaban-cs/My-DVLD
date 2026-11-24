@@ -34,6 +34,10 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dgvList = new System.Windows.Forms.DataGridView();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.showDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.addNewPersonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lblRecordsCount = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.tbSeach = new System.Windows.Forms.TextBox();
@@ -42,14 +46,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.crtlClose = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.showDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.addNewPersonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvList)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -97,6 +97,45 @@
             this.dgvList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvList.Size = new System.Drawing.Size(1161, 330);
             this.dgvList.TabIndex = 2;
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.BackColor = System.Drawing.Color.LightSlateGray;
+            this.contextMenuStrip1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.showDetailsToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.addNewPersonToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(281, 86);
+            // 
+            // showDetailsToolStripMenuItem
+            // 
+            this.showDetailsToolStripMenuItem.BackColor = System.Drawing.Color.LightSlateGray;
+            this.showDetailsToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.showDetailsToolStripMenuItem.Image = global::DVLD.Properties.Resources.PersonDetails_32;
+            this.showDetailsToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.showDetailsToolStripMenuItem.Name = "showDetailsToolStripMenuItem";
+            this.showDetailsToolStripMenuItem.Size = new System.Drawing.Size(280, 38);
+            this.showDetailsToolStripMenuItem.Text = "Show Person Info";
+            this.showDetailsToolStripMenuItem.Click += new System.EventHandler(this.showDetailsToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.BackColor = System.Drawing.Color.SteelBlue;
+            this.toolStripSeparator2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(277, 6);
+            // 
+            // addNewPersonToolStripMenuItem
+            // 
+            this.addNewPersonToolStripMenuItem.BackColor = System.Drawing.Color.LightSlateGray;
+            this.addNewPersonToolStripMenuItem.Image = global::DVLD.Properties.Resources.PersonLicenseHistory_32;
+            this.addNewPersonToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.addNewPersonToolStripMenuItem.Name = "addNewPersonToolStripMenuItem";
+            this.addNewPersonToolStripMenuItem.Size = new System.Drawing.Size(280, 38);
+            this.addNewPersonToolStripMenuItem.Text = "Show Person License History";
+            this.addNewPersonToolStripMenuItem.Click += new System.EventHandler(this.addNewPersonToolStripMenuItem_Click);
             // 
             // lblRecordsCount
             // 
@@ -200,45 +239,6 @@
             this.pictureBox1.TabIndex = 31;
             this.pictureBox1.TabStop = false;
             // 
-            // showDetailsToolStripMenuItem
-            // 
-            this.showDetailsToolStripMenuItem.BackColor = System.Drawing.Color.LightSlateGray;
-            this.showDetailsToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.showDetailsToolStripMenuItem.Image = global::DVLD.Properties.Resources.PersonDetails_32;
-            this.showDetailsToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.showDetailsToolStripMenuItem.Name = "showDetailsToolStripMenuItem";
-            this.showDetailsToolStripMenuItem.Size = new System.Drawing.Size(280, 38);
-            this.showDetailsToolStripMenuItem.Text = "Show Person Info";
-            this.showDetailsToolStripMenuItem.Click += new System.EventHandler(this.showDetailsToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.BackColor = System.Drawing.Color.SteelBlue;
-            this.toolStripSeparator2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(277, 6);
-            // 
-            // addNewPersonToolStripMenuItem
-            // 
-            this.addNewPersonToolStripMenuItem.BackColor = System.Drawing.Color.LightSlateGray;
-            this.addNewPersonToolStripMenuItem.Image = global::DVLD.Properties.Resources.PersonLicenseHistory_32;
-            this.addNewPersonToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.addNewPersonToolStripMenuItem.Name = "addNewPersonToolStripMenuItem";
-            this.addNewPersonToolStripMenuItem.Size = new System.Drawing.Size(280, 38);
-            this.addNewPersonToolStripMenuItem.Text = "Show Person License History";
-            this.addNewPersonToolStripMenuItem.Click += new System.EventHandler(this.addNewPersonToolStripMenuItem_Click);
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.BackColor = System.Drawing.Color.LightSlateGray;
-            this.contextMenuStrip1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.showDetailsToolStripMenuItem,
-            this.toolStripSeparator2,
-            this.addNewPersonToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(281, 86);
-            // 
             // frmListDrivers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -261,8 +261,8 @@
             this.Load += new System.EventHandler(this.frmListDrivers_Load);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvList)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
