@@ -59,7 +59,7 @@ namespace DVLD_DataAccess
                 if (Reader.Read())
                 {
                     isFound = true;
-                    InternationalLicenseID = Reader["InternationalLicenseID"] != DBNull.Value ? (int)Reader["DriverID"] : -1;
+                    InternationalLicenseID = Reader["InternationalLicensesID"] != DBNull.Value ? (int)Reader["InternationalLicensesID"] : -1;
                     ApplicationID = Reader["ApplicationID"] != DBNull.Value ? (int)Reader["ApplicationID"] : -1;
                     IssuedUsingLocalLicenseID = Reader["IssuedUsingLocalLicenseID"] != DBNull.Value ? (int)Reader["IssuedUsingLocalLicenseID"] : -1;
                     IssueDate = Reader["IssueDate"] != DBNull.Value ? (object)Reader["IssueDate"] : null;
@@ -238,7 +238,7 @@ namespace DVLD_DataAccess
         {
             DataTable dt = new DataTable();
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-            string query = @"SELECT       InternationalLicenseID, ApplicationID, IssuedUsingLocalLicenseID, IssueDate, ExpirationDate, IsActive
+            string query = @"SELECT       InternationalLicensesID, ApplicationID, IssuedUsingLocalLicenseID, IssueDate, ExpirationDate, IsActive
                              FROM            InternationalLicenses 
                              WHERE DriverID = @DriverID";
             SqlCommand command = new SqlCommand(query, connection);

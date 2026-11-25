@@ -51,7 +51,7 @@ namespace DVLD.Licenses.Controls
             }
 
         }
-        void _LoadInternationalLicensesInfo()
+        public void _LoadInternationalLicensesInfo()
         {
             _dtInternationalLicensesHistory = clsInternationalLicense.GetInternationalLicensesHistoryWithDriverID(_DriverID);
             dgvInternationalList.DataSource = _dtInternationalLicensesHistory;
@@ -62,12 +62,14 @@ namespace DVLD.Licenses.Controls
             DataGridViewInterfacescs.DataGridViewModernStayle(dgvInternationalList);
             if (dgvInternationalList.Rows.Count > 0)
             {
-                dgvInternationalList.Columns["InternationalLicenseID"].HeaderText = "Int.License ID";
-                dgvInternationalList.Columns["InternationalLicenseID"].Width = 100;
+                dgvInternationalList.ColumnHeadersHeight = 35;
+
+                dgvInternationalList.Columns["InternationalLicensesID"].HeaderText = "Int.License ID";
+                dgvInternationalList.Columns["InternationalLicensesID"].Width = 200;
                 dgvInternationalList.Columns["ApplicationID"].HeaderText = "Application ID";
                 dgvInternationalList.Columns["ApplicationID"].Width = 100;
-                dgvInternationalList.Columns["LicenseID"].HeaderText = "L.License ID";
-                dgvInternationalList.Columns["LicenseID"].Width = 100;
+                dgvInternationalList.Columns["IssuedUsingLocalLicenseID"].HeaderText = "L.License ID";
+                dgvInternationalList.Columns["IssuedUsingLocalLicenseID"].Width = 100;
                 dgvInternationalList.Columns["IssueDate"].HeaderText = "Issue Date";
                 dgvInternationalList.Columns["IssueDate"].Width = 150;
                 dgvInternationalList.Columns["ExpirationDate"].HeaderText = "Expiration Date";
@@ -75,8 +77,6 @@ namespace DVLD.Licenses.Controls
                 dgvInternationalList.Columns["IsActive"].HeaderText = "Is Active";
                 dgvInternationalList.Columns["IsActive"].Width = 100;
             }
-
-
         }
 
         public void Clear()
@@ -121,6 +121,14 @@ namespace DVLD.Licenses.Controls
         {
                 frmLocalDirverLicenseInfo frm = new frmLocalDirverLicenseInfo((int)dgvLocalList.SelectedRows[0].Cells["LicenseID"].Value);
                 frm.ShowDialog();
+        }
+
+        private void tcLicenseHistory_TabIndexChanged(object sender, EventArgs e)
+        {
+            if (tcLicenseHistory.SelectedIndex == 1)
+            {
+                _LoadInternationalLicensesInfo();
+            }
         }
     }
 }

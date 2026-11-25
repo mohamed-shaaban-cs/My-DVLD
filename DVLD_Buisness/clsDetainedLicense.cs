@@ -86,6 +86,26 @@ namespace DVLD_BusinessLogic
             else
                 return null;
         }
+        public static clsDetainedLicense FindByLicenseID(int LicenseID)
+        {
+            
+            int DetainID = -1;
+            object DetainDate = null;
+            decimal FineFees = 0.0m;
+            int CreatedByUserID = -1;
+            bool IsReleased = false;
+            object ReleaseDate = null;
+            int ReleasedByUserID = -1;
+            int ReleaseApplicationID = -1;
+
+            
+            bool IsFound = clsDetainedLicenseData.GetDetainedLicenseInfoByLicenseID( LicenseID, ref DetainID, ref DetainDate, ref FineFees, ref CreatedByUserID, ref IsReleased, ref ReleaseDate, ref ReleasedByUserID, ref ReleaseApplicationID);
+
+            if (IsFound)
+                return new clsDetainedLicense(DetainID, LicenseID, DetainDate, FineFees, CreatedByUserID, IsReleased, ReleaseDate, ReleasedByUserID, ReleaseApplicationID);
+            else
+                return null;
+        }
 
         public bool Save()
         {
@@ -127,10 +147,6 @@ namespace DVLD_BusinessLogic
             
             return clsDetainedLicenseData.IsDetainedLicenseExist(DetainedLicenseID);
         }
-        public static bool IsLicenseDetained(int LicenseID)
-        {
 
-            return clsDetainedLicenseData.IsLicenseDetained(LicenseID);
-        }
     }
 }

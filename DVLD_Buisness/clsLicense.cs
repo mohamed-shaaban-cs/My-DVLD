@@ -55,6 +55,7 @@ namespace DVLD_BusinessLogic
         public enIssueReason IssueReason { get; set; }
         public int CreatedByUserID { get; set; }
 
+        public bool IsDetained { get { return IsLicesneDetained(); } }
 
         // Default Constructor للمستخدم الجديد
         public clsLicense()
@@ -220,6 +221,11 @@ namespace DVLD_BusinessLogic
         {
             
             return clsLicenseData.DeleteLicense(LicenseID);
+        }
+
+        bool IsLicesneDetained()
+        {
+            return clsDetainedLicense.FindByLicenseID(this.LicenseID) != null;
         }
 
         public static bool IsLicenseExist(int LicenseID)

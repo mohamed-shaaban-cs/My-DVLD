@@ -30,7 +30,6 @@ namespace DVLD.Licenses
             {
                 ctrlPersonCardWithFilter1.LoadPersonInfo(_PersonID);
                 ctrlPersonCardWithFilter1.FilterEnabled = false; // Disable filtering in the person card
-                ctrlDriverLicensesHistory1.LoadInfoByPersonID(_PersonID);
             }
             else
             {

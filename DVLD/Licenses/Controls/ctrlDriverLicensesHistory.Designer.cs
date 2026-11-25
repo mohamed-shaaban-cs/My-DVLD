@@ -37,23 +37,23 @@
             this.label5 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.dgvLocalList = new System.Windows.Forms.DataGridView();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.ShowLicense = new System.Windows.Forms.ToolStripMenuItem();
             this.tpInternational = new System.Windows.Forms.TabPage();
             this.label2 = new System.Windows.Forms.Label();
             this.lblInternationalRecords = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dgvInternationalList = new System.Windows.Forms.DataGridView();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.ShowLicense = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.tcLicenseHistory.SuspendLayout();
             this.tpLocal.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLocalList)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             this.tpInternational.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvInternationalList)).BeginInit();
-            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -154,6 +154,24 @@
             this.dgvLocalList.Size = new System.Drawing.Size(1176, 216);
             this.dgvLocalList.TabIndex = 2;
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.BackColor = System.Drawing.Color.LightSlateGray;
+            this.contextMenuStrip1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ShowLicense});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(183, 42);
+            // 
+            // ShowLicense
+            // 
+            this.ShowLicense.Image = global::DVLD.Properties.Resources.License_View_32;
+            this.ShowLicense.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.ShowLicense.Name = "ShowLicense";
+            this.ShowLicense.Size = new System.Drawing.Size(182, 38);
+            this.ShowLicense.Text = "Show License";
+            this.ShowLicense.Click += new System.EventHandler(this.ShowLicense_Click);
+            // 
             // tpInternational
             // 
             this.tpInternational.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(24)))), ((int)(((byte)(40)))));
@@ -213,7 +231,7 @@
             // 
             this.dgvInternationalList.AllowUserToAddRows = false;
             this.dgvInternationalList.AllowUserToDeleteRows = false;
-            this.dgvInternationalList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvInternationalList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvInternationalList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvInternationalList.Location = new System.Drawing.Point(0, 0);
             this.dgvInternationalList.Name = "dgvInternationalList";
@@ -221,24 +239,6 @@
             this.dgvInternationalList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvInternationalList.Size = new System.Drawing.Size(1178, 216);
             this.dgvInternationalList.TabIndex = 2;
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.BackColor = System.Drawing.Color.LightSlateGray;
-            this.contextMenuStrip1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ShowLicense});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(183, 42);
-            // 
-            // ShowLicense
-            // 
-            this.ShowLicense.Image = global::DVLD.Properties.Resources.License_View_32;
-            this.ShowLicense.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.ShowLicense.Name = "ShowLicense";
-            this.ShowLicense.Size = new System.Drawing.Size(182, 38);
-            this.ShowLicense.Text = "Show License";
-            this.ShowLicense.Click += new System.EventHandler(this.ShowLicense_Click);
             // 
             // ctrlDriverLicensesHistory
             // 
@@ -253,11 +253,11 @@
             this.tpLocal.PerformLayout();
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvLocalList)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.tpInternational.ResumeLayout(false);
             this.tpInternational.PerformLayout();
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvInternationalList)).EndInit();
-            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

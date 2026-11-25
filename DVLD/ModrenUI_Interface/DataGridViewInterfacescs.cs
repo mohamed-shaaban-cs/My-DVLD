@@ -26,8 +26,7 @@ namespace ModrenUI_Interface
             dgvModrenStayle.EnableHeadersVisualStyles = false;
             dgvModrenStayle.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(245, 245, 245);
             dgvModrenStayle.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black;
-            dgvModrenStayle.ColumnHeadersDefaultCellStyle.Font =
-                new Font("Segoe UI", 12, FontStyle.Bold);
+            dgvModrenStayle.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 12, FontStyle.Bold);
 
             // الصفوفdgvModrenStayle (Rows)
             dgvModrenStayle.DefaultCellStyle.Font =

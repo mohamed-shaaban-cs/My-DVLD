@@ -59,7 +59,7 @@ namespace DVLD.Licenses.Local_License.Controls
             lblDateOfBirth.Text = _LicenseInfo.DriverInfo.PersonInfo.DateOfBirth.ToShortDateString();
             lblDriverID.Text = _LicenseInfo.DriverID.ToString();
             lblExpirationDate.Text = _LicenseInfo.ExpirationDate.ToShortDateString();
-            lblIsDetained.Text = clsDetainedLicense.IsLicenseDetained(_LicenseInfo.LicenseID) ? "Yes" : "No";
+            lblIsDetained.Text = (_LicenseInfo.IsDetained) ? "Yes" : "No";
             _LoadPersonImage();
         }
         public void ResetLicenseInfo()
@@ -88,8 +88,8 @@ namespace DVLD.Licenses.Local_License.Controls
             _LicenseInfo = clsLicense.Find(LicenseID);
             if (_LicenseInfo == null)
             {
+                MessageBox.Show($"License with ID {LicenseID} not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 ResetLicenseInfo();
-                MessageBox.Show($"License with ID {_LicenseID} not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             _FillLicenseInfo();
