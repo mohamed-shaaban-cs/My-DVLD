@@ -16,17 +16,14 @@ namespace DVLD.Licenses.Local_License.Controls
     {
         int _LicenseID;
         clsLicense _LicenseInfo;
-
         public clsLicense SelectedLicenseInfo
         {
             get
             {
-                if (_LicenseInfo == null)
-                    _LicenseInfo = new clsLicense();
                 return _LicenseInfo;
             }
         }
-        int LicenseID { get { return _LicenseID; } }
+        public int LicenseID { get { return _LicenseID; } }
         public ctrlLocalDriverLicenseInfo()
         {
             InitializeComponent();
@@ -67,6 +64,8 @@ namespace DVLD.Licenses.Local_License.Controls
         }
         public void ResetLicenseInfo()
         {
+            _LicenseInfo = null;
+            _LicenseID = -1;
             lblClass.Text = "[????]";
             lblName.Text = "[????]";
             lblLicenseID.Text = "[????]";

@@ -15,8 +15,11 @@ namespace DVLD.Applications.InternationalDrivingLicenseApplication.Contols
     public partial class ctrlInternationalDrivingLicenseApplicationInfo : UserControl
     {
         int InternationalLicenseID;
-        clsInternationalLicense nternationalLicense;
-        public clsInternationalLicense _InternationalLicense {get;}
+        clsInternationalLicense _InternationalLicense;
+        public clsInternationalLicense InternationalLicense
+        {
+            get { return _InternationalLicense; }
+        }
         public clsApplication _Application;
         clsApplicationType _ApplicationType = clsApplicationType.Find((int)clsApplication.enApplicationType.NewInternationalLicense);
         int _LocalLicenseID = -1;
@@ -50,6 +53,14 @@ namespace DVLD.Applications.InternationalDrivingLicenseApplication.Contols
             }
             _LocalLicenseID = LocalLicenseID;
             lblLocalLicenseID.Text = _LocalLicenseID.ToString();
+
+
+            _InternationalLicense = clsInternationalLicense.FindByDriverID(_LocalLicenseInfo.DriverID);
+            if (_InternationalLicense != null)
+            {
+                lblI_LicenseID.Text = _InternationalLicense.InternationalLicenseID.ToString();
+                lblI_L_ApplicationID.Text = _InternationalLicense.ApplicationID.ToString();
+            }
         }
 
         bool _HandleLocalLicense()
@@ -70,12 +81,19 @@ namespace DVLD.Applications.InternationalDrivingLicenseApplication.Contols
             {
                 MessageBox.Show("This license is expired. Please renew it before proceeding.","License Expired",MessageBoxButtons.OK,MessageBoxIcon.Warning);
                 return false;
+                
             }
             return true;
         }
 
         public bool IssueLicense()
         {
+            if (_InternationalLicense == null)
+            {
+                MessageBox.Show("This person was already issued an international license.", "Already Issued", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+                
             if (!_HandleLocalLicense())
                 return false;
 
@@ -96,7 +114,7 @@ namespace DVLD.Applications.InternationalDrivingLicenseApplication.Contols
             }
             lblI_L_ApplicationID.Text = _Application.ApplicationID.ToString();
 
-            //InternationalLicense = new clsInternationalLicense();
+            _InternationalLicense = new clsInternationalLicense();
 
             _InternationalLicense.ApplicationID = _Application.ApplicationID;
             _InternationalLicense.DriverID = _LocalLicenseInfo.DriverID;
