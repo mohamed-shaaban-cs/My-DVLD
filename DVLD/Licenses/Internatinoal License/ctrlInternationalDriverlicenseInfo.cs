@@ -1,0 +1,69 @@
+﻿using DVLD_BusinessLogic;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace DVLD.Licenses.Internatinoal_License
+{
+    public partial class ctrlInternationalDriverlicenseInfo : UserControl
+    {
+        int _InternationalLicenseID;
+        public int InternationalLicenseID { get { return _InternationalLicenseID; } }
+
+        clsInternationalLicense _InternationalLicense;
+        public clsInternationalLicense InternationalLicense { get { return _InternationalLicense; } }
+        public ctrlInternationalDriverlicenseInfo()
+        {
+            InitializeComponent();
+        }
+        public void ResetLicenseInfo()
+        {
+            _InternationalLicense = null;
+            _InternationalLicenseID = -1;
+            lblInt_LicenseID.Text = "[????]";
+            lblName.Text = "[????]";
+            lblLicenseID.Text = "[????]";
+            lblNationalNo.Text = "[????]";
+            lblGender.Text = "[????]";
+            lblIssueDate.Text = "[????]";
+
+            lblApplicationID.Text = "[????]";
+            lblIsActive.Text = "[????]";
+            lblDateOfBirth.Text = "[????]";
+            lblDriverID.Text = "[????]";
+            lblExpirationDate.Text = "[????]";
+            pbPersonImage.ImageLocation = "";
+        }
+        public void LoadInfo(int internationalLicenseID)
+        {
+            _InternationalLicenseID = internationalLicenseID;
+            _InternationalLicense = clsInternationalLicense.Find(internationalLicenseID);
+            if(_InternationalLicense == null)
+            {
+                MessageBox.Show($"International License is Not Exisit with License ID {internationalLicenseID}", "Not Exsist", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ResetLicenseInfo();
+                return;
+            }
+            lblInt_LicenseID.Text = _InternationalLicense.InternationalLicenseID.ToString();
+            lblName.Text = _InternationalLicense.DriverInfo.PersonInfo.PersonID.ToString();
+            lblLicenseID.Text = _InternationalLicense.IssuedUsingLocalLicenseID.ToString();
+            lblNationalNo.Text = _InternationalLicense.DriverInfo.PersonInfo.NationalNo;
+            lblGender.Text = (_InternationalLicense.DriverInfo.PersonInfo.Gender == (short)clsPerson.enGender.Male)? "Male":"Female";
+            lblIssueDate.Text = _InternationalLicense.IssueDate.ToString("yyyy-mm-dd");
+
+            lblApplicationID.Text = _InternationalLicense.ApplicationID.ToString();
+            lblIsActive.Text = _InternationalLicense.IsActive? "Yes" : "No";
+            lblDateOfBirth.Text = _InternationalLicense.DriverInfo.PersonInfo.DateOfBirth.ToString("yyyy-mm-dd");
+            lblDriverID.Text = _InternationalLicense.DriverID.ToString();
+            lblExpirationDate.Text = _InternationalLicense.ExpirationDate.ToString("yyyy-mm-dd");
+
+        }
+
+    }
+}

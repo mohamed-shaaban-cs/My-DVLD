@@ -120,6 +120,12 @@
     <Compile Include="Licenses\frmLicenseDriverHistory.Designer.cs">
       <DependentUpon>frmLicenseDriverHistory.cs</DependentUpon>
     </Compile>
+    <Compile Include="Licenses\Internatinoal License\ctrlInternationalDriverlicenseInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Licenses\Internatinoal License\ctrlInternationalDriverlicenseInfo.Designer.cs">
+      <DependentUpon>ctrlInternationalDriverlicenseInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Licenses\Local License\Controls\ctrlLocalDriverLicenseInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>

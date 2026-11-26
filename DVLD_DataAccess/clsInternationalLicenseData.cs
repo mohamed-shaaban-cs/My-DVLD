@@ -7,7 +7,7 @@ namespace DVLD_DataAccess
 {
     public static class clsInternationalLicenseData
     {
-        public static bool GetInternationalLicenseInfoByID(int InternationalLicenseID, ref int ApplicationID,ref int DriverID,ref int IssuedUsingLocalLicenseID,ref object IssueDate,ref object ExpirationDate,ref bool IsActive,ref int CreatedByUserID)
+        public static bool GetInternationalLicenseInfoByID(int InternationalLicenseID, ref int ApplicationID,ref int DriverID,ref int IssuedUsingLocalLicenseID,ref DateTime IssueDate,ref DateTime ExpirationDate,ref bool IsActive,ref int CreatedByUserID)
         {
             bool isFound = false;
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
@@ -25,8 +25,8 @@ namespace DVLD_DataAccess
                     ApplicationID = Reader["ApplicationID"] != DBNull.Value ? (int)Reader["ApplicationID"] : -1;
                     DriverID = Reader["DriverID"] != DBNull.Value ? (int)Reader["DriverID"] : -1;
                     IssuedUsingLocalLicenseID = Reader["IssuedUsingLocalLicenseID"] != DBNull.Value ? (int)Reader["IssuedUsingLocalLicenseID"] : -1;
-                    IssueDate = Reader["IssueDate"] != DBNull.Value ? (object)Reader["IssueDate"] : null;
-                    ExpirationDate = Reader["ExpirationDate"] != DBNull.Value ? (object)Reader["ExpirationDate"] : null;
+                    IssueDate = Reader["IssueDate"] != DBNull.Value ? (DateTime)Reader["IssueDate"] : DateTime.Now;
+                    ExpirationDate = Reader["ExpirationDate"] != DBNull.Value ? (DateTime)Reader["ExpirationDate"] : DateTime.Now;
                     IsActive = Reader["IsActive"] != DBNull.Value ? (bool)Reader["IsActive"] : false;
                     CreatedByUserID = Reader["CreatedByUserID"] != DBNull.Value ? (int)Reader["CreatedByUserID"] : -1;
 
@@ -44,7 +44,7 @@ namespace DVLD_DataAccess
             }
             return isFound;
         }
-        public static bool GetInternationalLicenseInfoByDriverID( int DriverID,ref int InternationalLicenseID, ref int ApplicationID,ref int IssuedUsingLocalLicenseID,ref object IssueDate,ref object ExpirationDate,ref bool IsActive,ref int CreatedByUserID)
+        public static bool GetInternationalLicenseInfoByDriverID( int DriverID,ref int InternationalLicenseID, ref int ApplicationID,ref int IssuedUsingLocalLicenseID,ref DateTime IssueDate,ref DateTime ExpirationDate,ref bool IsActive,ref int CreatedByUserID)
         {
             bool isFound = false;
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
@@ -62,8 +62,8 @@ namespace DVLD_DataAccess
                     InternationalLicenseID = Reader["InternationalLicensesID"] != DBNull.Value ? (int)Reader["InternationalLicensesID"] : -1;
                     ApplicationID = Reader["ApplicationID"] != DBNull.Value ? (int)Reader["ApplicationID"] : -1;
                     IssuedUsingLocalLicenseID = Reader["IssuedUsingLocalLicenseID"] != DBNull.Value ? (int)Reader["IssuedUsingLocalLicenseID"] : -1;
-                    IssueDate = Reader["IssueDate"] != DBNull.Value ? (object)Reader["IssueDate"] : null;
-                    ExpirationDate = Reader["ExpirationDate"] != DBNull.Value ? (object)Reader["ExpirationDate"] : null;
+                    IssueDate = Reader["IssueDate"] != DBNull.Value ? (DateTime)Reader["IssueDate"] : DateTime.Now;
+                    ExpirationDate = Reader["ExpirationDate"] != DBNull.Value ? (DateTime)Reader["ExpirationDate"] : DateTime.Now;
                     IsActive = Reader["IsActive"] != DBNull.Value ? (bool)Reader["IsActive"] : false;
                     CreatedByUserID = Reader["CreatedByUserID"] != DBNull.Value ? (int)Reader["CreatedByUserID"] : -1;
 
@@ -82,7 +82,7 @@ namespace DVLD_DataAccess
             return isFound;
         }
 
-        public static int AddNewInternationalLicense( int ApplicationID, int DriverID, int IssuedUsingLocalLicenseID, object IssueDate, object ExpirationDate, bool IsActive, int CreatedByUserID)
+        public static int AddNewInternationalLicense( int ApplicationID, int DriverID, int IssuedUsingLocalLicenseID, DateTime IssueDate, DateTime ExpirationDate, bool IsActive, int CreatedByUserID)
         {
             int InsertedID = -1;
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);

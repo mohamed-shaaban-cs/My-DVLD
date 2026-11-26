@@ -42,8 +42,8 @@ namespace DVLD_BusinessLogic
             }
         }
         public int IssuedUsingLocalLicenseID { get; set; }
-        public object IssueDate { get; set; }
-        public object ExpirationDate { get; set; }
+        public DateTime IssueDate { get; set; }
+        public DateTime ExpirationDate { get; set; }
         public bool IsActive { get; set; }
         public int CreatedByUserID { get; set; }
 
@@ -55,8 +55,8 @@ namespace DVLD_BusinessLogic
             this.ApplicationID = -1;
             this.DriverID = -1;
             this.IssuedUsingLocalLicenseID = -1;
-            this.IssueDate = null;
-            this.ExpirationDate = null;
+            this.IssueDate = DateTime.Now;
+            this.ExpirationDate = DateTime.Now;
             this.IsActive = false;
             this.CreatedByUserID = -1;
 
@@ -64,14 +64,14 @@ namespace DVLD_BusinessLogic
         }
 
         // Parameterized Constructor لتحميل بيانات موجودة
-        private clsInternationalLicense(int InternationalLicenseID, int ApplicationID, int DriverID, int IssuedUsingLocalLicenseID, object IssueDate, object ExpirationDate, bool IsActive, int CreatedByUserID)
+        private clsInternationalLicense(int InternationalLicenseID, int ApplicationID, int DriverID, int IssuedUsingLocalLicenseID, DateTime IssueDate, DateTime ExpirationDate, bool IsActive, int CreatedByUserID)
         {
             this.InternationalLicenseID = InternationalLicenseID;
             this.ApplicationID = ApplicationID;
             this.DriverID = DriverID;
             this.IssuedUsingLocalLicenseID = IssuedUsingLocalLicenseID;
-            this.IssueDate = IssueDate;
-            this.ExpirationDate = ExpirationDate;
+            this.IssueDate = DateTime.Now;
+            this.ExpirationDate = DateTime.Now;
             this.IsActive = IsActive;
             this.CreatedByUserID = CreatedByUserID;
 
@@ -96,8 +96,8 @@ namespace DVLD_BusinessLogic
             int ApplicationID = -1;
             int DriverID = -1;
             int IssuedUsingLocalLicenseID = -1;
-            object IssueDate = null;
-            object ExpirationDate = null;
+            DateTime IssueDate = DateTime.Now;
+            DateTime ExpirationDate = DateTime.Now;
             bool IsActive = false;
             int CreatedByUserID = -1;
 
@@ -114,8 +114,8 @@ namespace DVLD_BusinessLogic
             int InternationalLicenseID = -1;
             int ApplicationID = -1;
             int IssuedUsingLocalLicenseID = -1;
-            object IssueDate = null;
-            object ExpirationDate = null;
+            DateTime IssueDate = DateTime.Now;
+            DateTime ExpirationDate = DateTime.Now;
             bool IsActive = false;
             int CreatedByUserID = -1;
 
