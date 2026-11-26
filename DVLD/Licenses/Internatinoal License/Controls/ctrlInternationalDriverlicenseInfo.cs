@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace DVLD.Licenses.Internatinoal_License
 {
@@ -21,6 +22,20 @@ namespace DVLD.Licenses.Internatinoal_License
         public ctrlInternationalDriverlicenseInfo()
         {
             InitializeComponent();
+        }
+        void _LoadPersonImage()
+        {
+            // Set default image based on gender
+            pbPersonImage.Image = (_InternationalLicense.DriverInfo.PersonInfo.Gender == 0) ? Properties.Resources.Male_512 : Properties.Resources.Female_512;
+
+            string ImagePath = _InternationalLicense.DriverInfo.PersonInfo.ImagePath;
+            if (!string.IsNullOrEmpty(ImagePath))
+            {
+                if (File.Exists(ImagePath)) // Check if the image file exists
+                    pbPersonImage.ImageLocation = ImagePath;
+                else
+                    MessageBox.Show($"Image file not found: {ImagePath}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         public void ResetLicenseInfo()
         {
@@ -62,7 +77,7 @@ namespace DVLD.Licenses.Internatinoal_License
             lblDateOfBirth.Text = _InternationalLicense.DriverInfo.PersonInfo.DateOfBirth.ToString("yyyy-mm-dd");
             lblDriverID.Text = _InternationalLicense.DriverID.ToString();
             lblExpirationDate.Text = _InternationalLicense.ExpirationDate.ToString("yyyy-mm-dd");
-
+            _LoadPersonImage();
         }
 
     }

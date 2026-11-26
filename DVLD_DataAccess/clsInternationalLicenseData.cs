@@ -11,7 +11,7 @@ namespace DVLD_DataAccess
         {
             bool isFound = false;
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-            string query = "SELECT * FROM InternationalLicenses WHERE InternationalLicenseID = @InternationalLicenseID";
+            string query = "SELECT * FROM InternationalLicenses WHERE InternationalLicensesID = @InternationalLicenseID";
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@InternationalLicenseID", InternationalLicenseID);
 

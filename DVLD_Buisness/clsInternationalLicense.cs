@@ -27,15 +27,15 @@ namespace DVLD_BusinessLogic
             }
         }
         public int DriverID { get; set; }
-        clsApplication _DriverInfo;
+        clsDriver _DriverInfo;
         bool _isDriverLoaded = false;
-        public clsApplication DriverInfo
+        public clsDriver DriverInfo
         {
             get
             {
                 if (!_isDriverLoaded)
                 {
-                    _DriverInfo = clsApplication.FindBaseApplication(DriverID);
+                    _DriverInfo = clsDriver.Find(DriverID);
                     _isDriverLoaded = true;
                 }
                 return _DriverInfo;

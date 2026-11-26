@@ -120,11 +120,17 @@
     <Compile Include="Licenses\frmLicenseDriverHistory.Designer.cs">
       <DependentUpon>frmLicenseDriverHistory.cs</DependentUpon>
     </Compile>
-    <Compile Include="Licenses\Internatinoal License\ctrlInternationalDriverlicenseInfo.cs">
+    <Compile Include="Licenses\Internatinoal License\Controls\ctrlInternationalDriverlicenseInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Licenses\Internatinoal License\ctrlInternationalDriverlicenseInfo.Designer.cs">
+    <Compile Include="Licenses\Internatinoal License\Controls\ctrlInternationalDriverlicenseInfo.Designer.cs">
       <DependentUpon>ctrlInternationalDriverlicenseInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Licenses\Internatinoal License\frmInternationalDriverLicenseInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Licenses\Internatinoal License\frmInternationalDriverLicenseInfo.Designer.cs">
+      <DependentUpon>frmInternationalDriverLicenseInfo.cs</DependentUpon>
     </Compile>
     <Compile Include="Licenses\Local License\Controls\ctrlLocalDriverLicenseInfo.cs">
       <SubType>UserControl</SubType>
@@ -314,6 +320,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Licenses\frmLicenseDriverHistory.resx">
       <DependentUpon>frmLicenseDriverHistory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Licenses\Internatinoal License\Controls\ctrlInternationalDriverlicenseInfo.resx">
+      <DependentUpon>ctrlInternationalDriverlicenseInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Licenses\Internatinoal License\frmInternationalDriverLicenseInfo.resx">
+      <DependentUpon>frmInternationalDriverLicenseInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Licenses\Local License\Controls\ctrlLocalDriverLicenseInfo.resx">
       <DependentUpon>ctrlLocalDriverLicenseInfo.cs</DependentUpon>

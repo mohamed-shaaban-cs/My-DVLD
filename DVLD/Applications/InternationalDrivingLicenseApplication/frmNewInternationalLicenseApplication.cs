@@ -1,5 +1,6 @@
 ﻿using DVLD.Global_Classes;
 using DVLD.Licenses;
+using DVLD.Licenses.Internatinoal_License;
 using DVLD_BusinessLogic;
 using System;
 using System.Collections.Generic;
@@ -195,6 +196,8 @@ namespace DVLD.Applications.InternationalDrivingLicenseApplication
                 MessageBox.Show("Error: Select Local License First.", "Local License", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            frmInternationalDriverLicenseInfo frm = new frmInternationalDriverLicenseInfo(_InternationalLicense.InternationalLicenseID);
+            frm.ShowDialog();
         }
     }
 }
