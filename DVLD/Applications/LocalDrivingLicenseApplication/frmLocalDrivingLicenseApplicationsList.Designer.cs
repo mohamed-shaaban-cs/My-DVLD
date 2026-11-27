@@ -88,7 +88,7 @@
             this.panel1.Controls.Add(this.dgvList);
             this.panel1.Location = new System.Drawing.Point(10, 277);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1455, 330);
+            this.panel1.Size = new System.Drawing.Size(1405, 330);
             this.panel1.TabIndex = 21;
             // 
             // dgvList
@@ -126,7 +126,7 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvList.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvList.Size = new System.Drawing.Size(1455, 330);
+            this.dgvList.Size = new System.Drawing.Size(1405, 330);
             this.dgvList.TabIndex = 2;
             // 
             // contextMenuStrip1
@@ -470,7 +470,7 @@
             this.crtlNewLocalLicenseAppication.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.crtlNewLocalLicenseAppication.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.crtlNewLocalLicenseAppication.Image = global::DVLD.Properties.Resources.New_Application_64;
-            this.crtlNewLocalLicenseAppication.Location = new System.Drawing.Point(1376, 201);
+            this.crtlNewLocalLicenseAppication.Location = new System.Drawing.Point(1326, 201);
             this.crtlNewLocalLicenseAppication.Name = "crtlNewLocalLicenseAppication";
             this.crtlNewLocalLicenseAppication.Size = new System.Drawing.Size(89, 70);
             this.crtlNewLocalLicenseAppication.TabIndex = 19;
@@ -480,12 +480,12 @@
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(133)))), ((int)(((byte)(198)))));
-            this.pictureBox1.BackgroundImage = global::DVLD.Properties.Resources.Application_Types_512;
+            this.pictureBox1.BackgroundImage = global::DVLD.Properties.Resources.Applications2;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1482, 132);
+            this.pictureBox1.Size = new System.Drawing.Size(1426, 132);
             this.pictureBox1.TabIndex = 12;
             this.pictureBox1.TabStop = false;
             // 
@@ -496,9 +496,9 @@
             this.crtlClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.crtlClose.Image = global::DVLD.Properties.Resources.Close_32;
             this.crtlClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.crtlClose.Location = new System.Drawing.Point(1341, 621);
+            this.crtlClose.Location = new System.Drawing.Point(1285, 618);
             this.crtlClose.Name = "crtlClose";
-            this.crtlClose.Size = new System.Drawing.Size(124, 35);
+            this.crtlClose.Size = new System.Drawing.Size(130, 39);
             this.crtlClose.TabIndex = 18;
             this.crtlClose.Text = "Close";
             this.crtlClose.UseVisualStyleBackColor = false;
@@ -509,7 +509,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(24)))), ((int)(((byte)(40)))));
-            this.ClientSize = new System.Drawing.Size(1482, 669);
+            this.ClientSize = new System.Drawing.Size(1426, 669);
             this.Controls.Add(this.cbStatus);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.lblRecordsCount);

@@ -211,7 +211,7 @@ namespace DVLD_DataAccess
         {
             DataTable dt = new DataTable();
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-            string query = "SELECT * FROM InternationalLicenses";
+            string query = "SELECT InternationalLicensesID,ApplicationID,DriverID,IssuedUsingLocalLicenseID,IssueDate,ExpirationDate,IsActive FROM InternationalLicenses";
             SqlCommand command = new SqlCommand(query, connection);
 
             try

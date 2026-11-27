@@ -34,7 +34,7 @@ namespace DVLD.Applications.LocalDrivingLicenseApplication
             _RefreshLocalDrivingLicenseApplicationsList();
             DataGridViewInterfacescs.DataGridViewModernStayle(dgvList);
 
-            if (dgvList != null)
+            if (dgvList.Rows.Count > 0)
             {
                 dgvList.Columns["LocalDrivingLicenseApplicationID"].HeaderText = "L.D.L.AppID";
                 dgvList.Columns["ClassName"].HeaderText = "Driving Class";
@@ -80,15 +80,10 @@ namespace DVLD.Applications.LocalDrivingLicenseApplication
                     break;
                 default:
                     filterColumn = "none";
-                    break;
+                    dtAllLocalDrivingLicenseApplications.DefaultView.RowFilter = "";
+                    lblRecordsCount.Text = dgvList.Rows.Count.ToString();
+                    return;
             }
-            if (tbSeach.Text.Trim() == "" || filterColumn == "none")
-            {
-                dtAllLocalDrivingLicenseApplications.DefaultView.RowFilter = "";
-                lblRecordsCount.Text = dgvList.Rows.Count.ToString();
-                return;
-            }
-
 
             if (filterColumn == "LocalDrivingLicenseApplicationID")
                 dtAllLocalDrivingLicenseApplications.DefaultView.RowFilter = string.Format("[{0}] = {1}", filterColumn, tbSeach.Text.Trim());

@@ -94,6 +94,7 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.ctrlInternationalDriverlicenseInfo1);
             this.Name = "frmInternationalDriverLicenseInfo";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "frmInternationalDriverLicenseInfo";
             this.Load += new System.EventHandler(this.frmInternationalDriverLicenseInfo_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

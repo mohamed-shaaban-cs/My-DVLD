@@ -72,6 +72,12 @@
     <Compile Include="Applications\InternationalDrivingLicenseApplication\Contols\ctrlInternationalDrivingLicenseApplicationInfo.Designer.cs">
       <DependentUpon>ctrlInternationalDrivingLicenseApplicationInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Applications\InternationalDrivingLicenseApplication\frmInternationalLicenseApplicationsList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Applications\InternationalDrivingLicenseApplication\frmInternationalLicenseApplicationsList.Designer.cs">
+      <DependentUpon>frmInternationalLicenseApplicationsList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Applications\InternationalDrivingLicenseApplication\frmNewInternationalLicenseApplication.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -296,6 +302,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Applications\InternationalDrivingLicenseApplication\Contols\ctrlInternationalDrivingLicenseApplicationInfo.resx">
       <DependentUpon>ctrlInternationalDrivingLicenseApplicationInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Applications\InternationalDrivingLicenseApplication\frmInternationalLicenseApplicationsList.resx">
+      <DependentUpon>frmInternationalLicenseApplicationsList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Applications\InternationalDrivingLicenseApplication\frmNewInternationalLicenseApplication.resx">
       <DependentUpon>frmNewInternationalLicenseApplication.cs</DependentUpon>
@@ -723,6 +732,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Driver Main.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Applications1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Applications2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

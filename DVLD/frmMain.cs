@@ -145,5 +145,11 @@ namespace DVLD
             frmNewInternationalLicenseApplication frm = new frmNewInternationalLicenseApplication();
             frm.ShowDialog();
         }
+
+        private void internationalLicenseApplicationsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmInternationalLicenseApplicationsList frm = new frmInternationalLicenseApplicationsList();
+            frm.ShowDialog();
+        }
     }
 }
