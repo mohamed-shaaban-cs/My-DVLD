@@ -70,13 +70,13 @@ namespace DVLD.Licenses.Internatinoal_License
             lblLicenseID.Text = _InternationalLicense.IssuedUsingLocalLicenseID.ToString();
             lblNationalNo.Text = _InternationalLicense.DriverInfo.PersonInfo.NationalNo;
             lblGender.Text = (_InternationalLicense.DriverInfo.PersonInfo.Gender == (short)clsPerson.enGender.Male)? "Male":"Female";
-            lblIssueDate.Text = _InternationalLicense.IssueDate.ToString("yyyy-mm-dd");
+            lblIssueDate.Text = _InternationalLicense.IssueDate.ToString("yyyy-MMM-dd");
 
             lblApplicationID.Text = _InternationalLicense.ApplicationID.ToString();
             lblIsActive.Text = _InternationalLicense.IsActive? "Yes" : "No";
-            lblDateOfBirth.Text = _InternationalLicense.DriverInfo.PersonInfo.DateOfBirth.ToString("yyyy-mm-dd");
+            lblDateOfBirth.Text = _InternationalLicense.DriverInfo.PersonInfo.DateOfBirth.ToString("yyyy-MMM-dd");
             lblDriverID.Text = _InternationalLicense.DriverID.ToString();
-            lblExpirationDate.Text = _InternationalLicense.ExpirationDate.ToString("yyyy-mm-dd");
+            lblExpirationDate.Text = _InternationalLicense.ExpirationDate.ToString("yyyy-MMM-dd");
             _LoadPersonImage();
         }
 

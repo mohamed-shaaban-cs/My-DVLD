@@ -73,9 +73,9 @@ namespace DVLD.Applications.InternationalDrivingLicenseApplication.Contols
             lblI_LicenseID.Text = "[????]";
             lblLocalLicenseID.Text = "[????]";
 
-            lblApplciationDate.Text = DateTime.Now.ToShortDateString();
+            lblApplciationDate.Text = DateTime.Now.ToString("yyyy-MMM-dd");
             lblIssueDate.Text = lblApplciationDate.Text;
-            lblExpirationDate.Text = DateTime.Now.AddYears(1).ToShortDateString();
+            lblExpirationDate.Text = DateTime.Now.AddYears(1).ToString("yyyy-MMM-dd");
             lblFees.Text = _ApplicationType.ApplicationFees.ToString();
             lblCreatedByUserName.Text = clsGlobal.CurrentUser.UserName;
         }

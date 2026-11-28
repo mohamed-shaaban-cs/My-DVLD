@@ -129,7 +129,6 @@ namespace DVLD_BusinessLogic
             this.LastStatusDate = LastStatusDate;
             this.PaidFees = PaidFees;
             this.CreatedByUserID = CreatedByUserID;
-            this.CreatedByUserInfo = clsUser.FindByUserID(CreatedByUserID);
 
             Mode = enMode.Update;
         }
