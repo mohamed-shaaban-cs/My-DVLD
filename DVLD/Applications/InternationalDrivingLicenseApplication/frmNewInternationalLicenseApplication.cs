@@ -17,7 +17,7 @@ namespace DVLD.Applications.InternationalDrivingLicenseApplication
 {
     public partial class frmNewInternationalLicenseApplication : Form
     {
-
+        int _LocalLicenseID = -1;
         clsInternationalLicense _InternationalLicense;
         clsApplication _Application;
         public frmNewInternationalLicenseApplication()
@@ -82,10 +82,10 @@ namespace DVLD.Applications.InternationalDrivingLicenseApplication
                 return true;
             }
         }
-
-        private void ctrlLocalDriverLicenseInfoWithFilter1_FindClick(object sender, EventArgs e)
+        private void ctrlLocalDriverLicenseInfoWithFilter1_OnLicenseSelected(int obj)
         {
-            if(ctrlLocalDriverLicenseInfoWithFilter1.LocalLicenseID == -1)
+            _LocalLicenseID = obj;
+            if(_LocalLicenseID == -1)
             {
                 btnIssue.Enabled = false;
                 lbllShowLicensesHistory.Enabled = false;
@@ -93,7 +93,7 @@ namespace DVLD.Applications.InternationalDrivingLicenseApplication
                 ctrlInternationalDrivingLicenseApplicationInfo1.ResetDefultValues();
                 return;
             }
-            ctrlInternationalDrivingLicenseApplicationInfo1.LocalLicenseID = ctrlLocalDriverLicenseInfoWithFilter1.LocalLicenseID;
+            ctrlInternationalDrivingLicenseApplicationInfo1.LocalLicenseID = _LocalLicenseID;
 
             _InternationalLicense = clsInternationalLicense.FindByDriverID(ctrlLocalDriverLicenseInfoWithFilter1.LocalLicense.DriverID);
             if(_InternationalLicense != null)
@@ -121,6 +121,10 @@ namespace DVLD.Applications.InternationalDrivingLicenseApplication
 
             if (!_HandleIsLicenseDetained())
                 return;
+        }
+
+        private void ctrlLocalDriverLicenseInfoWithFilter1_FindClick(object sender, EventArgs e)
+        {
 
         }
 
@@ -199,5 +203,6 @@ namespace DVLD.Applications.InternationalDrivingLicenseApplication
             frmInternationalDriverLicenseInfo frm = new frmInternationalDriverLicenseInfo(_InternationalLicense.InternationalLicenseID);
             frm.ShowDialog();
         }
+
     }
 }

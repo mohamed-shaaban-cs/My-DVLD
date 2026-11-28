@@ -118,11 +118,12 @@
             // ctrlLocalDriverLicenseInfoWithFilter1
             // 
             this.ctrlLocalDriverLicenseInfoWithFilter1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(24)))), ((int)(((byte)(40)))));
+            this.ctrlLocalDriverLicenseInfoWithFilter1.FilterEnabled = true;
             this.ctrlLocalDriverLicenseInfoWithFilter1.Location = new System.Drawing.Point(12, 65);
             this.ctrlLocalDriverLicenseInfoWithFilter1.Name = "ctrlLocalDriverLicenseInfoWithFilter1";
             this.ctrlLocalDriverLicenseInfoWithFilter1.Size = new System.Drawing.Size(984, 527);
             this.ctrlLocalDriverLicenseInfoWithFilter1.TabIndex = 0;
-            this.ctrlLocalDriverLicenseInfoWithFilter1.FindClick += new System.EventHandler(this.ctrlLocalDriverLicenseInfoWithFilter1_FindClick);
+            this.ctrlLocalDriverLicenseInfoWithFilter1.OnLicenseSelected += new System.Action<int>(this.ctrlLocalDriverLicenseInfoWithFilter1_OnLicenseSelected);
             // 
             // frmNewInternationalLicenseApplication
             // 

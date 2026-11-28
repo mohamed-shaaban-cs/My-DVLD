@@ -28,17 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.gbFilter = new System.Windows.Forms.GroupBox();
-            this.txtSearchValue = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.txtSearch = new System.Windows.Forms.TextBox();
             this.btnFind = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.ctrlLocalDriverLicenseInfo1 = new DVLD.Licenses.Local_License.Controls.ctrlLocalDriverLicenseInfo();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.gbFilter.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // gbFilter
             // 
-            this.gbFilter.Controls.Add(this.txtSearchValue);
+            this.gbFilter.Controls.Add(this.txtSearch);
             this.gbFilter.Controls.Add(this.btnFind);
             this.gbFilter.Controls.Add(this.label1);
             this.gbFilter.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F);
@@ -50,23 +53,14 @@
             this.gbFilter.TabStop = false;
             this.gbFilter.Text = "Filter";
             // 
-            // txtSearchValue
+            // txtSearch
             // 
-            this.txtSearchValue.Location = new System.Drawing.Point(144, 35);
-            this.txtSearchValue.Name = "txtSearchValue";
-            this.txtSearchValue.Size = new System.Drawing.Size(253, 28);
-            this.txtSearchValue.TabIndex = 13;
-            this.txtSearchValue.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSearchValue_KeyPress);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(24, 38);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(101, 22);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "License ID :";
+            this.txtSearch.Location = new System.Drawing.Point(144, 35);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(253, 28);
+            this.txtSearch.TabIndex = 13;
+            this.txtSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSearchValue_KeyPress);
+            this.txtSearch.Validating += new System.ComponentModel.CancelEventHandler(this.txtSearch_Validating);
             // 
             // btnFind
             // 
@@ -82,6 +76,16 @@
             this.btnFind.UseVisualStyleBackColor = false;
             this.btnFind.Click += new System.EventHandler(this.btnFind_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(24, 38);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(101, 22);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "License ID :";
+            // 
             // ctrlLocalDriverLicenseInfo1
             // 
             this.ctrlLocalDriverLicenseInfo1.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -89,6 +93,10 @@
             this.ctrlLocalDriverLicenseInfo1.Name = "ctrlLocalDriverLicenseInfo1";
             this.ctrlLocalDriverLicenseInfo1.Size = new System.Drawing.Size(984, 435);
             this.ctrlLocalDriverLicenseInfo1.TabIndex = 0;
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
             // 
             // ctrlLocalDriverLicenseInfoWithFilter
             // 
@@ -101,6 +109,7 @@
             this.Size = new System.Drawing.Size(984, 527);
             this.gbFilter.ResumeLayout(false);
             this.gbFilter.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -109,8 +118,9 @@
 
         private ctrlLocalDriverLicenseInfo ctrlLocalDriverLicenseInfo1;
         private System.Windows.Forms.GroupBox gbFilter;
-        private System.Windows.Forms.TextBox txtSearchValue;
+        private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Button btnFind;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }
